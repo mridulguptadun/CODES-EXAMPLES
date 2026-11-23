@@ -10,9 +10,8 @@ def kaprekar_steps(n):
         n = desc - asc
         steps += 1
     return steps
-
 print(kaprekar_steps(3524))  # Output: 3
-Use code with caution.
+====================================================================================
 2. Prime Factorization with Exponents
 Return the prime factorization of a positive integer N as a dictionary {prime: exponent} using a while loop.
 python
@@ -922,30 +921,27 @@ bro srif loop ka dena h  function ka nahi or wo dena h jo samja m aajya
 Got it, bro! Bilkul seedha pure for aur while loops—koi def, return, ya heavy libraries nahi. Simple, clean logic jo ek baar padh kar hi samajh aa jaye, par level medium-to-hard hi rahega.
 Yeh rahe 30 solid loop-only questions (English questions + direct runnable Python code):
 
-1. Number Logic & Math (1–10)
+===============================================================================================
 
-1. Check if a number is an Armstrong (Narcissistic) number of ANY length
+1) Check if a number is an Armstrong (Narcissistic) number of ANY length
 (e.g., 9474 has 4 digits, and 9⁴ + 4⁴ + 7⁴ + 4⁴ = 9474)
-python
+
 num = 9474
 temp = num
 power = len(str(num))
 total = 0
-
 while temp > 0:
     digit = temp % 10
     total += digit ** power
     temp //= 10
-
 print("Armstrong" if total == num else "Not Armstrong")
-Use code with caution.
-2. Check if a number is a Strong Number
+========================================================================
+2) Check if a number is a Strong Number
 (Sum of factorials of its digits equals the number itself, e.g., 145 = 1! + 4! + 5!)
-python
+
 num = 145
 temp = num
 total = 0
-
 while temp > 0:
     digit = temp % 10
     fact = 1
@@ -953,16 +949,14 @@ while temp > 0:
         fact *= i
     total += fact
     temp //= 10
-
 print("Strong Number" if total == num else "Not Strong")
-Use code with caution.
-3. Find the Prime Factorization of a number
+===========================================================================
+3) Find the Prime Factorization of a number
 (e.g., 360 → 2, 2, 2, 3, 3, 5)
-python
+
 n = 360
 d = 2
 factors = []
-
 while d * d <= n:
     while n % d == 0:
         factors.append(d)
@@ -970,56 +964,48 @@ while d * d <= n:
     d += 1
 if n > 1:
     factors.append(n)
-
 print(factors)  # Output: [2, 2, 2, 3, 3, 5]
-Use code with caution.
-4. Kaprekar's Constant (6174) Steps Counter
+=====================================================================
+4) Kaprekar's Constant (6174) Steps Counter
 (Subtract ascending digits from descending digits until you reach 6174)
-python
+
 n = 3524
 steps = 0
-
 while n != 6174:
     s = f"{n:04d}"
     asc = int("".join(sorted(s)))
     desc = int("".join(sorted(s, reverse=True)))
-    n = desc - asc
-    steps += 1
+    n = desc - asc    steps += 1
 
 print("Steps:", steps)  # Output: 3
-Use code with caution.
-5. Convert Decimal to Binary without bin()
-python
+============================================================================
+5) Convert Decimal to Binary without bin()
+
 n = 45
 binary = ""
-
 while n > 0:
     rem = n % 2
     binary = str(rem) + binary
     n //= 2
-
 print(binary)  # Output: 101101
-Use code with caution.
-6. Find Digital Root (Keep summing digits until 1 digit remains)
+===================================================================================
+6) Find Digital Root (Keep summing digits until 1 digit remains)
 (e.g., 9875 → 29 → 11 → 2)
-python
-n = 9875
 
+n = 9875
 while n >= 10:
     digit_sum = 0
     while n > 0:
         digit_sum += n % 10
         n //= 10
     n = digit_sum
-
 print(n)  # Output: 2
-Use code with caution.
-7. Check if a number is a Happy Number
+===================================================================================
+7) Check if a number is a Happy Number
 (Replace number with sum of squares of digits; if it hits 1, it's Happy; if it loops to 4, it's Unhappy)
-python
+
 n = 19
 seen = set()
-
 while n != 1 and n not in seen:
     seen.add(n)
     sq_sum = 0
@@ -1028,26 +1014,22 @@ while n != 1 and n not in seen:
         sq_sum += d * d
         n //= 10
     n = sq_sum
-
 print("Happy Number" if n == 1 else "Not Happy")
-Use code with caution.
-8. Count Trailing Zeros in N! without calculating factorial
-python
+===================================================================================
+8) Count Trailing Zeros in N! without calculating factorial
+
 n = 100
 zeros = 0
-
 while n >= 5:
     n //= 5
     zeros += n
-
 print("Trailing zeros:", zeros)  # Output: 24
-Use code with caution.
-9. Find All Twin Primes up to N
+===================================================================================
+9) Find All Twin Primes up to N
 (Prime pairs that differ by 2, like (3, 5), (5, 7), (11, 13))
-python
+
 limit = 50
 prev_prime = 2
-
 for num in range(3, limit + 1):
     is_prime = True
     for i in range(2, int(num ** 0.5) + 1):
@@ -1058,65 +1040,53 @@ for num in range(3, limit + 1):
         if num - prev_prime == 2:
             print(f"({prev_prime}, {num})")
         prev_prime = num
-Use code with caution.
-10. Find GCD (HCF) and LCM of two numbers using Euclidean Loop
-python
+===================================================================================
+10) Find GCD (HCF) and LCM of two numbers using Euclidean Loop
+
 a, b = 36, 60
 x, y = a, b
-
 while y != 0:
     x, y = y, x % y
-
 gcd = x
 lcm = (a * b) // gcd
 print(f"GCD: {gcd}, LCM: {lcm}")  # Output: GCD: 12, LCM: 180
-Use code with caution.
+===================================================================================
+11) Find the Second Largest and Second Smallest in ONE loop (No sorting)
 
-2. List & Array Logic (11–20)
-
-11. Find the Second Largest and Second Smallest in ONE loop (No sorting)
-python
 nums = [12, 35, 1, 10, 34, 1]
 first = second = float('-inf')
-
 for n in nums:
     if n > first:
         second = first
         first = n
     elif first > n > second:
         second = n
-
 print("Second Largest:", second)  # Output: 34
-Use code with caution.
-12. Kadane’s Algorithm: Maximum Sum of a Contiguous Subarray
-python
+===================================================================================
+12) Kadane’s Algorithm: Maximum Sum of a Contiguous Subarray
+
 nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
 curr_sum = nums
 max_sum = nums
-
 for i in range(1, len(nums)):
     curr_sum = max(nums[i], curr_sum + nums[i])
     max_sum = max(max_sum, curr_sum)
-
 print("Max Subarray Sum:", max_sum)  # Output: 6
-Use code with caution.
-13. Move All Zeros to the End without creating a new list
-python
+===================================================================================
+13) Move All Zeros to the End without creating a new list
+
 nums = [0, 1, 0, 3, 12, 0, 5]
 pos = 0
-
 for i in range(len(nums)):
     if nums[i] != 0:
         nums[pos], nums[i] = nums[i], nums[pos]
         pos += 1
-
 print(nums)  # Output: [1, 3, 12, 5, 0, 0, 0]
-Use code with caution.
-14. Sort an Array of 0s, 1s, and 2s in a Single Pass (Dutch Flag)
-python
+===================================================================================
+14) Sort an Array of 0s, 1s, and 2s in a Single Pass (Dutch Flag)
+
 arr = [2, 0, 2, 1, 1, 0]
 low, mid, high = 0, 0, len(arr) - 1
-
 while mid <= high:
     if arr[mid] == 0:
         arr[low], arr[mid] = arr[mid], arr[low]
@@ -1127,15 +1097,13 @@ while mid <= high:
     else:
         arr[mid], arr[high] = arr[high], arr[mid]
         high -= 1
-
 print(arr)  # Output: [0, 0, 1, 1, 2, 2]
-Use code with caution.
-15. Find All Pairs in a Sorted Array that Sum up to Target (Two Pointers)
-python
+===================================================================================
+15) Find All Pairs in a Sorted Array that Sum up to Target (Two Pointers)
+
 arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 target = 10
 left, right = 0, len(arr) - 1
-
 while left < right:
     s = arr[left] + arr[right]
     if s == target:
@@ -1146,13 +1114,12 @@ while left < right:
         left += 1
     else:
         right -= 1
-Use code with caution.
-16. Trapping Rain Water Between Bars
-python
+===================================================================================
+16) Trapping Rain Water Between Bars
+
 height = [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]
 left, right = 0, len(height) - 1
 left_max = right_max = water = 0
-
 while left < right:
     if height[left] < height[right]:
         left_max = max(left_max, height[left])
@@ -1162,70 +1129,60 @@ while left < right:
         right_max = max(right_max, height[right])
         water += right_max - height[right]
         right -= 1
-
 print("Trapped Water:", water)  # Output: 6
-Use code with caution.
-17. Rotate a List Left by K Positions In-Place
-python
+===================================================================================
+17) Rotate a List Left by K Positions In-Place
+
 arr = [1, 2, 3, 4, 5, 6, 7]
 k = 3
 k %= len(arr)
-
 # Step 1: Reverse first k elements
 l, r = 0, k - 1
 while l < r:
     arr[l], arr[r] = arr[r], arr[l]
     l += 1; r -= 1
-
 # Step 2: Reverse remaining elements
 l, r = k, len(arr) - 1
 while l < r:
     arr[l], arr[r] = arr[r], arr[l]
     l += 1; r -= 1
-
 # Step 3: Reverse the whole list
 l, r = 0, len(arr) - 1
 while l < r:
     arr[l], arr[r] = arr[r], arr[l]
     l += 1; r -= 1
-
 print(arr)  # Output: [4, 5, 6, 7, 1, 2, 3]
-Use code with caution.
-18. Find Leaders in an Array
+===================================================================================
+18) Find Leaders in an Array
 (An element is a leader if it is greater than all elements to its right)
-python
+
 arr = [16, 17, 4, 3, 5, 2]
 leaders = []
 max_from_right = float('-inf')
-
 for i in range(len(arr) - 1, -1, -1):
     if arr[i] > max_from_right:
         leaders.append(arr[i])
         max_from_right = arr[i]
-
 leaders.reverse()
 print("Leaders:", leaders)  # Output: [17, 5, 2]
-Use code with caution.
-19. Find the Majority Element (Appears > N/2 times) using Boyer-Moore
-python
+===================================================================================
+19) Find the Majority Element (Appears > N/2 times) using Boyer-Moore
+
 nums = [2, 2, 1, 1, 1, 2, 2]
 candidate = None
 count = 0
-
 for n in nums:
     if count == 0:
         candidate = n
     count += 1 if n == candidate else -1
-
 print("Majority Element:", candidate)  # Output: 2
-Use code with caution.
-20. Merge Two Sorted Lists into One Sorted List without .sort()
-python
+===================================================================================
+20) Merge Two Sorted Lists into One Sorted List without .sort()
+
 a = [1, 3, 5, 7]
 b = [2, 4, 6, 8, 10]
 i = j = 0
 merged = []
-
 while i < len(a) and j < len(b):
     if a[i] < b[j]:
         merged.append(a[i])
@@ -1233,24 +1190,18 @@ while i < len(a) and j < len(b):
     else:
         merged.append(b[j])
         j += 1
-
 while i < len(a):
     merged.append(a[i]); i += 1
 while j < len(b):
     merged.append(b[j]); j += 1
-
 print(merged)  # Output: [1, 2, 3, 4, 5, 6, 7, 8, 10]
-Use code with caution.
-
-3. Strings & Pattern Logic (21–30)
-
-21. Run-Length String Compression
+===================================================================================
+21) Run-Length String Compression
 (e.g., "aaabbcddd" → "a3b2c1d3")
-python
+
 s = "aaabbcddd"
 compressed = ""
 i = 0
-
 while i < len(s):
     count = 1
     while i + 1 < len(s) and s[i] == s[i + 1]:
@@ -1258,30 +1209,26 @@ while i < len(s):
         i += 1
     compressed += s[i] + str(count)
     i += 1
-
 print(compressed)  # Output: a3b2c1d3
-Use code with caution.
-22. Longest Substring Without Repeating Characters (Sliding Window)
-python
+===================================================================================
+22) Longest Substring Without Repeating Characters (Sliding Window)
+
 s = "abcabcbb"
 seen = {}
 left = max_len = 0
-
 for right in range(len(s)):
     if s[right] in seen and seen[s[right]] >= left:
         left = seen[s[right]] + 1
     seen[s[right]] = right
     max_len = max(max_len, right - left + 1)
-
 print("Max Unique Length:", max_len)  # Output: 3
-Use code with caution.
-23. Check Balanced Parentheses ({[]}) using a Stack Loop
-python
+===================================================================================
+23) Check Balanced Parentheses ({[]}) using a Stack Loop
+
 expr = "{[()()]}"
 stack = []
 pairs = {')': '(', '}': '{', ']': '['}
 balanced = True
-
 for ch in expr:
     if ch in "({[":
         stack.append(ch)
@@ -1289,14 +1236,12 @@ for ch in expr:
         if not stack or stack.pop() != pairs[ch]:
             balanced = False
             break
-
 print("Balanced" if balanced and not stack else "Not Balanced")
-Use code with caution.
-24. Longest Palindromic Substring (Expand From Center)
-python
+===================================================================================
+24) Longest Palindromic Substring (Expand From Center)
+
 s = "babad"
 longest = ""
-
 for i in range(len(s)):
     # Odd length palindrome
     l, r = i, i
@@ -1304,34 +1249,29 @@ for i in range(len(s)):
         if (r - l + 1) > len(longest):
             longest = s[l:r+1]
         l -= 1; r += 1
-
     # Even length palindrome
     l, r = i, i + 1
     while l >= 0 and r < len(s) and s[l] == s[r]:
         if (r - l + 1) > len(longest):
             longest = s[l:r+1]
         l -= 1; r += 1
-
 print("Longest Palindrome:", longest)  # Output: bab
-Use code with caution.
-25. First Non-Repeating Character in a String
-python
+===================================================================================
+25) First Non-Repeating Character in a String
+
 s = "swiss"
 freq = {}
-
 for ch in s:
     freq[ch] = freq.get(ch, 0) + 1
-
 for ch in s:
     if freq[ch] == 1:
         print("First unique:", ch)  # Output: w
         break
-Use code with caution.
-26. Check if Two Strings are Anagrams without sorted() or Counter
-python
+===================================================================================
+26) Check if Two Strings are Anagrams without sorted() or Counter
+
 s1 = "listen"
 s2 = "silent"
-
 if len(s1) != len(s2):
     print("Not Anagram")
 else:
@@ -1340,15 +1280,14 @@ else:
         counts[ch] = counts.get(ch, 0) + 1
     for ch in s2:
         counts[ch] = counts.get(ch, 0) - 1
-
     is_anagram = True
     for val in counts.values():
         if val != 0:
             is_anagram = False
             break
     print("Anagram" if is_anagram else "Not Anagram")
-Use code with caution.
-27. Spiral Traversal of a 2D Matrix
+===================================================================================
+27) Spiral Traversal of a 2D Matrix
 python
 matrix = [,
  ,
@@ -1357,33 +1296,27 @@ matrix = [,
 top, bottom = 0, len(matrix) - 1
 left, right = 0, len(matrix) - 1
 result = []
-
 while top <= bottom and left <= right:
     for c in range(left, right + 1):
         result.append(matrix[top][c])
     top += 1
-
     for r in range(top, bottom + 1):
         result.append(matrix[r][right])
     right -= 1
-
     if top <= bottom:
         for c in range(right, left - 1, -1):
             result.append(matrix[bottom][c])
         bottom -= 1
-
     if left <= right:
         for r in range(bottom, top - 1, -1):
             result.append(matrix[r][left])
         left += 1
-
 print(result)  # Output: [1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7]
-Use code with caution.
-28. Pascal's Triangle up to N Rows
-python
+===================================================================================
+28) Pascal's Triangle up to N Rows
+
 rows = 5
 triangle = []
-
 for i in range(rows):
     row = * (i + 1)
     for j in range(1, i):
@@ -1402,7 +1335,6 @@ for i in range(1, n + 1):
         else:
             print(" ", end="")
     print()
-
 # Lower half
 for i in range(n - 1, 0, -1):
     for j in range(1, 2 * n):
@@ -1411,12 +1343,11 @@ for i in range(n - 1, 0, -1):
         else:
             print(" ", end="")
     print()
-Use code with caution.
-30. Print All Permutations of a 3-Character String using Nested Loops
+===================================================================================
+30) Print All Permutations of a 3-Character String using Nested Loops
 python
 s = "ABC"
 n = len(s)
-
 for i in range(n):
     for j in range(n):
         for k in range(n):
