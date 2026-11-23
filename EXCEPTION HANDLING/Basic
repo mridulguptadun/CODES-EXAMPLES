@@ -1,0 +1,234 @@
+Q1. Handle Division by Zero
+Question: Write a Python program to take two numbers from the user and divide them. Handle the ZeroDivisionError if the second number is zero.
+try:    a = int(input("Enter first number: "))    b = int(input("Enter second number: "))    result = a / b    print("Result:", result)except ZeroDivisionError:    print("Error: Cannot divide by zero.")except ValueError:    print("Error: Please enter valid numbers.")
+
+Sample Output:
+Enter first number: 20
+Enter second number: 0
+Error: Cannot divide by zero.
+
+
+Q2. Handle Multiple Exceptions
+Question: Write a program that takes two inputs and performs division. Handle both ValueError and ZeroDivisionError separately.
+try:    num1 = int(input("Enter first number: "))    num2 = int(input("Enter second number: "))    print("Division:", num1 / num2)except ValueError:    print("Invalid input! Enter integers only.")except ZeroDivisionError:    print("Cannot divide a number by zero.")
+
+
+
+Sample Output:
+Enter first number: abc
+Invalid input! Enter integers only.
+
+
+Q3. Use Finally Block
+Question: Write a program that divides two numbers and uses the finally block to display a message regardless of whether an exception occurs.
+try:    a = int(input("Enter number 1: "))    b = int(input("Enter number 2: "))    print("Result:", a / b)except ZeroDivisionError:    print("Division by zero is not allowed.")except ValueError:    print("Invalid input.")finally:    print("Program execution completed.")
+
+
+
+Sample Output:
+Enter number 1: 10
+Enter number 2: 2
+Result: 5.0
+Program execution completed.
+
+
+Q4. Handle IndexError
+Question: Write a program that accesses an element from a list using an index entered by the user. Handle IndexError if the index does not exist.
+numbers = [10, 20, 30, 40, 50]try:    index = int(input("Enter index: "))    print("Element:", numbers[index])except IndexError:    print("Error: Index does not exist.")except ValueError:    print("Please enter a valid integer.")
+
+
+
+Sample Output:
+Enter index: 10
+Error: Index does not exist.
+
+
+Q5. Handle KeyError
+Question: Write a program that searches for a student's marks in a dictionary. Handle KeyError if the student name is not available.
+students = {    "Rahul": 85,    "Aman": 90,    "Priya": 95}try:    name = input("Enter student name: ")    print("Marks:", students[name])except KeyError:    print("Student not found!")
+
+
+
+Sample Output:
+Enter student name: Mohit
+Student not found!
+
+
+Q6. Handle FileNotFoundError
+Question: Write a Python program to open and read a file. Handle FileNotFoundError if the file does not exist.
+try:    file = open("student.txt", "r")    content = file.read()    print(content)    file.close()except FileNotFoundError:    print("Error: File does not exist.")
+
+
+
+Sample Output:
+Error: File does not exist.
+
+
+Q7. Use Else with Try-Except
+Question: Write a program that accepts two numbers and performs division. Use the else block to display the result only when no exception occurs.
+try:    a = int(input("Enter first number: "))    b = int(input("Enter second number: "))    result = a / bexcept ZeroDivisionError:    print("Cannot divide by zero.")except ValueError:    print("Invalid input.")else:    print("Division Result:", result)
+
+
+
+Sample Output:
+Enter first number: 50
+Enter second number: 5
+Division Result: 10.0
+
+
+Q8. Handle TypeError
+Question: Write a program that attempts to add an integer and a string. Handle the TypeError exception.
+try:    a = 100    b = "200"    result = a + b    print(result)except TypeError:    print("Error: Cannot add integer and string directly.")
+
+
+
+Sample Output:
+Error: Cannot add integer and string directly.
+
+
+Q9. Handle ValueError in List Conversion
+Question: Write a program that converts a list of strings into integers. Handle ValueError if any string cannot be converted.
+values = ["10", "20", "abc", "40"]try:    numbers = []    for value in values:        numbers.append(int(value))    print("Numbers:", numbers)except ValueError:    print("Error: Invalid value found in the list.")
+
+
+
+Sample Output:
+Error: Invalid value found in the list.
+
+
+Q10. Raise an Exception Manually
+Question: Write a program that accepts a person's age and raises a ValueError if the age is negative.
+try:    age = int(input("Enter your age: "))    if age < 0:        raise ValueError("Age cannot be negative.")    print("Your age is:", age)except ValueError as e:    print("Error:", e)
+
+
+
+Sample Output:
+Enter your age: -5
+Error: Age cannot be negative.
+
+
+
+Q11. Custom Exception – Insufficient Balance
+Question: Create a custom exception named InsufficientBalanceError. Raise this exception when a user tries to withdraw more money than their account balance.
+class InsufficientBalanceError(Exception):    passbalance = 5000try:    amount = int(input("Enter withdrawal amount: "))    if amount > balance:        raise InsufficientBalanceError(            "Insufficient account balance!"        )    balance -= amount    print("Withdrawal successful.")    print("Remaining Balance:", balance)except InsufficientBalanceError as e:    print("Error:", e)except ValueError:    print("Enter a valid amount.")
+
+
+
+Sample Output:
+Enter withdrawal amount: 7000
+Error: Insufficient account balance!
+
+
+Q12. Validate Password Using Exception
+Question: Write a program that accepts a password and raises a custom exception if the password contains fewer than 8 characters.
+class WeakPasswordError(Exception):    passtry:    password = input("Enter password: ")    if len(password) < 8:        raise WeakPasswordError(            "Password must contain at least 8 characters."        )    print("Password accepted.")except WeakPasswordError as e:    print("Error:", e)
+
+
+
+Sample Output:
+Enter password: hello
+Error: Password must contain at least 8 characters.
+
+
+Q13. Handle Nested Exceptions
+Question: Write a program that accesses a dictionary containing lists. Handle both KeyError and IndexError using nested exception handling.
+data = {    "Python": [10, 20, 30],    "Java": [40, 50]}try:    language = input("Enter language: ")    try:        index = int(input("Enter index: "))        print("Value:", data[language][index])    except IndexError:        print("Invalid list index.")except KeyError:    print("Language not found.")except ValueError:    print("Index must be an integer.")
+
+
+
+Sample Output:
+Enter language: Python
+Enter index: 10
+Invalid list index.
+
+
+Q14. Repeated Input Until Valid
+Question: Write a program that repeatedly asks the user to enter an integer until valid input is received. Handle ValueError.
+while True:    try:        number = int(input("Enter an integer: "))        print("Valid number:", number)        break    except ValueError:        print("Invalid input! Try again.")
+
+
+
+Sample Output:
+Enter an integer: abc
+Invalid input! Try again.
+Enter an integer: hello
+Invalid input! Try again.
+Enter an integer: 25
+Valid number: 25
+
+
+Q15. Handle Multiple Errors in a Calculator
+Question: Create a calculator that performs addition, subtraction, multiplication, and division. Handle invalid input, invalid operators, and division by zero.
+try:    a = float(input("Enter first number: "))    operator = input("Enter operator (+, -, *, /): ")    b = float(input("Enter second number: "))    if operator == "+":        result = a + b    elif operator == "-":        result = a - b    elif operator == "*":        result = a * b    elif operator == "/":        result = a / b    else:        raise ValueError("Invalid operator.")    print("Result:", result)except ZeroDivisionError:    print("Cannot divide by zero.")except ValueError as e:    print("Error:", e)
+
+
+
+Sample Output:
+Enter first number: 20
+Enter operator (+, -, *, /): *
+Enter second number: 5
+Result: 100.0
+
+
+Q16. Exception Handling in a Function
+Question: Create a function that accepts a list and an index. Return the element at that index. Handle IndexError and TypeError inside the function.
+def get_element(data, index):    try:        return data[index]    except IndexError:        return "Error: Index out of range."    except TypeError:        return "Error: Invalid index type."numbers = [10, 20, 30, 40]print(get_element(numbers, 2))print(get_element(numbers, 10))print(get_element(numbers, "one"))
+
+
+
+Sample Output:
+30
+Error: Index out of range.
+Error: Invalid index type.
+
+
+Q17. Re-raise an Exception
+Question: Write a program that catches a ZeroDivisionError, displays a message, and raises the same exception again using raise.
+try:    try:        a = 10        b = 0        result = a / b    except ZeroDivisionError:        print("Division error detected.")        raiseexcept ZeroDivisionError:    print("Exception handled by outer block.")
+
+
+
+Sample Output:
+Division error detected.
+Exception handled by outer block.
+
+
+Q18. Handle File Writing Errors
+Question: Write a program that writes user input into a file. Handle possible file-related errors and ensure the file is closed automatically.
+try:    with open("student.txt", "w") as file:        name = input("Enter student name: ")        marks = input("Enter marks: ")        file.write("Name: " + name + "\n")        file.write("Marks: " + marks)    print("Data saved successfully.")except OSError as e:    print("File error:", e)except Exception as e:    print("Unexpected error:", e)
+
+
+
+Sample Output:
+Enter student name: Rahul
+Enter marks: 85
+Data saved successfully.
+
+
+Q19. Custom Exception – Bank Transaction
+Question: Create a bank transaction program that raises custom exceptions when the deposit amount is zero or negative. Handle invalid input and display the updated balance.
+class InvalidDepositError(Exception):    passbalance = 10000try:    amount = float(input("Enter deposit amount: "))    if amount <= 0:        raise InvalidDepositError(            "Deposit amount must be greater than zero."        )    balance += amount    print("Deposit successful.")    print("Updated Balance:", balance)except InvalidDepositError as e:    print("Transaction Error:", e)except ValueError:    print("Please enter a valid amount.")
+
+
+
+Sample Output:
+Enter deposit amount: -500
+Transaction Error: Deposit amount must be greater than zero.
+
+
+Q20. Student Result Management System
+Question: Create a student result management program that accepts student marks in three subjects. Handle invalid input, negative marks, and marks greater than 100 using custom exception handling. Calculate the total and percentage if all marks are valid.
+class InvalidMarksError(Exception):    passtry:    marks = []    for i in range(1, 4):        mark = float(input(f"Enter marks for subject {i}: "))        if mark < 0 or mark > 100:            raise InvalidMarksError(                "Marks must be between 0 and 100."            )        marks.append(mark)    total = sum(marks)    percentage = total / 3    print("\n----- Student Result -----")    print("Total Marks:", total)    print("Percentage:", percentage, "%")    if percentage >= 40:        print("Result: PASS")    else:        print("Result: FAIL")except ValueError:    print("Error: Please enter numeric marks.")except InvalidMarksError as e:    print("Error:", e)finally:
+
+
+
+Sample Output:
+Enter marks for subject 1: 85
+Enter marks for subject 2: 90
+Enter marks for subject 3: 75
+
+----- Student Result -----
+Total Marks: 250.0
+Percentage: 83.33333333333333 %
+Result: PASS
+Result processing completed.
