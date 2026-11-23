@@ -1,0 +1,388 @@
+Q1. ATM Withdrawal with Multiple Validations
+Question: Create an ATM withdrawal system that validates account balance, withdrawal limit, and withdrawal amount. Use custom exceptions for invalid transactions.
+class InsufficientBalanceError(Exception):    passclass WithdrawalLimitError(Exception):    passclass InvalidAmountError(Exception):    passbalance = 50000limit = 20000try:    amount = float(input("Enter withdrawal amount: "))    if amount <= 0:        raise InvalidAmountError("Amount must be positive.")    if amount > limit:        raise WithdrawalLimitError("Daily limit exceeded.")    if amount > balance:        raise InsufficientBalanceError("Insufficient balance.")    balance -= amount    print("Withdrawal Successful!")    print("Remaining Balance:", balance)except (InvalidAmountError, WithdrawalLimitError,        InsufficientBalanceError) as e:    print("Transaction Failed:", e)except ValueError:    print("Enter a valid numeric amount.")
+
+
+
+Sample Output:
+Enter withdrawal amount: 25000
+Transaction Failed: Daily limit exceeded.
+
+
+Q2. Exception Handling in Nested Dictionary
+Question: Create a nested dictionary containing employee information. Access employee salary using user input and handle missing keys, invalid data types, and incorrect salary calculations.
+employees = {    "E101": {"name": "Rahul", "salary": 50000},    "E102": {"name": "Aman", "salary": 60000},    "E103": {"name": "Priya", "salary": 70000}}try:    emp_id = input("Enter Employee ID: ")    employee = employees[emp_id]    salary = employee["salary"]    bonus = float(input("Enter bonus percentage: "))    if bonus < 0:        raise ValueError("Bonus cannot be negative.")    final_salary = salary + (salary * bonus / 100)    print("Employee:", employee["name"])    print("Final Salary:", final_salary)except KeyError as e:    print("Employee information not found:", e)except TypeError:    print("Invalid employee data.")except ValueError as e:    print("Input Error:", e)
+
+
+
+Sample Output:
+Enter Employee ID: E101
+Enter bonus percentage: 10
+Employee: Rahul
+Final Salary: 55000.0
+
+
+Q3. Exception Handling with Recursive Function
+Question: Write a recursive factorial function that raises an exception for negative numbers and handles invalid input.
+def factorial(n):    if n < 0:        raise ValueError("Negative numbers are not allowed.")    if n == 0 or n == 1:        return 1    return n * factorial(n - 1)try:    number = int(input("Enter number: "))    result = factorial(number)    print("Factorial:", result)except ValueError as e:    print("Error:", e)except RecursionError:    print("Number is too large for recursive calculation.")
+
+
+
+Sample Output:
+Enter number: 5
+Factorial: 120
+
+
+Q4. Handle Exceptions While Processing Multiple Records
+Question: Process a list of student records containing names and marks. Skip invalid records while continuing to process valid records.
+records = [    ("Rahul", 85),    ("Aman", "abc"),    ("Priya", 95),    ("Rohit", -10),    ("Neha", 78)]for name, marks in records:    try:        marks = int(marks)        if not 0 <= marks <= 100:            raise ValueError("Marks must be between 0 and 100.")        print(name, ":", marks)    except ValueError as e:        print("Invalid record for", name, "-", e)print("All records processed.")
+
+
+
+Sample Output:
+Rahul : 85
+Invalid record for Aman - invalid literal for int() with base 10: 'abc'
+Priya : 95
+Invalid record for Rohit - Marks must be between 0 and 100.
+Neha : 78
+All records processed.
+
+
+Q5. Retry Mechanism with Maximum Attempts
+Question: Create a login system that allows users three attempts to enter a valid numeric OTP. Handle invalid input and incorrect OTP separately.
+correct_otp = 123456attempts = 3while attempts > 0:    try:        otp = int(input("Enter OTP: "))        if otp == correct_otp:            print("Login Successful!")            break        raise ValueError("Incorrect OTP.")    except ValueError as e:        print(e)        attempts -= 1        print("Attempts remaining:", attempts)else:    print("Account temporarily locked.")
+
+
+
+Sample Output:
+Enter OTP: 111111
+Incorrect OTP.
+Attempts remaining: 2
+Enter OTP: 123456
+Login Successful!
+
+
+
+Section 2: Custom Exceptions and OOP
+Q6. Custom Exception for Employee Age
+Question: Create an employee registration system using a custom exception. Reject employees younger than 18 or older than 60.
+class InvalidAgeError(Exception):    passclass Employee:    def __init__(self, name, age):        if not 18 <= age <= 60:            raise InvalidAgeError(                "Employee age must be between 18 and 60."            )        self.name = name        self.age = age    def display(self):        print("Name:", self.name)        print("Age:", self.age)try:    name = input("Enter employee name: ")    age = int(input("Enter employee age: "))    emp = Employee(name, age)    emp.display()except InvalidAgeError as e:    print("Registration Failed:", e)except ValueError:    print("Age must be an integer.")
+
+
+
+Sample Output:
+Enter employee name: Rahul
+Enter employee age: 16
+Registration Failed: Employee age must be between 18 and 60.
+
+
+Q7. Shopping Cart with Custom Exceptions
+Question: Create a shopping cart system that raises exceptions when a user adds an unavailable product or requests more quantity than available stock.
+class ProductNotFoundError(Exception):    passclass OutOfStockError(Exception):    passproducts = {    "Laptop": {"price": 50000, "stock": 5},    "Mobile": {"price": 20000, "stock": 10},    "Tablet": {"price": 15000, "stock": 0}}try:    product = input("Enter product name: ")    quantity = int(input("Enter quantity: "))    if product not in products:        raise ProductNotFoundError("Product does not exist.")    if quantity <= 0:        raise ValueError("Quantity must be positive.")    item = products[product]    if quantity > item["stock"]:        raise OutOfStockError("Requested quantity unavailable.")    total = item["price"] * quantity    item["stock"] -= quantity    print("Order Successful!")    print("Total Amount:", total)    print("Remaining Stock:", item["stock"])except (ProductNotFoundError, OutOfStockError,
+
+
+
+Sample Output:
+Enter product name: Tablet
+Enter quantity: 2
+Order Failed: Requested quantity unavailable.
+
+
+Q8. Custom Exception Inheritance
+Question: Create a hierarchy of custom exceptions for a banking application. Use a common parent exception for all banking-related errors.
+class BankError(Exception):    passclass InvalidAccountError(BankError):    passclass InsufficientFundsError(BankError):    passclass InvalidTransactionError(BankError):    passtry:    account = input("Enter account number: ")    balance = 10000    amount = float(input("Enter withdrawal amount: "))    if len(account) != 10 or not account.isdigit():        raise InvalidAccountError("Invalid account number.")    if amount <= 0:        raise InvalidTransactionError("Invalid amount.")    if amount > balance:        raise InsufficientFundsError("Insufficient funds.")    balance -= amount    print("Transaction successful.")    print("Balance:", balance)except BankError as e:
+
+
+
+Sample Output:
+Enter account number: 1234567890
+Enter withdrawal amount: 15000
+Bank Error: Insufficient funds.
+
+
+Q9. Exception Handling in Class Methods
+Question: Create a class named TemperatureConverter that converts Celsius into Fahrenheit. Raise a custom exception if the temperature is below absolute zero.
+class InvalidTemperatureError(Exception):    passclass TemperatureConverter:    def convert(self, celsius):        if celsius < -273.15:            raise InvalidTemperatureError(                "Temperature cannot be below absolute zero."            )        return (celsius * 9/5) + 32try:    temp = float(input("Enter Celsius: "))    converter = TemperatureConverter()    result = converter.convert(temp)    print("Fahrenheit:", result)except InvalidTemperatureError as e:    print("Error:", e)except ValueError:    print("Invalid temperature input.")
+
+
+
+Sample Output:
+Enter Celsius: 37
+Fahrenheit: 98.6
+
+
+Q10. Handle Exception in Constructor
+Question: Create a BankAccount class that validates account holder name and initial balance inside its constructor. Handle exceptions during object creation.
+class InvalidAccountError(Exception):    passclass BankAccount:    def __init__(self, name, balance):        if not name.strip():            raise InvalidAccountError("Name cannot be empty.")        if balance < 0:            raise InvalidAccountError("Balance cannot be negative.")        self.name = name        self.balance = balancetry:    name = input("Enter name: ")    balance = float(input("Enter balance: "))    account = BankAccount(name, balance)    print("Account Created Successfully!")    print("Holder:", account.name)    print("Balance:", account.balance)except InvalidAccountError as e:    print("Account Error:", e)except ValueError:    print("Invalid balance.")
+
+
+
+Sample Output:
+Enter name: Rahul
+Enter balance: -500
+Account Error: Balance cannot be negative.
+
+
+
+Section 3: Files and Data Processing
+Q11. File Reading with Encoding Exception
+Question: Read a text file using UTF-8 encoding. Handle missing files, permission errors, and Unicode decoding errors separately.
+try:    with open("data.txt", "r", encoding="utf-8") as file:        content = file.read()    print("File Content:")    print(content)except FileNotFoundError:    print("File does not exist.")except PermissionError:    print("Permission denied.")except UnicodeDecodeError:    print("File contains invalid UTF-8 data.")except OSError as e:    print("File system error:", e)
+
+
+
+Sample Output:
+File Content:
+Python Exception Handling
+File processing completed.
+
+
+Q12. Safe File Copying
+Question: Write a program that copies the content of one file into another. Handle missing source files and other file-related exceptions.
+try:    with open("source.txt", "r", encoding="utf-8") as source:        content = source.read()    with open("backup.txt", "w", encoding="utf-8") as backup:        backup.write(content)    print("File copied successfully.")except FileNotFoundError:    print("Source file not found.")except PermissionError:    print("Permission denied.")except OSError as e:    print("File operation failed:", e)
+
+
+
+Sample Output:
+File copied successfully.
+
+
+Q13. JSON Data Validation
+Question: Read JSON data from a file and extract employee details. Handle invalid JSON format, missing keys, and invalid file content.
+import jsontry:    with open("employee.json", "r") as file:        data = json.load(file)    name = data["name"]    salary = float(data["salary"])    department = data["department"]    if salary < 0:        raise ValueError("Salary cannot be negative.")    print("Employee:", name)    print("Salary:", salary)    print("Department:", department)except FileNotFoundError:    print("JSON file not found.")except json.JSONDecodeError:    print("Invalid JSON format.")except KeyError as e:    print("Missing field:", e)except ValueError as e:    print("Invalid data:", e)
+
+
+
+Sample Output:
+Employee: Rahul
+Salary: 55000.0
+Department: IT
+
+
+Q14. CSV Student Result Processing
+Question: Read student records from a CSV file and calculate average marks. Skip invalid records without stopping the entire program.
+import csvtotal = 0count = 0try:    with open("students.csv", "r") as file:        reader = csv.DictReader(file)        for row in reader:            try:                marks = float(row["marks"])                if not 0 <= marks <= 100:                    raise ValueError("Invalid marks range.")                total += marks                count += 1            except (ValueError, KeyError) as e:                print("Skipping record:", e)    if count == 0:        raise ZeroDivisionError("No valid records found.")    print("Valid Students:", count)    print("Average Marks:", total / count)except FileNotFoundError:    print("CSV file not found.")except ZeroDivisionError as e:    print(e)except OSError as e:    print("File error:", e)
+
+
+
+Sample Output:
+Valid Students: 3
+Average Marks: 84.33333333333333
+
+
+Q15. Safe File Deletion
+Question: Create a program that deletes a file only if it exists. Handle permission errors and other operating system errors.
+import ostry:    filename = input("Enter filename: ")    if not os.path.exists(filename):        raise FileNotFoundError("File does not exist.")    if not os.path.isfile(filename):        raise IsADirectoryError("Path is not a file.")    os.remove(filename)    print("File deleted successfully.")except FileNotFoundError as e:    print("Error:", e)except IsADirectoryError as e:    print("Error:", e)except PermissionError:    print("You do not have permission to delete this file.")except OSError as e:    print("System Error:", e)
+
+
+
+Sample Output:
+Enter filename: old.txt
+File deleted successfully.
+
+
+
+Section 4: Advanced Exception Concepts
+Q16. Exception Chaining Using raise from
+Question: Create a program that converts user input into an integer. If conversion fails, raise a custom exception while preserving the original exception as its cause.
+class InvalidNumberError(Exception):    passdef convert_number(value):    try:        return int(value)    except ValueError as e:        raise InvalidNumberError(            "Unable to convert input into integer."        ) from etry:    number = convert_number("hello")    print(number)except InvalidNumberError as e:    print("Custom Error:", e)    print("Original Cause:", type(e.__cause__).__name__)
+
+
+
+Sample Output:
+Custom Error: Unable to convert input into integer.
+Original Cause: ValueError
+
+
+Q17. Create a Custom Context Manager
+Question: Create a custom context manager that opens a file and ensures it is closed even if an exception occurs while processing the file.
+class FileManager:    def __init__(self, filename):        self.filename = filename    def __enter__(self):        self.file = open(self.filename, "w")        print("File opened.")        return self.file    def __exit__(self, exc_type, exc_value, traceback):        self.file.close()        print("File closed.")        if exc_type:            print("Exception detected:", exc_type.__name__)        return Falsetry:    with FileManager("test.txt") as file:        file.write("Python Programming")        raise ValueError("Testing exception.")except ValueError as e:    print("Handled:", e)
+
+
+
+Sample Output:
+File opened.
+File closed.
+Exception detected: ValueError
+Handled: Testing exception.
+
+
+Q18. Exception Handling Using Decorators
+Question: Create a decorator that catches exceptions raised by a function and displays an error message without stopping the program.
+def handle_exception(func):    def wrapper(*args, **kwargs):        try:            return func(*args, **kwargs)        except ZeroDivisionError:            print("Division by zero detected.")        except ValueError:            print("Invalid numeric value.")    return wrapper@handle_exceptiondef divide(a, b):    print("Result:", a / b)divide(20, 5)divide(20, 0)
+
+
+
+Sample Output:
+Result: 4.0
+Division by zero detected.
+
+
+Q19. Exception Handling in Generator
+Question: Create a generator that reads numbers from a list and converts them into integers. Skip invalid values and continue generating valid numbers.
+def number_generator(values):    for value in values:        try:            yield int(value)        except ValueError:            print("Skipping invalid value:", value)data = ["10", "20", "abc", "30", "hello", "40"]for number in number_generator(data):    print("Number:", number)
+
+
+
+Sample Output:
+Number: 10
+Number: 20
+Skipping invalid value: abc
+Number: 30
+Skipping invalid value: hello
+Number: 40
+
+
+Q20. Handle Exception in Threading
+Question: Create multiple threads that perform division. Handle exceptions inside individual threads so that one failed thread does not affect other threads.
+import threadingdef divide(a, b):    try:        result = a / b        print(f"{a} / {b} = {result}")    except ZeroDivisionError:        print(f"Cannot divide {a} by zero.")values = [(10, 2), (20, 0), (30, 3), (40, 0)]threads = []for a, b in values:    t = threading.Thread(target=divide, args=(a, b))    threads.append(t)    t.start()for t in threads:    t.join()print("All threads completed.")
+
+
+
+Sample Output: (Thread output order may vary.)
+10 / 2 = 5.0
+Cannot divide 20 by zero.
+30 / 3 = 10.0
+Cannot divide 40 by zero.
+All threads completed.
+
+
+
+Section 5: Real-Life Complex Projects
+Q21. E-Commerce Payment Processing
+Question: Create an online payment system that validates payment amount, checks wallet balance, and processes transactions. Use custom exceptions for payment failures.
+class PaymentError(Exception):    passclass InvalidPaymentError(PaymentError):    passclass InsufficientWalletBalance(PaymentError):    passdef process_payment(balance, amount):    if amount <= 0:        raise InvalidPaymentError("Invalid payment amount.")    if amount > balance:        raise InsufficientWalletBalance(            "Wallet balance is insufficient."        )    return balance - amounttry:    wallet = 15000    amount = float(input("Enter payment amount: "))    wallet = process_payment(wallet, amount)    print("Payment Successful!")    print("Remaining Wallet Balance:", wallet)except PaymentError as e:
+
+
+
+Sample Output:
+Enter payment amount: 5000
+Payment Successful!
+Remaining Wallet Balance: 10000.0
+
+
+Q22. Inventory Management with Exception Handling
+Question: Create an inventory management system that allows products to be added and removed. Raise custom exceptions when products are unavailable or stock becomes negative.
+class InventoryError(Exception):    passclass Inventory:    def __init__(self):        self.stock = {            "Laptop": 10,            "Mobile": 20        }    def sell(self, product, quantity):        if product not in self.stock:            raise InventoryError("Product not found.")        if quantity <= 0:            raise InventoryError("Invalid quantity.")        if quantity > self.stock[product]:            raise InventoryError("Insufficient stock.")        self.stock[product] -= quantity        print("Sale completed.")        print("Remaining Stock:", self.stock[product])inventory = Inventory()try:    product = input("Enter product: ")    quantity = int(input("Enter quantity: "))    inventory.sell(product, quantity)
+
+
+
+Sample Output:
+Enter product: Laptop
+Enter quantity: 3
+Sale completed.
+Remaining Stock: 7
+
+
+Q23. Bank Transfer Between Two Accounts
+Question: Create a bank transfer system that transfers money between two accounts. Validate account existence, transaction amount, and sender balance. Ensure balances change only after all validations pass.
+class TransferError(Exception):    passaccounts = {    "101": 10000,    "102": 5000}try:    sender = input("Sender Account: ")    receiver = input("Receiver Account: ")    amount = float(input("Transfer Amount: "))    if sender not in accounts or receiver not in accounts:        raise TransferError("Invalid account number.")    if sender == receiver:        raise TransferError("Cannot transfer to same account.")    if amount <= 0:        raise TransferError("Invalid transfer amount.")    if amount > accounts[sender]:        raise TransferError("Insufficient balance.")    accounts[sender] -= amount    accounts[receiver] += amount    print("Transfer Successful!")    print("Sender Balance:", accounts[sender])    print("Receiver Balance:", accounts[receiver])except TransferError as e:    print("Transfer Failed:", e)
+
+
+
+Sample Output:
+Sender Account: 101
+Receiver Account: 102
+Transfer Amount: 3000
+Transfer Successful!
+Sender Balance: 7000.0
+Receiver Balance: 8000.0
+
+
+Q24. Student Management with Data Validation
+Question: Create a student management system that stores student records. Validate roll number, name, and marks using custom exceptions. Prevent duplicate roll numbers.
+class StudentError(Exception):    passstudents = {}def add_student(roll, name, marks):    if roll in students:        raise StudentError("Duplicate roll number.")    if not name.strip():        raise StudentError("Name cannot be empty.")    if len(marks) != 3:        raise StudentError("Exactly three marks required.")    if any(mark < 0 or mark > 100 for mark in marks):        raise StudentError("Marks must be between 0 and 100.")    students[roll] = {        "name": name,        "marks": marks    }try:    roll = int(input("Enter roll number: "))    name = input("Enter name: ")    marks = []    for i in range(3):        marks.append(float(input(f"Subject {i+1} marks: ")))
+
+
+
+Sample Output:
+Enter roll number: 101
+Enter name: Rahul
+Subject 1 marks: 80
+Subject 2 marks: 90
+Subject 3 marks: 85
+Student Added Successfully!
+{101: {'name': 'Rahul', 'marks': [80.0, 90.0, 85.0]}}
+
+
+Q25. Password Authentication System
+Question: Create a login authentication system with custom exceptions for invalid usernames, incorrect passwords, and locked accounts after three failed attempts.
+class AuthenticationError(Exception):    passusers = {    "rahul": "python123"}attempts = 0max_attempts = 3while attempts < max_attempts:    try:        username = input("Username: ")        password = input("Password: ")        if username not in users:            raise AuthenticationError("Invalid username.")        if password != users[username]:            raise AuthenticationError("Incorrect password.")        print("Login Successful!")        break    except AuthenticationError as e:        attempts += 1        print("Login Failed:", e)        print("Attempts left:", max_attempts - attempts)else:    print("Account Locked!")
+
+
+
+Sample Output:
+Username: rahul
+Password: wrong
+Login Failed: Incorrect password.
+Attempts left: 2
+Username: rahul
+Password: python123
+Login Successful!
+
+
+Q26. API Response Simulation
+Question: Simulate an API request system that handles connection errors, timeout errors, invalid responses, and unsuccessful status codes.
+class APIError(Exception):    passdef fetch_data(status):    if status == 408:        raise TimeoutError("Request timed out.")    if status == 500:        raise ConnectionError("Server unavailable.")    if status != 200:        raise APIError("Unexpected response status.")    return {"status": 200, "message": "Data received"}try:    status = int(input("Enter API status code: "))    response = fetch_data(status)    print("API Response:", response)except TimeoutError as e:    print("Timeout Error:", e)except ConnectionError as e:    print("Connection Error:", e)except APIError as e:    print("API Error:", e)except ValueError:    print("Invalid status code.")
+
+
+
+Sample Output:
+Enter API status code: 500
+Connection Error: Server unavailable.
+
+
+Q27. Database Transaction Simulation
+Question: Simulate a database transaction where multiple operations are performed. If any operation fails, restore the original data using exception handling.
+class TransactionError(Exception):    passdatabase = {    "A": 10000,    "B": 5000}original_data = database.copy()try:    amount = 3000    if amount <= 0:        raise TransactionError("Invalid transaction.")    database["A"] -= amount    if database["A"] < 0:        raise TransactionError("Negative balance.")    database["B"] += amount    print("Transaction Successful!")except Exception as e:    database = original_data.copy()    print("Transaction Failed:", e)    print("Rollback Completed.")finally:    print("Final Database:", database)
+
+
+
+Sample Output:
+Transaction Successful!
+Final Database: {'A': 7000, 'B': 8000}
+
+
+Q28. Logging Exceptions into a File
+Question: Create a program that performs division and logs all exceptions into an error log file with timestamps instead of displaying detailed errors on the screen.
+import logginglogging.basicConfig(    filename="error.log",    level=logging.ERROR,    format="%(asctime)s - %(levelname)s - %(message)s")try:    a = int(input("Enter first number: "))    b = int(input("Enter second number: "))    result = a / b    print("Result:", result)except ZeroDivisionError:    logging.exception("Division by zero occurred.")    print("An error occurred. Check error.log.")except ValueError:    logging.exception("Invalid numeric input.")    print("Invalid input. Check error.log.")
+
+
+
+Sample Output:
+Enter first number: 10
+Enter second number: 0
+An error occurred. Check error.log.
+
+
+Q29. Retry File Processing with Exception Handling
+Question: Create a file processing program that retries reading a file up to three times if it is unavailable. Stop retrying after the maximum attempts.
+import timefilename = "data.txt"max_attempts = 3for attempt in range(1, max_attempts + 1):    try:        with open(filename, "r") as file:            content = file.read()        print("File Read Successfully!")        print(content)        break    except FileNotFoundError:        print(f"Attempt {attempt}: File not found.")        if attempt == max_attempts:            print("Maximum attempts reached.")        else:            time.sleep(1)    except PermissionError:        print("Permission denied. Cannot continue.")        break
+
+
+
+Sample Output:
+Attempt 1: File not found.
+Attempt 2: File not found.
+Attempt 3: File not found.
+Maximum attempts reached.
+
+
+Q30. Complete Banking Management System
+Question: Develop a banking management system using classes, custom exceptions, deposits, withdrawals, and transfers. Handle invalid inputs, insufficient balances, invalid account numbers, and transaction errors.
+class BankingError(Exception):    passclass InvalidAmountError(BankingError):    passclass InsufficientBalanceError(BankingError):    passclass AccountNotFoundError(BankingError):    passclass Bank:    def __init__(self):        self.accounts = {            "101": 10000,            "102": 20000        }    def deposit(self, account, amount):        if account not in self.accounts:            raise AccountNotFoundError("Account not found.")        if amount <= 0:            raise InvalidAmountError("Invalid deposit amount.")        self.accounts[account] += amount    def withdraw(self, account, amount):
+
+
+
+Sample Output:
+1. Deposit
+2. Withdraw
+3. Transfer
+4. Show Accounts
+Enter choice: 3
+Sender account: 101
+Receiver account: 102
+Transfer amount: 3000
+Transfer successful!
+
+Banking operation completed.
