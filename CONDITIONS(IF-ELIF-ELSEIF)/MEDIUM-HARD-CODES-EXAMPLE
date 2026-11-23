@@ -1,0 +1,1626 @@
+
+(Q1) An online shopping platform offers discounts based on the total purchase amount and customer membership.*
+•	If the purchase amount is above ₹10,000, Gold members receive a 20% discount.
+•	Silver members receive a 12% discount.
+•	Regular customers receive a 5% discount.
+•	If the purchase amount is between ₹5,000 and ₹10,000, Gold members receive 10%, Silver members receive 7%, and Regular customers receive 3%.
+•	Purchases below ₹5,000 receive no discount.
+Write a Python program to calculate the final payable amount.
+
+amount = float(input("Enter purchase amount: "))
+membership = input("Enter membership (Gold/Silver/Regular): ").lower()
+discount = 0
+if amount > 10000:
+    if membership == "gold":
+        discount = 20
+    elif membership == "silver":
+        discount = 12
+    elif membership == "regular":
+        discount = 5
+    else:
+        print("Invalid membership")
+elif amount >= 5000:
+    if membership == "gold":
+        discount = 10
+    elif membership == "silver":
+        discount = 7
+    elif membership == "regular":
+        discount = 3
+    else:
+        print("Invalid membership")
+else:
+    discount = 0
+final_amount = amount - (amount * discount / 100)
+print("Discount:", discount, "%")
+print("Final Amount: ₹", final_amount)
+==================================================================================================
+
+(Q2) A company calculates employee bonuses based on experience and performance rating.
+•	Employees with more than 10 years of experience receive a 25% bonus if their rating is 4 or above.
+•	Employees with 5–10 years of experience receive a 15% bonus if their rating is 4 or above.
+•	Employees with less than 5 years of experience receive a 10% bonus if their rating is 4.5 or above.
+•	Employees with a rating below 3 receive no bonus.
+•	All other employees receive a 5% bonus.
+Write a program to calculate the employee's final salary.
+
+salary = float(input("Enter basic salary: "))
+experience = int(input("Enter experience in years: "))
+rating = float(input("Enter performance rating: "))
+bonus = 0
+if rating < 3:
+    bonus = 0
+elif experience > 10:
+    if rating >= 4:
+        bonus = 25
+    else:
+        bonus = 5
+elif experience >= 5:
+    if rating >= 4:
+        bonus = 15
+    else:
+        bonus = 5
+else:
+    if rating >= 4.5:
+        bonus = 10
+    else:
+        bonus = 5
+final_salary = salary + (salary * bonus / 100)
+print("Bonus:", bonus, "%")
+print("Final Salary:", final_salary)
+=============================================================================================
+
+(Q3) A bank provides personal loans based on salary, credit score, and employment status.
+•	Minimum monthly salary must be ₹25,000.
+•	Credit score must be at least 650.
+•	If the credit score is 800 or above, the applicant receives a low-interest loan.
+•	If the credit score is between 700 and 799, the applicant receives a standard-interest loan.
+•	If the credit score is between 650 and 699, the applicant receives a high-interest loan.
+•	Applicants with less than 2 years of employment experience must have a salary of at least ₹40,000.
+Write a Python program to determine loan eligibility and loan category.
+
+salary = float(input("Enter monthly salary: "))
+credit = int(input("Enter credit score: "))
+experience = int(input("Enter employment experience: "))
+if salary < 25000:
+    print("Loan Rejected: Insufficient Salary")
+elif credit < 650:
+    print("Loan Rejected: Low Credit Score")
+else:
+    if experience < 2 and salary < 40000:
+        print("Loan Rejected: Insufficient Experience")
+    else:
+        print("Loan Approved")
+        if credit >= 800:
+            print("Loan Category: Low Interest")
+        elif credit >= 700:
+            print("Loan Category: Standard Interest")
+        else:
+            print("Loan Category: High Interest")
+==================================================================================
+
+(Q4) A streaming platform recommends subscription plans based on the user's budget and number of screens required.
+•	Budget below ₹150: Mobile plan, one screen only.
+•	Budget ₹150–₹299: Basic plan, up to two screens.
+•	Budget ₹300–₹499: Standard plan, up to three screens.
+•	Budget ₹500 or above: Premium plan, up to four screens.
+•	If the user requests more screens than the plan supports, display an upgrade message.
+Write a Python program to recommend a subscription plan.
+
+budget = int(input("Enter your monthly budget: "))
+screens = int(input("Enter required screens: "))
+if budget < 150:
+    plan = "Mobile"
+    max_screens = 1
+elif budget < 300:
+    plan = "Basic"
+    max_screens = 2
+elif budget < 500:
+    plan = "Standard"
+    max_screens = 3
+else:
+    plan = "Premium"
+    max_screens = 4
+print("Recommended Plan:", plan)
+if screens <= max_screens:
+    print("Subscription Available")
+else:
+    print("Upgrade Required")
+    print("Maximum screens in this plan:", max_screens)
+==========================================================================
+
+(Q5) An electricity company calculates bills using the following rates:
+•	First 100 units: ₹3 per unit.
+•	Next 100 units: ₹5 per unit.
+•	Next 200 units: ₹7 per unit.
+•	Above 400 units: ₹10 per unit.
+Additionally:
+•	If total consumption exceeds 300 units, add a 5% surcharge.
+•	If the customer is a senior citizen, provide a 10% discount on the bill after calculating the surcharge.
+Write a Python program to calculate the final electricity bill.
+
+units = int(input("Enter electricity units: "))
+senior = input("Senior citizen? (yes/no): ").lower()
+if units <= 100:
+    bill = units * 3
+elif units <= 200:
+    bill = 100 * 3 + (units - 100) * 5
+elif units <= 400:
+    bill = 100 * 3 + 100 * 5 + (units - 200) * 7
+else:
+    bill = 100 * 3 + 100 * 5 + 200 * 7 + (units - 400) * 10
+if units > 300:
+    bill = bill + (bill * 5 / 100)
+if senior == "yes":
+    bill = bill - (bill * 10 / 100)
+print("Final Electricity Bill: ₹", bill)
+========================================================================
+
+(Q6) An airline calculates ticket prices based on passenger age, travel class, and booking time.
+•	Children below 12 receive a 30% discount.
+•	Senior citizens aged 60 or above receive a 20% discount.
+•	Economy class has no additional charge.
+•	Business class adds 50% to the base fare.
+•	First class adds 100% to the base fare.
+•	Bookings made less than 3 days before departure have an additional 15% charge.
+Write a Python program to calculate the final flight ticket price.
+
+fare = float(input("Enter base fare: "))
+age = int(input("Enter passenger age: "))
+travel_class = input("Enter class: ").lower()
+days = int(input("Days remaining before departure: "))
+if travel_class == "economy":
+    total = fare
+elif travel_class == "business":
+    total = fare * 1.5
+elif travel_class == "first":
+    total = fare * 2
+else:
+    total = 0
+    print("Invalid travel class")
+if total > 0:
+    if age < 12:
+        total *= 0.70
+    elif age >= 60:
+        total *= 0.80
+    if days < 3:
+        total *= 1.15
+    print("Final Ticket Price: ₹", total)
+====================================================================
+
+(Q7) An insurance company calculates annual premiums based on age, vehicle type, and accident history.
+•	Drivers below 25 years pay a 30% additional premium.
+•	Drivers aged 25–60 pay the standard premium.
+•	Drivers above 60 receive a 10% discount.
+•	Sports cars have a 40% additional premium.
+•	SUVs have a 20% additional premium.
+•	If the driver has more than two accidents, add another 25% premium.
+Write a Python program to calculate the final insurance premium.
+
+premium = float(input("Enter base premium: "))
+age = int(input("Enter age: "))
+vehicle = input("Enter vehicle type: ").lower()
+accidents = int(input("Enter accident count: "))
+if age < 25:
+    premium *= 1.30
+elif age > 60:
+    premium *= 0.90
+if vehicle == "sports":
+    premium *= 1.40
+elif vehicle == "suv":
+    premium *= 1.20
+elif vehicle == "normal":
+    premium *= 1
+else:
+    print("Invalid vehicle type")
+if accidents > 2:
+    premium *= 1.25
+print("Final Insurance Premium: ₹", premium)
+=====================================================================
+
+(Q8) A food delivery application calculates delivery charges based on order amount, distance, and membership.
+•	Orders above ₹1,000 receive free delivery.
+•	Orders between ₹500 and ₹1,000 have a ₹30 delivery charge.
+•	Orders below ₹500 have a ₹60 delivery charge.
+•	If the delivery distance exceeds 5 km, add ₹10 for every additional kilometre.
+•	Premium members receive a 50% discount on delivery charges.
+Write a Python program to calculate the total order amount.
+
+order = float(input("Enter order amount: "))
+distance = float(input("Enter delivery distance: "))
+member = input("Premium member? (yes/no): ").lower()
+if order > 1000:
+    delivery = 0
+elif order >= 500:
+    delivery = 30
+else:
+    delivery = 60
+if distance > 5:
+    extra_km = distance - 5
+    delivery += extra_km * 10
+if member == "yes":
+    delivery *= 0.50
+total = order + delivery
+print("Delivery Charge: ₹", delivery)
+print("Total Amount: ₹", total)
+=================================================================
+
+(Q9) A company calculates monthly salary based on attendance and leave records.
+•	Employees with 26 or more working days receive their full salary.
+•	Employees with 22–25 working days receive salary proportional to attendance.
+•	Employees with 15–21 working days receive proportional salary with an additional 5% deduction.
+•	Employees with fewer than 15 working days receive proportional salary with an additional 15% deduction.
+•	If the employee has approved paid leave, those days must also be counted as paid working days.
+Write a Python program to calculate the payable salary.
+
+salary = float(input("Enter monthly salary: "))
+present = int(input("Enter days present: "))
+paid_leave = int(input("Enter approved paid leave days: ")
+paid_days = present + paid_leave
+if paid_days > 26:
+    paid_days = 26
+if paid_days >= 26:
+    deduction = 0
+elif paid_days >= 22:
+    deduction = 0
+elif paid_days >= 15:
+    deduction = 5
+else:
+    deduction = 15
+payable = (salary / 26) * paid_days
+payable -= payable * deduction / 100
+print("Paid Days:", paid_days)
+print("Additional Deduction:", deduction, "%")
+print("Payable Salary: ₹", payable)
+==============================================================================
+
+(Q10) A telecom company recommends mobile data plans based on monthly data usage and budget.
+•	Usage below 20 GB: Basic plan costing ₹199.
+•	Usage between 20 and 50 GB: Standard plan costing ₹399.
+•	Usage between 50 and 100 GB: Premium plan costing ₹599.
+•	Usage above 100 GB: Unlimited plan costing ₹999.
+•	If the user's budget is below the recommended plan price, suggest the nearest cheaper plan.
+•	If no plan fits the budget, display an insufficient budget message.
+Write a Python program to recommend a suitable data plan.
+
+usage = float(input("Enter monthly data usage (GB): "))
+budget = int(input("Enter monthly budget: "))
+if usage < 20:
+    required = 199
+elif usage <= 50:
+    required = 399
+elif usage <= 100:
+    required = 599
+else:
+    required = 999
+if budget >= required:
+    print("Recommended Plan Price:", required)
+elif budget >= 599:
+    print("Suggested Plan: ₹599 Premium")
+elif budget >= 399:
+    print("Suggested Plan: ₹399 Standard"
+elif budget >= 199:
+    print("Suggested Plan: ₹199 Basic")
+else:
+    print("Insufficient Budget")
+=============================================================
+
+(Q11) Create an ATM withdrawal program with the following conditions:
+•	The account must be active.
+•	The withdrawal amount must be greater than zero.
+•	The withdrawal amount must be a multiple of ₹500.
+•	The account must have sufficient balance.
+•	The user cannot withdraw more than ₹25,000 in a single transaction.
+•	If all conditions are satisfied, deduct the amount and display the remaining balance.
+
+balance = float(input("Enter account balance: "))
+active = input("Is account active? (yes/no): ").lower()
+amount = int(input("Enter withdrawal amount: "))
+if active != "yes":
+    print("Account is inactive")
+elif amount <= 0:
+    print("Invalid withdrawal amount")
+elif amount % 500 != 0:
+    print("Amount must be a multiple of 500")
+elif amount > 25000:
+    print("Daily transaction limit exceeded")
+elif amount > balance:
+    print("Insufficient balance")
+else:
+    balance -= amount
+    print("Withdrawal Successful")
+    print("Remaining Balance:", balance)
+==================================================================
+
+(Q12)  A digital payment application checks transactions for suspicious activity.
+•	If the account is blocked, reject the transaction.
+•	If the transaction amount exceeds ₹50,000, require additional verification.
+•	If the device is unrecognized, require OTP verification.
+•	If the transaction amount exceeds ₹1,00,000 and the device is unrecognized, reject the transaction.
+•	Otherwise, approve the payment.
+Write a Python program to implement this security system.
+
+blocked = input("Is account blocked? (yes/no): ").lower()
+amount = float(input("Enter transaction amount: "))
+device = input("Is device recognized? (yes/no): ").lower()
+if blocked == "yes":
+    print("Transaction Rejected: Account Blocked")
+elif amount <= 0:
+    print("Invalid Transaction Amount")
+elif amount > 100000 and device == "no":
+    print("Transaction Rejected: High Risk")
+elif amount > 50000:
+    print("Additional Verification Required")
+    if device == "yes":
+        otp = input("Enter OTP: ")
+        if otp == "123456":
+            print("Payment Approved")
+        else:
+            print("Invalid OTP")
+    else:
+        print("Unrecognized Device: OTP Verification Required")
+else:
+    if device == "yes":
+        print("Payment Approved")
+    else:
+        print("OTP Verification Required")
+==========================================================================
+
+(Q13) A credit card company determines whether a transaction can be approved.
+•	The card must not be blocked.
+•	The transaction must not exceed the available credit limit.
+•	If the transaction is above ₹75,000, additional verification is required.
+•	If the customer's credit score is below 650, transactions above ₹25,000 must be rejected.
+•	If the customer has a premium card, the transaction limit is increased by ₹50,000.
+Write a Python program to determine whether the transaction is approved.
+
+limit = float(input("Enter available credit limit: "))
+amount = float(input("Enter transaction amount: "))
+score = int(input("Enter credit score: "))
+blocked = input("Is card blocked? (yes/no): ").lower()
+premium = input("Premium card? (yes/no): ").lower()
+if blocked == "yes":
+    print("Transaction Rejected")
+elif premium == "yes":
+    limit += 50000
+    if amount > limit:
+        print("Credit Limit Exceeded")
+    elif score < 650 and amount > 25000:
+        print("Transaction Rejected: Low Credit Score")
+    elif amount > 75000:
+        print("Additional Verification Required")
+    else:
+        print("Transaction Approved")
+else:
+    if amount > limit:
+        print("Credit Limit Exceeded")
+    elif score < 650 and amount > 25000:
+        print("Transaction Rejected: Low Credit Score")
+    elif amount > 75000:
+        print("Additional Verification Required")
+    else:
+        print("Transaction Approved")
+=============================================================================
+
+(Q14) Develop a login authentication system using username, password, and OTP.
+•	If the username is incorrect, display an invalid username message.
+•	If the username is correct, check the password.
+•	If the password is incorrect, deny access.
+•	If both username and password are correct, request OTP.
+•	If OTP is correct, allow login.
+•	If the account is marked as suspicious, deny access even if all credentials are correct.
+
+username = input("Enter username: ")
+password = input("Enter password: ")
+suspicious = input("Suspicious account? (yes/no): ").lower()
+if suspicious == "yes":
+    print("Account temporarily blocked")
+elif username != "admin":
+    print("Invalid Username")
+else:
+    if password == "Admin@123":
+        otp = input("Enter OTP: ")
+        if otp == "456789":
+            print("Login Successful")
+        else:
+            print("Incorrect OTP")
+    else:
+        print("Incorrect Password")
+=========================================================================
+
+(Q15) A bank calculates fixed deposit interest rates based on investment duration and customer category.
+•	Senior citizens receive an additional 0.75% interest.
+•	General customers receive standard interest.
+•	Deposits below 1 year receive 5% interest.
+•	Deposits from 1 to 3 years receive 6.5% interest.
+•	Deposits above 3 years receive 7% interest.
+•	If the deposit amount is above ₹10 lakh, provide an additional 0.5% interest.
+Write a Python program to calculate annual interest and maturity amount using simple interest.
+
+principal = float(input("Enter deposit amount: "))
+years = float(input("Enter deposit duration in years: "))
+category = input("Customer type (senior/general): ").lower()
+if years < 1:
+    rate = 5
+elif years <= 3:
+    rate = 6.5
+else:
+    rate = 7
+if category == "senior":
+    rate += 0.75
+elif category != "general":
+    print("Invalid customer category")
+    rate = 0
+if principal > 1000000:
+    rate += 0.5
+interest = principal * rate * years / 100
+maturity = principal + interest
+print("Interest Rate:", rate, "%")
+print("Interest Earned: ₹", interest)
+print("Maturity Amount: ₹", maturity)
+========================================================================
+
+(Q16) A digital wallet provides cashback based on transaction amount and customer membership.
+•	Transactions below ₹500 receive no cashback.
+•	Transactions between ₹500 and ₹2,000 receive 2% cashback.
+•	Transactions between ₹2,001 and ₹5,000 receive 5% cashback.
+•	Transactions above ₹5,000 receive 8% cashback.
+•	Premium members receive an additional 2% cashback.
+•	Maximum cashback is limited to ₹500.
+Write a Python program to calculate the cashback and effective transaction cost.
+
+amount = float(input("Enter transaction amount: "))
+member = input("Premium member? (yes/no): ").lower()
+if amount < 500:
+    rate = 0
+elif amount <= 2000:
+    rate = 2
+elif amount <= 5000:
+    rate = 5
+else:
+    rate = 8
+if member == "yes":
+    rate += 2
+cashback = amount * rate / 100
+if cashback > 500:
+    cashback = 500
+effective_cost = amount - cashback
+print("Cashback: ₹", cashback)
+print("Effective Cost: ₹", effective_cost)
+=================================================================================
+
+(Q17) A banking application assigns a risk level to transactions.
+•	Transactions below ₹10,000 are classified as low risk.
+•	Transactions between ₹10,000 and ₹50,000 are classified as medium risk.
+•	Transactions above ₹50,000 are classified as high risk.
+•	Transactions from a new location increase the risk level by one category.
+•	Transactions from a new device increase the risk level by one category.
+•	The maximum risk level is critical.
+•	Critical transactions must be blocked.
+Write a Python program to classify transaction risk.
+
+amount = float(input("Enter transaction amount: "))
+location = input("New location? (yes/no): ").lower()
+device = input("New device? (yes/no): ").lower()
+if amount < 10000:
+    risk = 1
+elif amount <= 50000:
+    risk = 2
+else:
+    risk = 3
+if location == "yes":
+    risk += 1
+if device == "yes":
+    risk += 1
+if risk == 1:
+    print("Risk Level: Low")
+elif risk == 2:
+    print("Risk Level: Medium")
+elif risk == 3:
+    print("Risk Level: High")
+else:
+    print("Risk Level: Critical")
+    print("Transaction Blocked")
+===============================================================================
+
+(Q18) A financial institution checks whether a customer can afford a loan EMI.
+•	Monthly income must be at least ₹30,000.
+•	Existing monthly EMIs must not exceed 40% of monthly income.
+•	The proposed EMI must not exceed 30% of monthly income.
+•	If the customer has a credit score of 800 or above, offer preferred eligibility.
+•	If the score is between 700 and 799, offer standard eligibility.
+•	If the score is between 650 and 699, offer conditional eligibility.
+•	Below 650, reject the application.
+
+income = float(input("Enter monthly income: "))
+existing_emi = float(input("Enter existing EMI: "))
+new_emi = float(input("Enter proposed EMI: "))
+score = int(input("Enter credit score: "))
+if income < 30000:
+    print("Rejected: Income too low")
+elif existing_emi > income * 0.40:
+    print("Rejected: Existing EMI burden too high")
+elif new_emi > income * 0.30:
+    print("Rejected: Proposed EMI too high")
+elif score < 650:
+    print("Rejected: Low Credit Score")
+elif score >= 800:
+    print("Preferred Loan Eligibility")
+elif score >= 700:
+    print("Standard Loan Eligibility")
+else:
+    print("Conditional Loan Eligibility")
+==========================================================================
+
+(Q19) A payment gateway charges processing fees based on payment method.
+•	UPI payments have no processing fee.
+•	Debit card payments have a 1% fee.
+•	Credit card payments have a 2% fee.
+•	International card payments have a 3.5% fee.
+•	If the transaction amount exceeds ₹50,000, add an additional 0.5% fee.
+•	GST of 18% is applied to the processing fee.
+Write a Python program to calculate the total processing fee and final payable amount.
+
+amount = float(input("Enter payment amount: "))
+method = input("Payment method: ").lower()
+if method == "upi":
+    rate = 0
+elif method == "debit":
+    rate = 1
+elif method == "credit":
+    rate = 2
+elif method == "international":
+    rate = 3.5
+else:
+    rate = -1
+if rate == -1:
+    print("Invalid Payment Method")
+else:
+    if amount > 50000:
+        rate += 0.5
+    fee = amount * rate / 100
+    gst = fee * 18 / 100
+    total_fee = fee + gst
+    print("Processing Fee:", fee)
+    print("GST:", gst)
+    print("Total Fee:", total_fee)
+    print("Final Amount:", amount + total_fee)
+==================================================================================
+
+(Q20) A software platform automatically renews subscriptions based on account status, payment method, and remaining balance.
+•	If the subscription is cancelled, renewal must stop.
+•	If the subscription has expired, check whether auto-renewal is enabled.
+•	If auto-renewal is enabled, check the payment method.
+•	Card payments require sufficient card balance.
+•	Wallet payments require sufficient wallet balance.
+•	If payment fails, display a renewal failure message.
+Write a Python program to implement this renewal system.
+
+status = input("Subscription status (active/expired/cancelled): ").lower()
+auto = input("Auto-renew enabled? (yes/no): ").lower()
+method = input("Payment method (card/wallet): ").lower()
+card_balance = float(input("Enter card balance: "))
+wallet_balance = float(input("Enter wallet balance: "))
+price = float(input("Enter renewal price: "))
+if status == "cancelled":
+    print("Renewal Cancelled")
+elif status == "active":
+    print("Subscription Already Active")
+elif status == "expired":
+    if auto == "yes":
+        if method == "card":
+            if card_balance >= price:
+                print("Renewal Successful")
+            else:
+                print("Insufficient Card Balance")
+        elif method == "wallet":
+            if wallet_balance >= price:
+                print("Renewal Successful")
+            else:
+                print("Insufficient Wallet Balance")
+        else:
+            print("Invalid Payment Method")
+    else:
+        print("Manual Renewal Required")
+else:
+===================================================================================
+
+(Q21) A cloud storage provider charges customers based on storage usage.
+•	First 50 GB: ₹2 per GB.
+•	Next 100 GB: ₹1.5 per GB.
+•	Above 150 GB: ₹1 per GB.
+•	Business customers receive a 15% discount.
+•	If storage usage exceeds 500 GB, add a 10% surcharge.
+Write a Python program to calculate the monthly storage bill.
+
+storage = float(input("Enter storage usage in GB: "))
+customer = input("Customer type (personal/business): ").lower()
+if storage <= 50:
+    bill = storage * 2
+elif storage <= 150:
+    bill = 50 * 2 + (storage - 50) * 1.5
+else:
+    bill = 50 * 2 + 100 * 1.5 + (storage - 150)
+if storage > 500:
+    bill *= 1.10
+if customer == "business":
+    bill *= 0.85
+elif customer != "personal":
+    print("Invalid customer type")
+print("Monthly Storage Bill: ₹", bill)
+==========================================================================
+
+(Q22) An online gaming tournament selects players based on points, win rate, and account level.
+•	Players must have at least 1,000 points.
+•	Their win rate must be at least 50%.
+•	Players with 5,000 or more points and a win rate above 80% qualify for the Elite category.
+•	Players with 3,000 or more points and a win rate above 65% qualify for the Advanced category.
+•	Other eligible players qualify for the Regular category.
+•	Accounts below level 10 are not eligible for the tournament.
+
+points = int(input("Enter player points: "))
+win_rate = float(input("Enter win rate: "))
+level = int(input("Enter account level: "))
+if level < 10:
+    print("Not Eligible: Account Level Too Low")
+elif points < 1000:
+    print("Not Eligible: Insufficient Points")
+elif win_rate < 50:
+    print("Not Eligible: Low Win Rate")
+
+elif points >= 5000 and win_rate > 80:
+    print("Elite Category")
+
+elif points >= 3000 and win_rate > 65:
+    print("Advanced Category")
+else:
+    print("Regular Category")
+================================================================================
+
+(Q23) An AI platform charges developers based on monthly API usage.
+•	First 10,000 requests: Free.
+•	10,001–50,000 requests: ₹0.02 per additional request.
+•	50,001–100,000 requests: ₹0.015 per additional request after the first 50,000.
+•	Above 100,000 requests: ₹0.01 per additional request after 100,000.
+•	Enterprise customers receive a 20% discount.
+•	If usage exceeds 200,000 requests, add a 5% surcharge.
+Write a Python program to calculate the monthly API bill.
+
+requests = int(input("Enter monthly API requests: "))
+customer = input("Customer type (normal/enterprise): ").lower()
+if requests <= 10000:
+    bill = 0
+elif requests <= 50000:
+    bill = (requests - 10000) * 0.02
+elif requests <= 100000:
+    bill = 40000 * 0.02 + (requests - 50000) * 0.015
+else:
+    bill = 40000 * 0.02 + 50000 * 0.015
+    bill += (requests - 100000) * 0.01
+if requests > 200000:
+    bill *= 1.05
+if customer == "enterprise":
+    bill *= 0.80
+print("Monthly API Bill: ₹", bill)
+=====================================================================
+
+(Q24) A smart home system controls an air conditioner based on room temperature, occupancy, and energy-saving mode.
+•	If nobody is present, turn off the AC.
+•	If someone is present and temperature is above 30°C, activate cooling.
+•	If temperature is between 25°C and 30°C, use normal cooling.
+•	If temperature is below 25°C, turn off cooling.
+•	In energy-saving mode, increase the cooling activation threshold by 2°C.
+Write a Python program to determine the AC operating mode.
+
+temperature = float(input("Enter room temperature: "))
+occupied = input("Is anyone present? (yes/no): ").lower()
+saving = input("Energy-saving mode? (yes/no): ").lower()
+if occupied == "no":
+    print("AC OFF: Room Unoccupied")
+else:
+    threshold = 30
+    if saving == "yes":
+        threshold += 2
+    if temperature > threshold:
+        print("AC Mode: High Cooling")
+    elif temperature >= 25:
+        print("AC Mode: Normal Cooling")
+    else:
+        print("AC OFF: Temperature Comfortable")
+=================================================================================
+
+(Q25) A smartphone company calculates the trade-in value of an old device based on its age, physical condition, and storage capacity.
+•	Devices less than one year old receive a 70% value of the original price.
+•	Devices aged 1–2 years receive 50%.
+•	Devices aged 2–4 years receive 30%.
+•	Devices older than 4 years receive 10%.
+•	Excellent condition adds 10 percentage points.
+•	Poor condition reduces the value by 15 percentage points.
+•	Devices with storage of 256 GB or above receive an additional 5 percentage points.
+•	The final percentage cannot exceed 85% or fall below 0%.
+
+price = float(input("Enter original phone price: "))
+age = float(input("Enter phone age in years: "))
+condition = input("Condition (excellent/good/poor): ").lower()
+storage = int(input("Enter storage in GB: "))
+if age < 1:
+    rate = 70
+elif age <= 2:
+    rate = 50
+elif age <= 4:
+    rate = 30
+else:
+    rate = 10
+if condition == "excellent":
+    rate += 10
+elif condition == "poor":
+    rate -= 15
+if storage >= 256:
+    rate += 5
+if rate > 85:
+    rate = 85
+elif rate < 0:
+    rate = 0
+trade_value = price * rate / 100
+print("Trade-in Percentage:", rate)
+print("Trade-in Value: ₹", trade_value)
+==============================================================================
+
+(Q26) A company controls access to its internal system based on user role, security clearance, and login location.
+•	Admin users can access all resources if their security clearance is at least 3.
+•	Managers can access financial resources if their clearance is at least 2.
+•	Employees can access general resources if their clearance is at least 1.
+•	External login attempts require additional verification.
+•	Suspicious login attempts must be rejected regardless of role.
+Write a Python program to determine the access permission.
+
+role = input("Enter user role: ").lower()
+clearance = int(input("Enter security clearance (1-5): "))
+resource = input("Enter resource type: ").lower()
+external = input("External login? (yes/no): ").lower()
+suspicious = input("Suspicious login? (yes/no): ").lower()
+if suspicious == "yes":
+    print("Access Denied: Suspicious Activity")
+else:
+    if role == "admin":
+        if clearance >= 3:
+            access = True
+        else:
+            access = False
+    elif role == "manager":
+        if resource == "financial" and clearance >= 2:
+            access = True
+        else:
+            access = False
+    elif role == "employee":
+        if resource == "general" and clearance >= 1:
+            access = True
+        else:
+            access = False
+    else:
+        access = False
+    if access:
+        if external == "yes":
+            print("Additional Verification Required")
+        else:
+==================================================================================
+
+(Q27) An online learning platform recommends courses based on a student's experience, skill level, and weekly study hours.
+•	Beginners with fewer than 5 study hours should receive introductory courses.
+•	Beginners with 5 or more hours should receive foundation courses.
+•	Intermediate learners with at least 8 study hours should receive advanced practical courses.
+•	Intermediate learners with fewer than 8 hours should receive intermediate courses.
+•	Advanced learners should receive professional certification courses if they have at least 10 study hours.
+•	Otherwise, recommend skill improvement courses.
+
+level = input("Enter skill level: ").lower()
+hours = int(input("Enter weekly study hours: "))
+if level == "beginner":
+    if hours < 5:
+        print("Recommended: Introductory Courses")
+    else:
+        print("Recommended: Foundation Courses")
+elif level == "intermediate":
+    if hours >= 8:
+        print("Recommended: Advanced Practical Courses")
+    else:
+        print("Recommended: Intermediate Courses")
+elif level == "advanced":
+    if hours >= 10:
+        print("Recommended: Professional Certification")
+    else:
+        print("Recommended: Skill Improvement Courses")
+else:
+    print("Invalid Skill Level")
+======================================================================
+
+(Q28) An online shopping platform determines whether a product can be returned.
+•	Electronics can be returned within 7 days.
+•	Clothing can be returned within 15 days.
+•	Furniture can be returned within 10 days.
+•	Products must be unused and have their original packaging.
+•	Damaged products can only be returned if the damage occurred during delivery.
+•	Products purchased during clearance sales cannot be returned.
+Write a Python program to determine return eligibility.
+
+category = input("Enter product category: ").lower()
+days = int(input("Days since purchase: "))
+unused = input("Is product unused? (yes/no): ").lower()
+packaging = input("Original packaging available? (yes/no): ").lower()
+damaged = input("Is product damaged? (yes/no): ").lower()
+delivery = input("Damaged during delivery? (yes/no): ").lower()
+clearance = input("Clearance sale product? (yes/no): ").lower()
+if clearance == "yes":
+    print("Return Rejected: Clearance Product")
+elif category == "electronics":
+    limit = 7
+elif category == "clothing":
+    limit = 15
+elif category == "furniture":
+    limit = 10
+else:
+    limit = -1
+if clearance != "yes":
+    if limit == -1:
+        print("Invalid Product Category")
+    elif days > limit:
+        print("Return Period Expired")
+    elif damaged == "yes":
+        if delivery == "yes":
+            print("Return Approved: Delivery Damage")
+        else:
+            print("Return Rejected: Customer Damage")
+    elif unused == "yes" and packaging == "yes":
+        print("Return Approved")
+==============================================================================
+
+(Q29) A cloud hosting platform automatically adjusts the number of servers based on CPU utilization, memory usage, and current server count.
+•	If CPU utilization exceeds 85%, increase the server count by 2.
+•	If CPU utilization is between 60% and 85%, increase the server count by 1.
+•	If CPU utilization is below 20% and memory usage is below 30%, reduce the server count by 1.
+•	The minimum server count is 2.
+•	The maximum server count is 20.
+•	If the server count reaches the maximum, display a capacity warning.
+Write a Python program to calculate the updated server count.
+
+cpu = float(input("Enter CPU utilization: "))
+memory = float(input("Enter memory usage: "))
+servers = int(input("Enter current server count: "))
+if cpu > 85:
+    servers += 2
+elif cpu >= 60:
+    servers += 1
+elif cpu < 20 and memory < 30:
+    servers -= 1
+if servers > 20:
+    servers = 20
+    print("Maximum Capacity Reached")
+elif servers < 2:
+    servers = 2
+print("Updated Server Count:", servers)
+=========================================================================
+
+(Q30) A gaming platform assigns ranks and rewards based on total points, completed missions, and player reputation.
+•	Players with at least 10,000 points, 50 completed missions, and reputation above 90 receive the Legend rank.
+•	Players with at least 7,000 points and 35 missions receive the Diamond rank.
+•	Players with at least 4,000 points and 20 missions receive the Platinum rank.
+•	Players with at least 2,000 points receive the Gold rank.
+•	Other players receive the Bronze rank.
+•	Players with reputation below 30 cannot receive rewards.
+Write a Python program to determine the player's rank and reward eligibility.
+
+points = int(input("Enter total points: "))
+missions = int(input("Enter completed missions: "))
+reputation = int(input("Enter reputation score: "))
+if points >= 10000 and missions >= 50 and reputation > 90:
+    rank = "Legend"
+elif points >= 7000 and missions >= 35:
+    rank = "Diamond"
+elif points >= 4000 and missions >= 20:
+    rank = "Platinum"
+elif points >= 2000:
+    rank = "Gold"
+else:
+    rank = "Bronze"
+print("Player Rank:", rank)
+if reputation < 30:
+    print("Rewards: Not Eligible")
+else:
+    print("Rewards: Eligible")
+==============================================================================
+
+(Q31) A technology company evaluates candidates based on education, programming experience, technical test score, and communication skills.
+•	Candidates must have at least a bachelor's degree.
+•	Candidates must score at least 60 in the technical test.
+•	Candidates with 5 or more years of experience and a technical score above 85 qualify for Senior Developer.
+•	Candidates with 2 or more years of experience and a score above 75 qualify for Developer.
+•	Candidates with less than 2 years of experience but a score above 90 qualify for Junior Developer.
+•	Communication skills must be at least 60 for final selection.
+Write a Python program to determine the candidate's selection status and job position.
+
+degree = input("Enter degree (yes/no): ").lower()
+experience = int(input("Enter experience in years: "))
+technical = int(input("Enter technical score: "))
+communication = int(input("Enter communication score: "))
+if degree != "yes":
+    print("Rejected: Degree Requirement Not Met")
+elif technical < 60:
+    print("Rejected: Technical Score Too Low")
+elif communication < 60:
+    print("Rejected: Communication Skills Too Low")
+elif experience >= 5 and technical > 85:
+    print("Selected: Senior Developer")
+elif experience >= 2 and technical > 75:
+    print("Selected: Developer")
+elif experience < 2 and technical > 90:
+    print("Selected: Junior Developer")
+else:
+    print("Not Selected")
+=================================================================================
+
+(Q32) A hospital assigns emergency priority based on oxygen level, blood pressure, and patient age.
+•	Oxygen below 85% means critical priority.
+•	Oxygen between 85% and 92% means high priority.
+•	Oxygen above 92% requires checking blood pressure.
+•	Systolic blood pressure above 180 means high priority.
+•	Systolic blood pressure between 140 and 180 means medium priority.
+•	Patients above 65 years with medium priority should receive additional monitoring.
+Write a Python program to determine the emergency priority.
+
+oxygen = float(input("Enter oxygen level: "))
+bp = int(input("Enter systolic blood pressure: "))
+age = int(input("Enter patient age: "))
+if oxygen < 85:
+    print("Priority: Critical")
+elif oxygen <= 92:
+    print("Priority: High")
+else:
+    if bp > 180:
+        print("Priority: High")
+    elif bp >= 140:
+        if age > 65:
+            print("Priority: Medium")
+            print("Additional Monitoring Required")
+        else:
+            print("Priority: Medium")
+    else:
+        print("Priority: Normal")
+=====================================================================================
+
+(Q33) A hotel calculates room prices based on room category, season, and number of guests.
+•	Standard room costs ₹2,000 per night.
+•	Deluxe room costs ₹3,500 per night.
+•	Suite costs ₹6,000 per night.
+•	During peak season, room prices increase by 30%.
+•	During off-season, room prices decrease by 15%.
+•	Each additional guest above two costs ₹500 per night.
+•	Children below 5 years stay free.
+Write a Python program to calculate the total hotel bill.
+
+room = input("Enter room type: ").lower()
+season = input("Enter season (peak/normal/off): ").lower()
+adults = int(input("Enter number of adults: "))
+children = int(input("Enter children below 5: "))
+nights = int(input("Enter number of nights: "))
+if room == "standard":
+    price = 2000
+elif room == "deluxe":
+    price = 3500
+elif room == "suite":
+    price = 6000
+else:
+    price = 0
+    print("Invalid Room Type")
+if price > 0:
+    if season == "peak":
+        price *= 1.30
+    elif season == "off":
+        price *= 0.85
+    extra_guests = max(0, adults - 2)
+    extra_charge = extra_guests * 500
+    total = (price + extra_charge) * nights
+    print("Children Staying Free:", children)
+    print("Total Hotel Bill: ₹", total)
+====================================================================================
+
+(Q34) A vehicle rental company calculates rental charges based on vehicle category, rental duration, and distance travelled.
+•	Bike: ₹500 per day.
+•	Sedan: ₹1,500 per day.
+•	SUV: ₹2,500 per day.
+•	Customers travelling more than 100 km per day pay ₹8 for every additional kilometre.
+•	Rentals exceeding 7 days receive a 10% discount on the daily rental charge.
+•	If the vehicle is returned late, an additional ₹500 penalty is applied for every late day.
+Write a Python program to calculate the total rental cost.
+
+vehicle = input("Enter vehicle type: ").lower()
+days = int(input("Enter rental days: "))
+distance = float(input("Enter total distance: "))
+late_days = int(input("Enter late days: "))
+if vehicle == "bike":
+    rate = 500
+elif vehicle == "sedan":
+    rate = 1500
+elif vehicle == "suv":
+    rate = 2500
+else:
+    rate = 0
+if rate == 0:
+    print("Invalid Vehicle")
+else:
+    daily_cost = rate
+    if days > 7:
+        daily_cost *= 0.90
+    rental_cost = daily_cost * days
+    allowed_distance = days * 100
+    extra_distance = max(0, distance - allowed_distance)
+    distance_charge = extra_distance * 8
+    penalty = late_days * 500
+    total = rental_cost + distance_charge + penalty
+    print("Rental Cost:", rental_cost)
+    print("Extra Distance Charge:", distance_charge)
+===============================================================================
+
+(Q35) A university awards scholarships based on academic percentage, family income, and extracurricular performance.
+•	Students scoring at least 95% with family income below ₹5 lakh receive a 100% scholarship.
+•	Students scoring at least 90% with family income below ₹8 lakh receive a 75% scholarship.
+•	Students scoring at least 85% with family income below ₹5 lakh receive a 50% scholarship.
+•	Students scoring at least 80% with excellent extracurricular performance receive a 25% scholarship.
+•	Other students are not eligible.
+Write a Python program to determine the scholarship percentage.
+
+marks = float(input("Enter academic percentage: "))
+income = float(input("Enter annual family income in lakhs: "))
+activities = input("Excellent extracurricular performance? (yes/no): ").lower()
+if marks >= 95 and income < 5:
+    scholarship = 100
+elif marks >= 90 and income < 8:
+    scholarship = 75
+elif marks >= 85 and income < 5:
+    scholarship = 50
+elif marks >= 80 and activities == "yes":
+    scholarship = 25
+else:
+    scholarship = 0
+if scholarship > 0:
+    print("Scholarship Awarded:", scholarship, "%")
+else:
+    print("Not Eligible for Scholarship")
+===========================================================================
+
+(Q36) An inventory management system decides whether products need to be reordered.
+•	If stock is zero, mark the product as Out of Stock.
+•	If stock is below the minimum stock level, check supplier availability.
+•	If the supplier is available, calculate the quantity required to reach the maximum stock level.
+•	If the supplier is unavailable, generate an urgent procurement alert.
+•	If stock is between minimum and maximum levels, display Low Stock or Normal Stock depending on the remaining quantity.
+•	If stock exceeds the maximum level, display Overstocked.
+Write a Python program to manage inventory status.
+
+stock = int(input("Enter current stock: "))
+minimum = int(input("Enter minimum stock: "))
+maximum = int(input("Enter maximum stock: "))
+supplier = input("Supplier available? (yes/no): ").lower()
+if stock == 0:
+    print("Status: Out of Stock")
+elif stock < minimum:
+    if supplier == "yes":
+        reorder = maximum - stock
+        print("Status: Reorder Required")
+        print("Order Quantity:", reorder)
+    else:
+        print("URGENT: Supplier Unavailable")
+elif stock > maximum:
+    print("Status: Overstocked")
+elif stock <= minimum + (maximum - minimum) * 0.25:
+    print("Status: Low Stock")
+else:
+    print("Status: Normal Stock")
+============================================================================
+
+(Q37) An internet service provider manages bandwidth based on the user's subscription and current network load.
+•	Basic plan supports a maximum speed of 50 Mbps.
+•	Standard plan supports a maximum speed of 150 Mbps.
+•	Premium plan supports a maximum speed of 500 Mbps.
+•	During high network load, reduce the available speed by 40%.
+•	During medium network load, reduce the available speed by 15%.
+•	During low network load, provide the full subscribed speed.
+•	If the user requests more speed than their plan supports, display an upgrade recommendation.
+Write a Python program to calculate the available bandwidth.
+
+plan = input("Enter plan (basic/standard/premium): ").lower()
+requested = float(input("Enter requested speed: "))
+load = input("Network load (low/medium/high): ").lower()
+if plan == "basic":
+    maximum = 50
+elif plan == "standard":
+    maximum = 150
+elif plan == "premium":
+    maximum = 500
+else:
+    maximum = 0
+if maximum == 0:
+    print("Invalid Plan")
+elif requested > maximum:
+    print("Upgrade Required")
+    print("Maximum Plan Speed:", maximum, "Mbps")
+else:
+    if load == "high":
+        available = maximum * 0.60
+    elif load == "medium":
+        available = maximum * 0.85
+    elif load == "low":
+        available = maximum
+    else:
+        available = 0
+        print("Invalid Network Load")
+    if available > 0:
+        print("Available Bandwidth:", available, "Mbps")
+========================================================================================
+
+(Q38) A company processes warranty claims based on product type, purchase date, and damage category.
+•	Smartphones have a 1-year warranty.
+•	Laptops have a 2-year warranty.
+•	Home appliances have a 3-year warranty.
+•	Manufacturing defects are covered under warranty.
+•	Physical damage is not covered.
+•	Water damage is not covered unless the product has an additional protection plan.
+•	Claims submitted after the warranty period must be rejected.
+Write a Python program to determine whether a warranty claim is approved.
+
+product = input("Enter product type: ").lower()
+age = float(input("Product age in years: "))
+damage = input("Damage type (manufacturing/physical/water): ").lower()
+protection = input("Additional protection? (yes/no): ").lower()
+if product == "smartphone":
+    warranty = 1
+elif product == "laptop":
+    warranty = 2
+elif product == "appliance":
+    warranty = 3
+else:
+    warranty = 0
+if warranty == 0:
+    print("Invalid Product")
+elif age > warranty:
+    print("Claim Rejected: Warranty Expired")
+elif damage == "manufacturing":
+    print("Warranty Claim Approved")
+elif damage == "physical":
+    print("Claim Rejected: Physical Damage")
+elif damage == "water":
+    if protection == "yes":
+        print("Warranty Claim Approved")
+    else:
+        print("Claim Rejected: Water Damage")
+else:
+    print("Invalid Damage Category")
+===========================================================================================
+
+(Q39) A ride-sharing application calculates fares based on vehicle type, distance, demand, and waiting time.
+•	Bike: ₹8 per kilometre.
+•	Mini: ₹12 per kilometre.
+•	Sedan: ₹18 per kilometre.
+•	SUV: ₹25 per kilometre.
+•	During high demand, increase the fare by 40%.
+•	During medium demand, increase the fare by 20%.
+•	The first 5 minutes of waiting are free.
+•	Every additional waiting minute costs ₹2.
+•	Add a fixed booking fee of ₹20.
+Write a Python program to calculate the final ride fare.
+
+vehicle = input("Enter vehicle type: ").lower()
+distance = float(input("Enter distance in km: "))
+demand = input("Demand (low/medium/high): ").lower()
+waiting = int(input("Waiting time in minutes: "))
+if vehicle == "bike":
+    rate = 8
+elif vehicle == "mini":
+    rate = 12
+elif vehicle == "sedan":
+    rate = 18
+elif vehicle == "suv":
+    rate = 25
+else:
+    rate = 0
+if rate == 0:
+    print("Invalid Vehicle")
+else:
+    fare = distance * rate
+    if demand == "high":
+        fare *= 1.40
+    elif demand == "medium":
+        fare *= 1.20
+    extra_waiting = max(0, waiting - 5)
+    waiting_charge = extra_waiting * 2
+    total = fare + waiting_charge + 20
+    print("Distance Fare:", fare)
+    print("Waiting Charge:", waiting_charge)
+    print("Booking Fee: 20")
+===========================================================================================
+
+(Q40) A company determines employee promotions using performance rating, years of experience, project completion, and disciplinary records.
+•	Employees with a rating of at least 4.8, experience of 8 or more years, and at least 5 completed projects qualify for Senior Manager.
+•	Employees with a rating of at least 4.5, experience of 5 or more years, and at least 3 completed projects qualify for Manager.
+•	Employees with a rating of at least 4.0 and experience of 2 or more years qualify for Team Leader.
+•	Employees with disciplinary warnings are not eligible for promotion.
+•	Other employees remain at their current position.
+Write a Python program to determine the employee's promotion eligibility and new position.
+
+rating = float(input("Enter performance rating: "))
+experience = int(input("Enter experience: "))
+projects = int(input("Enter completed projects: "))
+warnings = int(input("Enter disciplinary warnings: "))
+if warnings > 0:
+    print("Promotion Rejected: Disciplinary Record")
+elif rating >= 4.8 and experience >= 8 and projects >= 5:
+    print("Promotion: Senior Manager")
+elif rating >= 4.5 and experience >= 5 and projects >= 3:
+    print("Promotion: Manager")
+elif rating >= 4.0 and experience >= 2:
+    print("Promotion: Team Leader")
+else:
+    print("No Promotion")
+====================================================================================
+
+(Q41) A taxation system calculates annual income tax based on the following slabs:
+•	Income up to ₹3,00,000: No tax.
+•	Income from ₹3,00,001 to ₹7,00,000: 5% tax on the amount above ₹3,00,000.
+•	Income from ₹7,00,001 to ₹12,00,000: ₹20,000 plus 10% on the amount above ₹7,00,000.
+•	Income above ₹12,00,000: ₹70,000 plus 20% on the amount above ₹12,00,000.
+•	Senior citizens receive a 10% rebate on calculated tax.
+•	If the calculated tax exceeds ₹1,00,000, add a 4% health and education cess.
+Write a Python program to calculate the final tax liability.
+
+income = float(input("Enter annual income: "))
+age = int(input("Enter age: "))
+if income <= 300000:
+    tax = 0
+elif income <= 700000:
+    tax = (income - 300000) * 0.05
+elif income <= 1200000:
+    tax = 20000 + (income - 700000) * 0.10
+else:
+    tax = 70000 + (income - 1200000) * 0.20
+if age >= 60:
+    tax *= 0.90
+if tax > 100000:
+    cess = tax * 0.04
+else:
+    cess = 0
+final_tax = tax + cess
+print("Base Tax:", tax)
+print("Cess:", cess)
+print("Final Tax Liability: ₹", final_tax)
+=================================================================================
+
+(Q42) A smart parking system calculates parking charges based on vehicle type, parking duration, and membership.
+•	Two-wheelers pay ₹20 per hour.
+•	Cars pay ₹40 per hour.
+•	Electric vehicles pay ₹30 per hour.
+•	Parking for less than 2 hours receives a 10% discount.
+•	Parking exceeding 8 hours receives a 15% surcharge.
+•	Monthly members receive a 20% discount.
+•	The minimum parking charge is ₹20.
+Write a Python program to calculate the final parking fee.
+
+vehicle = input("Enter vehicle type (bike/car/electric): ").lower()
+hours = float(input("Enter parking hours: "))
+member = input("Monthly member? (yes/no): ").lower()
+if vehicle == "bike":
+    rate = 20
+elif vehicle == "car":
+    rate = 40
+elif vehicle == "electric":
+    rate = 30
+else:
+    rate = 0
+if rate == 0:
+    print("Invalid Vehicle")
+else:
+    fee = rate * hours
+    if hours < 2:
+        fee *= 0.90
+    elif hours > 8:
+        fee *= 1.15
+    if member == "yes":
+        fee *= 0.80
+    if fee < 20:
+        fee = 20
+    print("Final Parking Fee: ₹", fee)
+=====================================================================================
+
+(Q43) A recruitment platform determines the salary offer based on the candidate's expected salary, experience, technical score, and company budget.
+•	Candidates with 8 or more years of experience and a technical score above 90 can receive up to 120% of the standard salary.
+•	Candidates with 5 or more years of experience and a score above 80 can receive 100% of the standard salary.
+•	Candidates with 2 or more years of experience and a score above 70 can receive 80% of the standard salary.
+•	Other candidates receive 60% of the standard salary.
+•	If the candidate's expected salary exceeds the calculated offer, display a negotiation message.
+•	If the calculated offer exceeds the company's budget, reject the offer.
+Write a Python program to calculate the salary offer.
+
+standard = float(input("Enter standard salary: "))
+expected = float(input("Enter expected salary: "))
+budget = float(input("Enter company budget: "))
+experience = int(input("Enter experience: "))
+score = int(input("Enter technical score: "))
+if experience >= 8 and score > 90:
+    offer = standard * 1.20
+elif experience >= 5 and score > 80:
+    offer = standard
+elif experience >= 2 and score > 70:
+    offer = standard * 0.80
+else:
+    offer = standard * 0.60
+if offer > budget:
+    print("Offer Rejected: Budget Exceeded")
+else:
+    print("Calculated Offer: ₹", offer)
+    if expected > offer:
+        print("Salary Negotiation Required")
+    else:
+        print("Salary Offer Accepted")
+==================================================================================
+
+(Q44) An online marketplace runs a flash sale with discounts based on product category, customer membership, and stock availability.
+•	Electronics receive a 15% discount.
+•	Fashion products receive a 25% discount.
+•	Home appliances receive a 20% discount.
+•	Premium members receive an additional 5 percentage points discount.
+•	Regular customers receive no additional discount.
+•	If the available stock is below the requested quantity, the order must be rejected.
+•	Total discount cannot exceed 40%.
+Write a Python program to calculate the final product price.
+
+price = float(input("Enter product price: "))
+category = input("Enter category: ").lower()
+membership = input("Membership (premium/regular): ").lower()
+stock = int(input("Available stock: "))
+quantity = int(input("Required quantity: "))
+if quantity <= 0:
+    print("Invalid Quantity")
+elif stock < quantity:
+    print("Order Rejected: Insufficient Stock")
+else:
+    if category == "electronics":
+        discount = 15
+    elif category == "fashion":
+        discount = 25
+    elif category == "home":
+        discount = 20
+    else:
+        discount = 0
+    if category not in ["electronics", "fashion", "home"]:
+        print("Invalid Category")
+    else:
+        if membership == "premium":
+            discount += 5
+        if discount > 40:
+            discount = 40
+        total = price * quantity
+        final_amount = total - (total * discount / 100)
+==============================================================================================
+
+(Q45) A bank automatically recommends account upgrades based on average monthly balance, transaction volume, and customer income.
+•	Basic accounts have a minimum average balance of ₹5,000.
+•	Premium accounts require an average balance of ₹50,000.
+•	Platinum accounts require an average balance of ₹2,00,000.
+•	Premium accounts also require monthly transactions above ₹20,000.
+•	Platinum accounts require monthly transactions above ₹1,00,000 and monthly income above ₹1,00,000.
+•	If the customer fails the requirements for an upgrade, retain their existing account type.
+Write a Python program to recommend the highest eligible account category.
+
+balance = float(input("Enter average monthly balance: "))
+transactions = float(input("Enter monthly transactions: "))
+income = float(input("Enter monthly income: "))
+current = input("Enter current account type: ").lower()
+if balance >= 200000 and transactions > 100000 and income > 100000:
+    recommended = "Platinum"
+elif balance >= 50000 and transactions > 20000:
+    recommended = "Premium"
+elif balance >= 5000:
+    recommended = "Basic"
+else:
+    recommended = "Below Minimum Balance Requirement"
+if recommended == "Below Minimum Balance Requirement":
+    print(recommended)
+elif current == recommended.lower():
+    print("You already have the recommended account")
+else:
+    print("Current Account:", current)
+    print("Recommended Account:", recommended)
+=================================================================================
+
+(Q46) An online examination platform calculates student results based on marks in three subjects.
+•	Each subject has a maximum score of 100.
+•	A student must score at least 35 in every subject to pass.
+•	Students with an average of 90 or above receive Grade A.
+•	Students with an average of 75–89 receive Grade B.
+•	Students with an average of 60–74 receive Grade C.
+•	Students with an average of 45–59 receive Grade D.
+•	Students below 45 fail.
+•	If a student fails in only one subject, they are eligible for a supplementary examination.
+Write a Python program to calculate the result and grade.
+
+m1 = int(input("Enter subject 1 marks: "))
+m2 = int(input("Enter subject 2 marks: "))
+m3 = int(input("Enter subject 3 marks: "))
+if not (0 <= m1 <= 100 and 0 <= m2 <= 100 and 0 <= m3 <= 100):
+    print("Invalid Marks")
+else:
+    average = (m1 + m2 + m3) / 3
+    failed = 0
+    if m1 < 35:
+        failed += 1
+    if m2 < 35:
+        failed += 1
+    if m3 < 35:
+        failed += 1
+    if failed == 0:
+        if average >= 90:
+            grade = "A"
+        elif average >= 75:
+            grade = "B"
+        elif average >= 60:
+            grade = "C"
+        elif average >= 45:
+            grade = "D"
+        else:
+            grade = "F"
+        print("Result: PASS")
+        print("Average:", average)
+==========================================================================
+
+(Q47) A smart traffic management system calculates fines based on vehicle type, speed, and previous violations.
+•	Bikes travelling up to 60 km/h have no fine.
+•	Cars travelling up to 80 km/h have no fine.
+•	Commercial vehicles travelling up to 60 km/h have no fine.
+•	Exceeding the speed limit by 1–20 km/h results in a ₹1,000 fine.
+•	Exceeding it by 21–40 km/h results in a ₹2,000 fine.
+•	Exceeding it by more than 40 km/h results in a ₹5,000 fine.
+•	Drivers with more than three previous violations receive an additional 50% fine.
+Write a Python program to calculate the traffic fine.
+
+vehicle = input("Enter vehicle type: ").lower()
+speed = int(input("Enter current speed: "))
+violations = int(input("Enter previous violations: "))
+if vehicle == "bike":
+    limit = 60
+elif vehicle == "car":
+    limit = 80
+elif vehicle == "commercial":
+    limit = 60
+else:
+    limit = -1
+if limit == -1:
+    print("Invalid Vehicle Type")
+elif speed <= limit:
+    print("No Fine")
+else:
+    excess = speed - limit
+    if excess <= 20:
+        fine = 1000
+    elif excess <= 40:
+        fine = 2000
+    else:
+        fine = 5000
+    if violations > 3:
+        fine *= 1.50
+    print("Speed Limit:", limit)
+    print("Exceeded Speed:", excess)
+    print("Total Fine: ₹", fine)
+=============================================================================
+
+
+(Q48) A cloud platform allocates computing resources based on project priority, CPU requirements, and available memory.
+•	Low-priority projects receive a maximum of 2 CPU cores.
+•	Medium-priority projects receive a maximum of 4 CPU cores.
+•	High-priority projects receive a maximum of 8 CPU cores.
+•	Projects requiring more than 8 cores must be classified as enterprise projects.
+•	Enterprise projects require at least 32 GB of available memory.
+•	If memory is insufficient, reject the allocation.
+•	High-priority projects are processed before other projects.
+Write a Python program to determine whether resources can be allocated.
+
+priority = input("Enter project priority: ").lower()
+cores = int(input("Enter required CPU cores: "))
+memory = int(input("Enter available memory in GB: "))
+if priority == "high":
+    if cores <= 8:
+        print("High Priority Allocation Approved")
+    elif cores > 8:
+        if memory >= 32:
+            print("Enterprise Allocation Approved")
+        else:
+            print("Rejected: Enterprise Memory Requirement Not Met")
+elif priority == "medium":
+    if cores <= 4:
+        print("Medium Priority Allocation Approved")
+    else:
+        print("Upgrade to Enterprise Required")
+elif priority == "low":
+    if cores <= 2:
+        print("Low Priority Allocation Approved")
+    else:
+        print("Resource Limit Exceeded")
+else:
+    print("Invalid Project Priority")
+==============================================================================
+
+(Q49) A travel company recommends holiday packages based on budget, number of travellers, and travel preference.
+•	Budget below ₹15,000: Local package.
+•	Budget ₹15,000–₹40,000: Domestic package.
+•	Budget ₹40,001–₹1,00,000: International budget package.
+•	Budget above ₹1,00,000: Luxury international package.
+•	Families travelling with more than four members receive a 10% group discount.
+•	Solo travellers receive a 5% discount.
+•	If the selected package exceeds the customer's budget after calculating the discount, display an alternative package recommendation.
+Write a Python program to recommend a travel package and calculate the discounted package price.
+
+budget = float(input("Enter total budget: "))
+travellers = int(input("Enter number of travellers: "))
+preference = input("Travel preference (adventure/relaxation): ").lower()
+if budget < 15000:
+    package = "Local"
+    cost = 12000
+elif budget <= 40000:
+    package = "Domestic"
+    cost = 35000
+elif budget <= 100000:
+    package = "International Budget"
+    cost = 85000
+else:
+    package = "Luxury International"
+    cost = 150000
+if travellers > 4:
+    discount = 10
+elif travellers == 1:
+    discount = 5
+else:
+    discount = 0
+final_cost = cost - (cost * discount / 100)
+if final_cost <= budget:
+    print("Recommended Package:", package)
+    print("Travel Preference:", preference)
+    print("Discount:", discount, "%")
+    print("Package Cost: ₹", final_cost)
+==========================================================================================
+
+(Q50) Develop a complete order processing system for an online shopping platform.
+1.	Check whether the customer's account is active.
+2.	Verify whether the requested product is available in stock.
+3.	Check whether the customer has sufficient wallet balance.
+4.	Calculate the product discount based on membership:
+o	Gold members receive 20%.
+o	Silver members receive 10%.
+o	Regular customers receive 5%.
+5.	If the order amount exceeds ₹10,000, provide an additional 5% discount.
+6.	Add a delivery charge of ₹100 if the order amount after discount is below ₹2,000.
+7.	Premium members receive free delivery.
+8.	If the wallet balance is sufficient, process the payment and update the remaining balance.
+9.	Otherwise, reject the order.
+Write a Python program to implement the complete order processing system.
+
+active = input("Is account active? (yes/no): ").lower()
+stock = int(input("Enter available stock: "))
+quantity = int(input("Enter required quantity: "))
+price = float(input("Enter price per product: "))
+wallet = float(input("Enter wallet balance: "))
+membership = input("Membership (gold/silver/regular): ").lower()
+if active != "yes":
+    print("Order Rejected: Account Inactive")
+elif quantity <= 0:
+    print("Invalid Quantity")
+elif stock < quantity:
+    print("Order Rejected: Insufficient Stock")
+else:
+    amount = price * quantity
+    if membership == "gold":
+        discount = 20
+    elif membership == "silver":
+        discount = 10
+    elif membership == "regular":
+        discount = 5
+    else:
+        discount = 0
+    discounted_amount = amount - (amount * discount / 100)
+
+
