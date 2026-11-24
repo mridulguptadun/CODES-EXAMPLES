@@ -1,0 +1,651 @@
+Question 1: Bank Tax Calculation
+Write a C program using Call by Value to calculate 10% tax on a customer's bank balance of ₹50,000. Display the tax amount and the original 
+bank balance. The original balance should remain unchanged.
+
+#include <stdio.h>
+// Function to calculate tax using Call by Value
+float calculateTax(float bal) {
+    float tax = bal * 0.10;
+    bal = bal - tax; // Modifies only the local copy, not the original balance
+    return tax;
+}
+
+int main() {
+    float balance = 50000.0;
+    float taxAmount;
+
+    // Passing 'balance' by value
+    taxAmount = calculateTax(balance);
+
+    printf("Tax Amount (10%%): ₹%.2f\n", taxAmount);
+    printf("Original Bank Balance: ₹%.2f\n", balance);
+
+    return 0;
+}
+=================================================================================================================
+Question 2: Employee Salary Calculation
+Write a C program using Call by Value to calculate the annual salary of an employee. Pass the monthly salary of ₹30,000 to a function and 
+calculate the annual salary without modifying the original monthly salary.
+
+#include <stdio.h>
+// Function to calculate annual salary using Call by Value
+float calculateAnnualSalary(float mSalary) {
+    float annual = mSalary * 12;
+    mSalary = 0; // Modifies only the local copy, not the original variable
+    return annual;
+}
+
+int main() {
+    float monthlySalary = 30000.0;
+    float annualSalary;
+
+    // Passing 'monthlySalary' by value
+    annualSalary = calculateAnnualSalary(monthlySalary);
+
+    printf("Annual Salary: ₹%.2f\n", annualSalary);
+    printf("Original Monthly Salary: ₹%.2f\n", monthlySalary);
+
+    return 0;
+}
+======================================================================================================
+Question 3: Shopping Discount Calculation
+Write a C program using Call by Value to calculate a 20% discount on a product worth ₹5,000. Display the discount amount and the final price
+without modifying the original product price.
+
+#include <stdio.h>
+// Function to calculate discount and final price using Call by Value
+void calculateDiscount(float price) {
+    float discount = price * 0.20;
+    price = price - discount; // Modifies only the local copy, not the original price
+
+    printf("Discount Amount (20%%): ₹%.2f\n", discount);
+    printf("Final Price: ₹%.2f\n", price);
+}
+
+int main() {
+    float originalPrice = 5000.0;
+
+    // Passing 'originalPrice' by value
+    calculateDiscount(originalPrice);
+
+    printf("Original Product Price: ₹%.2f\n", originalPrice);
+
+    return 0;
+}
+==============================================================================================================
+Question 4: Electricity Bill Calculation
+Write a C program using Call by Value to calculate an electricity bill. Pass the total electricity units (250) to a function. 
+If the cost per unit is ₹8, calculate and display the total bill without modifying the original units.
+
+#include <stdio.h>
+// Function to calculate electricity bill using Call by Value
+void calculateBill(int u) {
+    float costPerUnit = 8.0;
+    float totalBill = u * costPerUnit;
+    
+    u = 0; // Modifies only the local copy, not the original units
+    
+    printf("Total Electricity Bill: ₹%.2f\n", totalBill);
+}
+
+int main() {
+    int units = 250;
+
+    // Passing 'units' by value
+    calculateBill(units);
+
+    printf("Original Electricity Units: %d\n", units);
+
+    return 0;
+}
+=============================================================================================================
+Question 5: Student Percentage Calculation
+Write a C program using Call by Value to calculate the percentage of a student who scored 420 marks out of 500. Display the obtained percentage without 
+modifying the original marks.
+
+#include <stdio.h>
+// Function to calculate percentage using Call by Value
+void calculatePercentage(int m) {
+    int totalMarks = 500;
+    float percentage = ((float)m / totalMarks) * 100;
+    
+    m = 0; // Modifies only the local copy, not the original marks
+    
+    printf("Obtained Percentage: %.2f%%\n", percentage);
+}
+
+int main() {
+    int marks = 420;
+
+    // Passing 'marks' by value
+    calculatePercentage(marks);
+
+    printf("Original Marks: %d\n", marks);
+
+    return 0;
+}
+==============================================================================================================
+Question 6: Product Profit Calculation
+Write a C program using Call by Value to calculate the profit earned by a shopkeeper. Pass the cost price of ₹2,000 and selling price of ₹2,800 to a function. 
+Calculate and display the profit without modifying the original cost price and selling price.
+
+#include <stdio.h>
+
+// Function to calculate profit using Call by Value
+void calculateProfit(float cp, float sp) {
+    float profit = sp - cp;
+    
+    // Modifying local copies only; original variables remain unchanged
+    cp = 0;
+    sp = 0;
+    
+    printf("Profit Earned: ₹%.2f\n", profit);
+}
+
+int main() {
+    float costPrice = 2000.0;
+    float sellingPrice = 2800.0;
+
+    // Passing 'costPrice' and 'sellingPrice' by value
+    calculateProfit(costPrice, sellingPrice);
+
+    printf("Original Cost Price: ₹%.2f\n", costPrice);
+    printf("Original Selling Price: ₹%.2f\n", sellingPrice);
+
+    return 0;
+}
+=============================================================================================
+Question 1: Employee Payroll Management System
+Write a C program to develop an Employee Payroll Management System using Call by Value. The program should store an employee's basic monthly salary of ₹40,000 
+and perform the following operations using separate functions:
+1.	Calculate House Rent Allowance (HRA), which is 20% of the basic salary.
+2.	Calculate Dearness Allowance (DA), which is 10% of the basic salary.
+3.	Calculate Provident Fund (PF), which is 12% of the basic salary.
+4.	Calculate Income Tax, which is 5% of the basic salary.
+5.	Calculate the gross salary (Basic Salary + HRA + DA).
+6.	Calculate the net salary (Gross Salary − PF − Income Tax).
+7.	Display the original basic salary after all calculations.
+Each function must receive the required values using Call by Value. The original basic salary must remain unchanged.
+
+#include <stdio.h>
+
+// 1. Calculate House Rent Allowance (20% of basic salary)
+float calculateHRA(float basic) {
+    float hra = basic * 0.20;
+    basic = 0; // Local copy modified; original remains unchanged
+    return hra;
+}
+
+// 2. Calculate Dearness Allowance (10% of basic salary)
+float calculateDA(float basic) {
+    float da = basic * 0.10;
+    basic = 0;
+    return da;
+}
+
+// 3. Calculate Provident Fund (12% of basic salary)
+float calculatePF(float basic) {
+    float pf = basic * 0.12;
+    basic = 0;
+    return pf;
+}
+
+// 4. Calculate Income Tax (5% of basic salary)
+float calculateIncomeTax(float basic) {
+    float tax = basic * 0.05;
+    basic = 0;
+    return tax;
+}
+
+// 5. Calculate Gross Salary (Basic + HRA + DA)
+float calculateGrossSalary(float basic, float hra, float da) {
+    float gross = basic + hra + da;
+    basic = 0;
+    return gross;
+}
+
+// 6. Calculate Net Salary (Gross - PF - Income Tax)
+float calculateNetSalary(float gross, float pf, float tax) {
+    float net = gross - pf - tax;
+    gross = 0;
+    return net;
+}
+
+int main() {
+    float basicSalary = 40000.0;
+
+    // Passing arguments using Call by Value
+    float hra = calculateHRA(basicSalary);
+    float da = calculateDA(basicSalary);
+    float pf = calculatePF(basicSalary);
+    float tax = calculateIncomeTax(basicSalary);
+    float grossSalary = calculateGrossSalary(basicSalary, hra, da);
+    float netSalary = calculateNetSalary(grossSalary, pf, tax);
+
+    // Display Payroll Details
+    printf("--- Employee Payroll Summary ---\n");
+    printf("HRA (20%%):              ₹%.2f\n", hra);
+    printf("DA (10%%):               ₹%.2f\n", da);
+    printf("PF (12%%):               ₹%.2f\n", pf);
+    printf("Income Tax (5%%):        ₹%.2f\n", tax);
+    printf("Gross Salary:           ₹%.2f\n", grossSalary);
+    printf("Net Salary:             ₹%.2f\n", netSalary);
+    printf("--------------------------------\n");
+    printf("Original Basic Salary:  ₹%.2f\n", basicSalary);
+
+    return 0;
+}
+============================================================================================================
+Question 2: Shopping Mall Billing Management System
+Write a C program to develop a Shopping Mall Billing Management System using Call by Value. A customer purchases the following products:
+•	Laptop: ₹50,000
+•	Smartphone: ₹20,000
+•	Headphones: ₹3,000
+•	Keyboard: ₹2,000
+The program should perform the following operations using separate functions:
+1.	Calculate the total price of all products.
+2.	Calculate a 10% discount on the total price.
+3.	Calculate GST at 18% on the discounted price.
+4.	Calculate the final payable amount.
+5.	Calculate the average price of the purchased products.
+6.	Display the original prices of all products after calculations.
+All functions must receive values using Call by Value. Original product prices must remain unchanged.
+
+#include <stdio.h>
+
+// 1. Calculate total price of all products
+float calculateTotal(float p1, float p2, float p3, float p4) {
+    float total = p1 + p2 + p3 + p4;
+    p1 = p2 = p3 = p4 = 0; // Local copies modified; originals remain unchanged
+    return total;
+}
+
+// 2. Calculate 10% discount on the total price
+float calculateDiscount(float total) {
+    float discount = total * 0.10;
+    total = 0;
+    return discount;
+}
+
+// 3. Calculate 18% GST on the discounted price
+float calculateGST(float discountedPrice) {
+    float gst = discountedPrice * 0.18;
+    discountedPrice = 0;
+    return gst;
+}
+
+// 4. Calculate final payable amount
+float calculateFinalAmount(float discountedPrice, float gst) {
+    float finalAmount = discountedPrice + gst;
+    discountedPrice = 0;
+    return finalAmount;
+}
+
+// 5. Calculate average price of the purchased products
+float calculateAverage(float p1, float p2, float p3, float p4) {
+    float avg = (p1 + p2 + p3 + p4) / 4.0;
+    p1 = p2 = p3 = p4 = 0;
+    return avg;
+}
+
+int main() {
+    float laptop = 50000.0;
+    float smartphone = 20000.0;
+    float headphones = 3000.0;
+    float keyboard = 2000.0;
+
+    // Performing calculations using Call by Value
+    float totalPrice = calculateTotal(laptop, smartphone, headphones, keyboard);
+    float discount = calculateDiscount(totalPrice);
+    float discountedPrice = totalPrice - discount;
+    float gst = calculateGST(discountedPrice);
+    float finalPayable = calculateFinalAmount(discountedPrice, gst);
+    float averagePrice = calculateAverage(laptop, smartphone, headphones, keyboard);
+
+    // Display Billing Summary
+    printf("--- Shopping Mall Billing Summary ---\n");
+    printf("Total Price:             ₹%.2f\n", totalPrice);
+    printf("Discount (10%%):          ₹%.2f\n", discount);
+    printf("Price After Discount:    ₹%.2f\n", discountedPrice);
+    printf("GST (18%%):               ₹%.2f\n", gst);
+    printf("Final Payable Amount:    ₹%.2f\n", finalPayable);
+    printf("Average Product Price:   ₹%.2f\n", averagePrice);
+    printf("-------------------------------------\n");
+
+    // 6. Display original prices of all products
+    printf("Original Product Prices:\n");
+    printf("Laptop:                  ₹%.2f\n", laptop);
+    printf("Smartphone:              ₹%.2f\n", smartphone);
+    printf("Headphones:              ₹%.2f\n", headphones);
+    printf("Keyboard:                ₹%.2f\n", keyboard);
+
+    return 0;
+}
+====================================================================================================================
+Question 3: Student Academic Performance Management System
+Write a C program to develop a Student Academic Performance Management System using Call by Value. A student has obtained the following marks:
+•	Mathematics: 85
+•	Physics: 78
+•	Chemistry: 92
+•	English: 88
+•	Computer Science: 95
+Each subject has a maximum of 100 marks.
+The program should perform the following operations using separate functions:
+1.	Calculate the total marks obtained.
+2.	Calculate the overall percentage.
+3.	Calculate the average marks.
+4.	Find the highest marks.
+5.	Find the lowest marks.
+6.	Calculate the percentage of each subject.
+7.	Display the original marks after all calculations.
+Use Call by Value for passing the required values to functions. Original marks must remain unchanged.
+
+#include <stdio.h>
+
+// 1. Calculate total marks obtained
+int calculateTotal(int m1, int m2, int m3, int m4, int m5) {
+    int total = m1 + m2 + m3 + m4 + m5;
+    m1 = m2 = m3 = m4 = m5 = 0; // Local copies modified; originals remain unchanged
+    return total;
+}
+
+// 2. Calculate overall percentage (out of 500)
+float calculateOverallPercentage(int total) {
+    float percentage = ((float)total / 500.0) * 100.0;
+    total = 0;
+    return percentage;
+}
+
+// 3. Calculate average marks
+float calculateAverage(int total) {
+    float avg = (float)total / 5.0;
+    total = 0;
+    return avg;
+}
+
+// 4. Find highest marks
+int findHighest(int m1, int m2, int m3, int m4, int m5) {
+    int max = m1;
+    if (m2 > max) max = m2;
+    if (m3 > max) max = m3;
+    if (m4 > max) max = m4;
+    if (m5 > max) max = m5;
+    m1 = m2 = m3 = m4 = m5 = 0;
+    return max;
+}
+
+// 5. Find lowest marks
+int findLowest(int m1, int m2, int m3, int m4, int m5) {
+    int min = m1;
+    if (m2 < min) min = m2;
+    if (m3 < min) min = m3;
+    if (m4 < min) min = m4;
+    if (m5 < min) min = m5;
+    m1 = m2 = m3 = m4 = m5 = 0;
+    return min;
+}
+
+// 6. Calculate percentage of an individual subject (out of 100)
+float calculateSubjectPercentage(int mark) {
+    float subPerc = ((float)mark / 100.0) * 100.0;
+    mark = 0;
+    return subPerc;
+}
+
+int main() {
+    int math = 85;
+    int physics = 78;
+    int chemistry = 92;
+    int english = 88;
+    int compSci = 95;
+
+    // Performing calculations using Call by Value
+    int totalMarks = calculateTotal(math, physics, chemistry, english, compSci);
+    float overallPercentage = calculateOverallPercentage(totalMarks);
+    float averageMarks = calculateAverage(totalMarks);
+    int highestMarks = findHighest(math, physics, chemistry, english, compSci);
+    int lowestMarks = findLowest(math, physics, chemistry, english, compSci);
+
+    // Display Academic Performance Summary
+    printf("--- Student Academic Performance Summary ---\n");
+    printf("Total Marks (out of 500): %d\n", totalMarks);
+    printf("Overall Percentage:       %.2f%%\n", overallPercentage);
+    printf("Average Marks:            %.2f\n", averageMarks);
+    printf("Highest Marks:            %d\n", highestMarks);
+    printf("Lowest Marks:             %d\n", lowestMarks);
+    printf("--------------------------------------------\n");
+
+    // 6. Display percentage of each subject
+    printf("Subject-wise Percentage:\n");
+    printf("Mathematics:              %.2f%%\n", calculateSubjectPercentage(math));
+    printf("Physics:                  %.2f%%\n", calculateSubjectPercentage(physics));
+    printf("Chemistry:                %.2f%%\n", calculateSubjectPercentage(chemistry));
+    printf("English:                  %.2f%%\n", calculateSubjectPercentage(english));
+    printf("Computer Science:         %.2f%%\n", calculateSubjectPercentage(compSci));
+    printf("--------------------------------------------\n");
+
+    // 7. Display original marks after all calculations
+    printf("Original Subject Marks:\n");
+    printf("Mathematics:              %d\n", math);
+    printf("Physics:                  %d\n", physics);
+    printf("Chemistry:                %d\n", chemistry);
+    printf("English:                  %d\n", english);
+    printf("Computer Science:         %d\n", compSci);
+
+    return 0;
+}
+===============================================================================================================
+Question 4: Hotel Reservation and Billing System
+Write a C program to develop a Hotel Reservation and Billing System using Call by Value. A customer books a hotel room with the following details:
+•	Room Rent Per Day: ₹2,500
+•	Number of Days: 5
+•	Food Charges: ₹3,000
+•	Laundry Charges: ₹1,000
+•	Service Tax: 10%
+The program should perform the following operations using separate functions:
+1.	Calculate the total room rent.
+2.	Calculate the total additional charges (Food + Laundry).
+3.	Calculate the subtotal amount.
+4.	Calculate 10% service tax on the subtotal.
+5.	Calculate the final hotel bill.
+6.	Calculate the average daily room rent.
+7.	Display the original booking details after all calculations.
+Use Call by Value for all required function arguments. Original booking details must remain unchanged.
+
+#include <stdio.h>
+
+// 1. Calculate total room rent
+float calculateRoomRent(float rentPerDay, int days) {
+    float totalRent = rentPerDay * days;
+    rentPerDay = 0; // Local copies modified; originals remain unchanged
+    days = 0;
+    return totalRent;
+}
+
+// 2. Calculate total additional charges (Food + Laundry)
+float calculateAdditionalCharges(float food, float laundry) {
+    float additional = food + laundry;
+    food = laundry = 0;
+    return additional;
+}
+
+// 3. Calculate subtotal amount
+float calculateSubtotal(float roomRent, float additionalCharges) {
+    float subtotal = roomRent + additionalCharges;
+    roomRent = additionalCharges = 0;
+    return subtotal;
+}
+
+// 4. Calculate 10% service tax on the subtotal
+float calculateServiceTax(float subtotal) {
+    float tax = subtotal * 0.10;
+    subtotal = 0;
+    return tax;
+}
+
+// 5. Calculate final hotel bill
+float calculateFinalBill(float subtotal, float serviceTax) {
+    float finalBill = subtotal + serviceTax;
+    subtotal = serviceTax = 0;
+    return finalBill;
+}
+
+// 6. Calculate average daily room rent
+float calculateAverageDailyRent(float totalRoomRent, int days) {
+    float avgRent = totalRoomRent / days;
+    totalRoomRent = 0;
+    days = 0;
+    return avgRent;
+}
+
+int main() {
+    float roomRentPerDay = 2500.0;
+    int numDays = 5;
+    float foodCharges = 3000.0;
+    float laundryCharges = 1000.0;
+
+    // Performing calculations using Call by Value
+    float totalRoomRent = calculateRoomRent(roomRentPerDay, numDays);
+    float totalAdditional = calculateAdditionalCharges(foodCharges, laundryCharges);
+    float subtotal = calculateSubtotal(totalRoomRent, totalAdditional);
+    float serviceTax = calculateServiceTax(subtotal);
+    float finalBill = calculateFinalBill(subtotal, serviceTax);
+    float averageDailyRent = calculateAverageDailyRent(totalRoomRent, numDays);
+
+    // Display Hotel Billing Summary
+    printf("--- Hotel Reservation & Billing Summary ---\n");
+    printf("Total Room Rent (5 days): ₹%.2f\n", totalRoomRent);
+    printf("Additional Charges:       ₹%.2f\n", totalAdditional);
+    printf("Subtotal Amount:          ₹%.2f\n", subtotal);
+    printf("Service Tax (10%%):        ₹%.2f\n", serviceTax);
+    printf("Final Hotel Bill:         ₹%.2f\n", finalBill);
+    printf("Average Daily Room Rent:  ₹%.2f\n", averageDailyRent);
+    printf("-------------------------------------------\n");
+
+    // 7. Display original booking details after all calculations
+    printf("Original Booking Details:\n");
+    printf("Room Rent Per Day:        ₹%.2f\n", roomRentPerDay);
+    printf("Number of Days:           %d\n", numDays);
+    printf("Food Charges:             ₹%.2f\n", foodCharges);
+    printf("Laundry Charges:          ₹%.2f\n", laundryCharges);
+
+    return 0;
+}
+================================================================================================
+Question 5: E-Commerce Order Management System
+Write a C program to develop an E-Commerce Order Management System using Call by Value. A customer places an order containing the following products:
+•	Product A: ₹10,000 (Quantity: 2)
+•	Product B: ₹5,000 (Quantity: 3)
+•	Product C: ₹2,000 (Quantity: 4)
+The program should perform the following operations using separate functions:
+1.	Calculate the total price of each product based on its quantity.
+2.	Calculate the total order amount.
+3.	Calculate a 15% discount on the total order amount.
+4.	Calculate delivery charges of ₹200.
+5.	Calculate GST at 18% on the discounted order amount.
+6.	Calculate the final payable amount (Discounted Amount + GST + Delivery Charges).
+7.	Calculate the total number of items ordered.
+8.	Display the original product prices and quantities after all calculations.
+Use Call by Value for passing the required values to functions. Original product prices and quantities must remain unchanged.
+
+#include <stdio.h>
+
+// 1. Calculate total price of a product based on its quantity
+float calculateProductTotal(float price, int qty) {
+    float total = price * qty;
+    price = 0; // Local copies modified; originals remain unchanged
+    qty = 0;
+    return total;
+}
+
+// 2. Calculate total order amount
+float calculateOrderAmount(float t1, float t2, float t3) {
+    float orderTotal = t1 + t2 + t3;
+    t1 = t2 = t3 = 0;
+    return orderTotal;
+}
+
+// 3. Calculate 15% discount on total order amount
+float calculateDiscount(float totalAmount) {
+    float discount = totalAmount * 0.15;
+    totalAmount = 0;
+    return discount;
+}
+
+// 4. Calculate delivery charges of ₹200
+float getDeliveryCharges(float discountedAmount) {
+    float delivery = 200.0;
+    discountedAmount = 0;
+    return delivery;
+}
+
+// 5. Calculate GST at 18% on discounted order amount
+float calculateGST(float discountedAmount) {
+    float gst = discountedAmount * 0.18;
+    discountedAmount = 0;
+    return gst;
+}
+
+// 6. Calculate final payable amount (Discounted Amount + GST + Delivery Charges)
+float calculateFinalPayable(float discountedAmount, float gst, float delivery) {
+    float finalAmount = discountedAmount + gst + delivery;
+    discountedAmount = gst = delivery = 0;
+    return finalAmount;
+}
+
+// 7. Calculate total number of items ordered
+int calculateTotalItems(int q1, int q2, int q3) {
+    int totalItems = q1 + q2 + q3;
+    q1 = q2 = q3 = 0;
+    return totalItems;
+}
+
+int main() {
+    float priceA = 10000.0;
+    int qtyA = 2;
+
+    float priceB = 5000.0;
+    int qtyB = 3;
+
+    float priceC = 2000.0;
+    int qtyC = 4;
+
+    // Performing calculations using Call by Value
+    float totalA = calculateProductTotal(priceA, qtyA);
+    float totalB = calculateProductTotal(priceB, qtyB);
+    float totalC = calculateProductTotal(priceC, qtyC);
+
+    float totalOrderAmount = calculateOrderAmount(totalA, totalB, totalC);
+    float discount = calculateDiscount(totalOrderAmount);
+    float discountedAmount = totalOrderAmount - discount;
+    float deliveryCharges = getDeliveryCharges(discountedAmount);
+    float gst = calculateGST(discountedAmount);
+    float finalPayable = calculateFinalPayable(discountedAmount, gst, deliveryCharges);
+    int totalItems = calculateTotalItems(qtyA, qtyB, qtyC);
+
+    // Display Order Summary
+    printf("--- E-Commerce Order Summary ---\n");
+    printf("Product A Total (2 x ₹10,000): ₹%.2f\n", totalA);
+    printf("Product B Total (3 x ₹5,000):  ₹%.2f\n", totalB);
+    printf("Product C Total (4 x ₹2,000):  ₹%.2f\n", totalC);
+    printf("Total Items Ordered:           %d\n", totalItems);
+    printf("Total Order Amount:            ₹%.2f\n", totalOrderAmount);
+    printf("Discount (15%%):                ₹%.2f\n", discount);
+    printf("Discounted Order Amount:       ₹%.2f\n", discountedAmount);
+    printf("GST (18%%):                     ₹%.2f\n", gst);
+    printf("Delivery Charges:              ₹%.2f\n", deliveryCharges);
+    printf("Final Payable Amount:          ₹%.2f\n", finalPayable);
+    printf("--------------------------------\n");
+
+    // 8. Display original product prices and quantities
+    printf("Original Product Prices & Quantities:\n");
+    printf("Product A: ₹%.2f | Quantity: %d\n", priceA, qtyA);
+    printf("Product B: ₹%.2f | Quantity: %d\n", priceB, qtyB);
+    printf("Product C: ₹%.2f | Quantity: %d\n", priceC, qtyC);
+
+    return 0;
+}
+
+
+
+
