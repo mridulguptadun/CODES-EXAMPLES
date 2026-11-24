@@ -1,0 +1,476 @@
+1. Online Ticket Booking
+Write a program that books movie tickets. If the requested tickets exceed available seats, raise an exception.
+
+available_seats = 15
+try:    
+tickets = int(input("Enter tickets required: "))    
+if tickets <= 0:        
+raise ValueError("Tickets must be positive")    
+if tickets > available_seats:        
+raise Exception("Not enough seats available")    
+available_seats -= tickets    
+print("Booking successful!")    
+print("Remaining seats:", available_seats)
+except ValueError as e:    
+print("Input Error:", e)
+except Exception as e:   
+print("Booking Error:", e)
+=======================================================================================
+
+2. Username Availability Checker
+Check whether a username is available. Raise an exception if the username is already registered or contains fewer than 5 characters.
+
+registered = ["rahul123", "admin", "john45"]try:    
+username = input("Enter username: ")    
+if len(username) < 5:        
+raise ValueError("Username too short")    
+if username in registered:        
+raise Exception("Username already exists")    
+print("Username available!")
+except ValueError as e:    
+print("Error:", e)
+except Exception as e:    
+print("Error:", e)
+==============================================================================================
+
+3. Online Exam Submission
+Write a program that checks whether a student can submit an online examination. Submission should fail if the time has expired or 
+answers are missing.
+
+try:   
+remaining_time = int(input("Enter remaining time: "))    
+answered = int(input("Enter answered questions: "))    
+total_questions = 10    
+if remaining_time <= 0:       
+raise TimeoutError("Exam time expired")    
+if answered < total_questions:        
+raise Exception("All questions must be answered")    
+print("Exam submitted successfully!")
+except ValueError:    
+print("Invalid input!")
+except TimeoutError as e:    
+print(e)
+except Exception as e:    
+print(e)
+================================================================================================
+
+4. Internet Data Usage Monitor
+Write a program that monitors internet data usage and raises an exception if the user exceeds the monthly data limit.
+
+try:    
+limit = 100    
+usage = float(input("Enter data usage in GB: "))    
+if usage < 0:        
+raise ValueError("Usage cannot be negative")    
+if usage > limit:        
+raise OverflowError("Data limit exceeded")    
+remaining = limit - usage    
+print("Data remaining:", remaining, "GB")
+except ValueError as e:    
+print("Input Error:", e)
+except OverflowError as e:    
+print("Warning:", e)
+=====================================================================================
+
+5. Mobile Recharge Validation
+Write a program that validates a mobile recharge amount. Recharge must be one of ₹149, ₹199, ₹299, or ₹599.
+
+plans = [149, 199, 299, 599]
+try:    
+amount = int(input("Enter recharge amount: "))    
+if amount not in plans:        
+raise ValueError("Invalid recharge plan")    
+print("Recharge successful:", amount)
+except ValueError as e:    
+print("Recharge Error:", e)
+==========================================================================
+
+6. Food Delivery Order
+Calculate a food delivery bill. Reject orders below ₹100 and apply delivery charges based on the order amount.
+
+try:   
+amount = float(input("Enter food amount: "))    
+if amount < 100:        
+raise ValueError("Minimum order is 100")    
+if amount >= 500:        
+delivery = 0    
+else:        
+delivery = 40    
+total = amount + delivery    
+print("Food Amount:", amount)    
+print("Delivery Charge:", delivery)    
+print("Total:", total)
+except ValueError as e:    
+print("Error:", e)
+=================================================================================
+
+7. Age Verification System
+Write a program that verifies whether a user is eligible to register for a service requiring an age of at least 18 years.
+
+try:    
+age = int(input("Enter your age: "))    
+if age < 0:        
+raise ValueError("Age cannot be negative")    
+if age < 18:        
+raise PermissionError("You are not eligible")    
+print("Registration successful!")
+except ValueError as e:    
+print("Invalid Age:", e)
+except PermissionError as e:    
+print("Access Denied:", e)
+====================================================================================================
+
+8. Inventory Stock Management
+Write a program that accepts product quantities and updates stock. Handle requests exceeding available stock.
+
+stock = {"laptop": 10,    "mobile": 20,    "tablet": 5}
+try:    
+product = input("Enter product: ").lower()    
+quantity = int(input("Enter quantity: "))    
+if quantity <= 0:        
+raise ValueError("Invalid quantity")    
+if product not in stock:        
+raise KeyError("Product not found")    
+if quantity > stock[product]:        
+raise OverflowError("Insufficient stock")    
+stock[product] -= quantity    
+print("Order successful!")    
+print("Remaining stock:", stock[product])
+except (ValueError, KeyError, OverflowError) as e:    
+print("Error:", e)
+==================================================================================================
+
+9. Flight Booking Validation
+Write a program that validates passenger details and rejects bookings if the passenger count exceeds the aircraft capacity.
+try:    
+passengers = int(input("Enter passengers: "))    
+capacity = 180    
+if passengers <= 0:        
+raise ValueError("Invalid passenger count")    
+if passengers > capacity:        
+raise OverflowError("Aircraft capacity exceeded")    
+print("Flight booking confirmed!")
+except ValueError as e:    
+print("Input Error:", e)
+except OverflowError as e:    
+print("Booking Error:", e)
+============================================================================
+
+10. Voting Eligibility Checker
+Write a program that checks whether a citizen can vote. The program should also reject unrealistic ages.
+
+try:    
+age = int(input("Enter your age: "))    
+if age < 0 or age > 120:        
+raise ValueError("Invalid age")    
+if age < 18:        
+raise PermissionError("Not eligible for voting")    
+print("You are eligible to vote!")
+except ValueError as e:    
+print("Error:", e)
+except PermissionError as e:    
+print("Error:", e)
+============================================================================================
+
+11. Website Login Attempt System
+Write a login system that allows only three incorrect password attempts.
+
+correct_password = "python123"
+attempts = 0
+while 
+attempts < 3:    
+try:        
+password = input("Enter password: ")        
+if password != correct_password:            
+attempts += 1            
+raise PermissionError("Incorrect password")        
+print("Login successful!")        
+break    
+except PermissionError as e:        
+print(e)        
+print("Attempts remaining:", 3 - attempts)
+else:    
+print("Account temporarily locked!")
+============================================================================
+
+12. Shopping Coupon Validation
+Write a program that validates a coupon code and applies a discount.
+
+coupons = {"SAVE10": 10,    "SAVE20": 20,    "SAVE50": 50}
+try:    
+price = float(input("Enter price: "))    
+coupon = input("Enter coupon: ").upper()    
+if price <= 0:        
+raise ValueError("Invalid price")    
+discount = coupons[coupon]    
+final_price = price - (price * discount / 100)    
+print("Discount:", discount, "%")    
+print("Final Price:", final_price)
+except KeyError:    
+print("Invalid coupon code!")
+except ValueError as e:    
+print("Error:", e)
+===================================================================================
+
+13. Employee Attendance System
+Calculate employee attendance percentage. Handle invalid working days and attendance days.
+
+try:    
+working_days = int(input("Enter working days: "))    
+present_days = int(input("Enter present days: "))    
+if working_days <= 0:        
+raise ValueError("Working days must be positive")    
+if present_days < 0 or present_days > working_days:        
+raise ValueError("Invalid attendance days")    
+percentage = (present_days / working_days) * 100    
+print("Attendance:", percentage, "%")    
+if percentage < 75:        
+print("Attendance shortage")    
+else:        
+print("Attendance sufficient")
+except ValueError as e:    
+print("Error:", e)
+==========================================================================================
+
+14. Restaurant Table Booking
+Accept the number of guests and assign a table. Reject bookings when the restaurant has no available tables.
+
+tables = [2, 4, 6, 8]
+try:    
+guests = int(input("Enter guests: "))    
+if guests <= 0:        
+raise ValueError("Invalid guest count")    
+available = None    
+for table in tables:        
+if table >= guests:            
+available = table            
+break    
+if available is None:        
+raise OverflowError("No suitable table available")    
+print("Table booked for", available, "people")
+except ValueError as e:    
+print("Error:", e)
+except OverflowError as e:    
+print("Booking Error:", e)
+==================================================================================
+
+15. Vehicle Speed Monitoring
+Write a program that checks vehicle speed and raises an exception if the speed exceeds the maximum limit of 100 km/h.
+
+try:    
+speed = float(input("Enter vehicle speed: "))    
+if speed < 0:        
+raise ValueError("Invalid speed")    
+if speed > 100:        
+raise ArithmeticError("Overspeeding detected")    
+print("Speed is within the limit")
+except ValueError as e:    
+print("Error:", e)
+except ArithmeticError as e:    
+print("Warning:", e)
+===================================================================================
+
+16. Railway Platform Allocation
+Assign an available platform to an arriving train. Raise an exception if no platform is available.
+
+platforms = {1: True,    2: False,    3: True,    4: False}
+try:    
+train = input("Enter train number: ")    
+available = [number for number, status in platforms.items()if status]    
+if not available:        
+raise RuntimeError("No platform available")    
+platform = available[0]    
+platforms[platform] = False    
+print("Train", train, "assigned platform", platform)
+except RuntimeError as e:    
+print("Error:", e)
+==========================================================================================
+
+17. Quiz Answer Validation
+Write a quiz program that accepts an answer and rejects anything other than A, B, C, or D.
+
+try:    
+answer = input("Enter answer (A/B/C/D): ").upper()    
+if answer not in ["A", "B", "C", "D"]:        
+raise ValueError("Invalid option")    
+correct = "B"    
+if answer == correct:        
+print("Correct answer!")    
+else:        
+print("Wrong answer!")
+except ValueError as e:    
+print("Error:", e)
+====================================================================================
+
+18. Package Weight Validation
+Write a program that calculates shipping charges based on package weight. Reject packages heavier than 50 kg.
+
+try:    
+weight = float(input("Enter package weight: "))    
+if weight <= 0:       
+raise ValueError("Weight must be positive")    
+if weight > 50:        
+raise OverflowError("Package exceeds weight limit")    
+if weight <= 5:        
+charge = 50    
+elif weight <= 20:        
+charge = 100    
+else:       
+charge = 200    
+print("Shipping charge:", charge)
+except ValueError as e:    
+print("Error:", e)
+except OverflowError as e:    
+print("Error:", e)
+===============================================================================================
+
+19. Event Registration Limit
+Write a program that accepts event registrations until the maximum registration limit is reached.
+
+maximum = 5registered = 0
+while True:    
+try:        
+choice = input("Register? (yes/no): ").lower()        
+if choice == "no":            
+break        
+if choice != "yes":            
+raise ValueError("Enter yes or no")        
+if registered >= maximum:            
+raise OverflowError("Registration limit reached")        
+registered += 1        
+print("Registration successful!")    
+except ValueError as e:        
+print("Error:", e)    
+except OverflowError as e:        
+print("Error:", e)
+print("Total registrations:", registered)
+==============================================================================================
+
+20. Currency Exchange Validation
+Write a program that converts INR into USD, EUR, or GBP. Reject unsupported currencies and invalid amounts.
+
+rates = {"USD": 0.012,    "EUR": 0.011,    "GBP": 0.0095}
+try:    
+amount = float(input("Enter INR: "))    
+currency = input("Convert to: ").upper()    
+if amount <= 0:        
+raise ValueError("Amount must be positive")    
+rate = rates[currency]    
+converted = amount * rate    
+print("Converted amount:", converted, currency)
+except KeyError:    
+print("Unsupported currency!")
+except ValueError as e:    
+print("Error:", e)
+============================================================================================
+
+21. Electricity Connection Validation
+Write a program that checks whether a customer can request a new electricity connection based on the load requirement. 
+Maximum permitted load is 10 kW.
+
+try:    
+load = float(input("Enter required load: "))    
+if load <= 0:        
+raise ValueError("Load must be positive")    
+if load > 10:        
+raise OverflowError("Load exceeds permitted capacity")    
+print("Connection request accepted!")
+except ValueError as e:    
+print("Error:", e)
+except OverflowError as e:    
+print("Error:", e)
+===========================================================================================
+
+22. Multiple API Response Validation
+A program receives a dictionary representing an API response. Extract the user's name, age, and city. Handle missing keys and incorrect data types.
+
+response = {"name": "Rahul",    "age": "25",    "city": "Agra"}
+try:    
+name = response["name"]    
+age = int(response["age"])    
+city = response["city"]    
+if not isinstance(name, str) or not isinstance(city, str):        
+raise TypeError("Invalid user information")    
+print("Name:", name)    
+print("Age:", age)    
+print("City:", city)
+except KeyError as e:    
+print("Missing field:", e)
+except ValueError:    
+print("Age must be numeric")
+except TypeError as e:    
+print("Error:", e)
+=========================================================================================
+
+23. Secure PIN Verification
+Write a program that verifies a four-digit PIN. Allow three attempts and handle invalid PIN formats.
+
+correct_pin = "2580"
+attempts = 0
+while attempts < 3:    
+try:        
+pin = input("Enter 4-digit PIN: ")        
+if len(pin) != 4 or not pin.isdigit():            
+raise ValueError("PIN must contain exactly 4 digits")        
+if pin != correct_pin:            
+attempts += 1            
+raise PermissionError("Incorrect PIN")        
+print("Access granted!")        
+break    
+except ValueError as e:        
+print(e)    
+except PermissionError as e:        
+attempts += 0        
+print(e)else:    
+print("Access blocked!")
+=======================================================================
+
+24. Sports Tournament Score Validation
+Accept scores of five players, skip invalid scores, and calculate the highest valid score. Reject scores outside 0–100.
+
+scores = ["85", "92", "abc", "110", "76", "95"]
+valid_scores = []
+for score in scores:    
+try:        
+value = int(score)        
+if value < 0 or value > 100:            
+raise ValueError("Score out of range")        
+valid_scores.append(value)    
+except ValueError as e:        
+print("Invalid score:", score, "-", e)
+try:    
+if not valid_scores:       
+raise LookupError("No valid scores found")    
+print("Highest Score:", max(valid_scores))    
+print("Average Score:", sum(valid_scores) / len(valid_scores))
+except LookupError as e:    
+print("Error:", e)
+====================================================================
+
+25. Online Payment Gateway
+Create a payment validation program that checks payment amount, payment method, and available balance. Handle different types of errors separately.
+
+balance = 5000
+methods = ["UPI", "CARD", "NETBANKING"]
+try:    
+amount = float(input("Enter payment amount: "))    
+method = input("Payment method: ").upper()    
+if amount <= 0:        
+raise ValueError("Invalid payment amount")    
+if method not in methods:        
+raise LookupError("Unsupported payment method")    
+if amount > balance:        
+raise ArithmeticError("Insufficient balance")    
+balance -= amount    
+print("Payment successful!")    
+print("Payment method:", method)    
+print("Remaining balance:", balance)
+except ValueError as e:    
+print("Amount Error:", e)
+except LookupError as e:    
+print("Method Error:", e)
+except ArithmeticError as e:    
+print("Payment Error:", e)
+finally:    
+print("Payment processing completed.")
+
