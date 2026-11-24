@@ -1,0 +1,436 @@
+1. Print a Greeting
+c
+#include <stdio.h>
+void greet() { printf("Hello, C Functions!\n"); }
+int main() { greet(); return 0; }
+Use code with caution.
+2. Add Two Numbers
+c
+#include <stdio.h>
+int add(int a, int b) { return a + b; }
+int main() { printf("Sum: %d\n", add(5, 7)); return 0; }
+Use code with caution.
+3. Square and Cube
+c
+#include <stdio.h>
+int square(int n) { return n * n; }
+int cube(int n) { return n * n * n; }
+int main() { printf("Sq: %d, Cube: %d\n", square(3), cube(3)); return 0; }
+Use code with caution.
+4. Even or Odd
+c
+#include <stdio.h>
+int isEven(int n) { return (n % 2 == 0); }
+int main() { printf("%s\n", isEven(4) ? "Even" : "Odd"); return 0; }
+Use code with caution.
+5. Maximum of Three Numbers
+c
+#include <stdio.h>
+int maxOfThree(int a, int b, int c) {
+    int max = a;
+    if (b > max) max = b;
+    if (c > max) max = c;
+    return max;
+}
+int main() { printf("Max: %d\n", maxOfThree(10, 25, 15)); return 0; }
+Use code with caution.
+6. Simple Interest
+c
+#include <stdio.h>
+float simpleInterest(float p, float r, float t) { return (p * r * t) / 100.0; }
+int main() { printf("SI: %.2f\n", simpleInterest(1000, 5, 2)); return 0; }
+Use code with caution.
+7. Area of Circle, Rectangle, Triangle
+c
+#include <stdio.h>
+float areaCircle(float r) { return 3.14159 * r * r; }
+float areaRect(float l, float b) { return l * b; }
+float areaTri(float b, float h) { return 0.5 * b * h; }
+int main() { printf("Circle: %.2f\n", areaCircle(5)); return 0; }
+Use code with caution.
+8. Temperature Converter (Celsius to Fahrenheit)
+c
+#include <stdio.h>
+float cToF(float c) { return (c * 9.0 / 5.0) + 32; }
+int main() { printf("Fahrenheit: %.2f\n", cToF(37)); return 0; }
+Use code with caution.
+9. Check Leap Year
+c
+#include <stdio.h>
+void checkLeap(int y) {
+    if ((y % 4 == 0 && y % 100 != 0) || (y % 400 == 0)) printf("Leap Year\n");
+    else printf("Not Leap Year\n");
+}
+int main() { checkLeap(2024); return 0; }
+Use code with caution.
+10. Lowercase to Uppercase (Without <ctype.h>)
+c
+#include <stdio.h>
+char toUpper(char c) { return (c >= 'a' && c <= 'z') ? c - 32 : c; }
+int main() { printf("%c\n", toUpper('g')); return 0; }
+Use code with caution.
+11. Vowel or Consonant
+c
+#include <stdio.h>
+int isVowel(char c) {
+    return (c=='a'||c=='e'||c=='i'||c=='o'||c=='u'||c=='A'||c=='E'||c=='I'||c=='O'||c=='U');
+}
+int main() { printf("%s\n", isVowel('e') ? "Vowel" : "Consonant"); return 0; }
+Use code with caution.
+12. Absolute Value
+c
+#include <stdio.h>
+int myAbs(int n) { return (n < 0) ? -n : n; }
+int main() { printf("%d\n", myAbs(-42)); return 0; }
+Use code with caution.
+13. Multiplication Table
+c
+#include <stdio.h>
+void printTable(int n) {
+    for (int i = 1; i <= 10; i++) printf("%d x %d = %d\n", n, i, n * i);
+}
+int main() { printTable(5); return 0; }
+Use code with caution.
+14. Sum of First N Natural Numbers
+c
+#include <stdio.h>
+int sumN(int n) { return (n * (n + 1)) / 2; }
+int main() { printf("Sum: %d\n", sumN(10)); return 0; }
+Use code with caution.
+15. Simple Calculator
+c
+#include <stdio.h>
+double calc(double a, double b, char op) {
+    switch (op) {
+        case '+': return a + b;
+        case '-': return a - b;
+        case '*': return a * b;
+        case '/': return b != 0 ? a / b : 0;
+        default: return 0;
+    }
+}
+int main() { printf("Result: %.2f\n", calc(10, 5, '*')); return 0; }
+Use code with caution.
+
+Part 2: Intermediate Logic & Math (Questions 16–30)
+
+16. Factorial (Iterative)
+c
+#include <stdio.h>
+long long factorial(int n) {
+    long long f = 1;
+    for (int i = 1; i <= n; i++) f *= i;
+    return f;
+}
+int main() { printf("Fact: %lld\n", factorial(5)); return 0; }
+Use code with caution.
+17. Power Function (Without pow())
+c
+#include <stdio.h>
+double power(double base, int exp) {
+    double res = 1;
+    for (int i = 0; i < exp; i++) res *= base;
+    return res;
+}
+int main() { printf("%.2f\n", power(2, 5)); return 0; }
+Use code with caution.
+18. Prime Number Check
+c
+#include <stdio.h>
+int isPrime(int n) {
+    if (n <= 1) return 0;
+    for (int i = 2; i * i <= n; i++) if (n % i == 0) return 0;
+    return 1;
+}
+int main() { printf("%s\n", isPrime(17) ? "Prime" : "Not Prime"); return 0; }
+Use code with caution.
+19. Print Primes in a Range
+c
+#include <stdio.h>
+int isPrime(int n) {
+    if (n <= 1) return 0;
+    for (int i = 2; i * i <= n; i++) if (n % i == 0) return 0;
+    return 1;
+}
+void printPrimes(int start, int end) {
+    for (int i = start; i <= end; i++) if (isPrime(i)) printf("%d ", i);
+}
+int main() { printPrimes(10, 30); return 0; }
+Use code with caution.
+20. Reverse a Number
+c
+#include <stdio.h>
+int reverseNum(int n) {
+    int rev = 0;
+    while (n > 0) { rev = rev * 10 + (n % 10); n /= 10; }
+    return rev;
+}
+int main() { printf("%d\n", reverseNum(1234)); return 0; }
+Use code with caution.
+21. Palindrome Number
+c
+#include <stdio.h>
+int reverseNum(int n) {
+    int rev = 0;
+    while (n > 0) { rev = rev * 10 + (n % 10); n /= 10; }
+    return rev;
+}
+int isPalindrome(int n) { return n == reverseNum(n); }
+int main() { printf("%s\n", isPalindrome(121) ? "Palindrome" : "No"); return 0; }
+Use code with caution.
+22. Sum of Digits
+c
+#include <stdio.h>
+int sumDigits(int n) {
+    int sum = 0;
+    while (n > 0) { sum += n % 10; n /= 10; }
+    return sum;
+}
+int main() { printf("Sum: %d\n", sumDigits(456)); return 0; }
+Use code with caution.
+23. Armstrong Number (3-digit)
+c
+#include <stdio.h>
+int isArmstrong(int n) {
+    int temp = n, sum = 0;
+    while (temp > 0) { int d = temp % 10; sum += d * d * d; temp /= 10; }
+    return sum == n;
+}
+int main() { printf("%s\n", isArmstrong(153) ? "Armstrong" : "No"); return 0; }
+Use code with caution.
+24. Perfect Number
+c
+#include <stdio.h>
+int isPerfect(int n) {
+    int sum = 0;
+    for (int i = 1; i <= n / 2; i++) if (n % i == 0) sum += i;
+    return sum == n;
+}
+int main() { printf("%s\n", isPerfect(28) ? "Perfect" : "No"); return 0; }
+Use code with caution.
+25. Strong Number
+c
+#include <stdio.h>
+int fact(int n) { int f = 1; for (int i = 1; i <= n; i++) f *= i; return f; }
+int isStrong(int n) {
+    int temp = n, sum = 0;
+    while (temp > 0) { sum += fact(temp % 10); temp /= 10; }
+    return sum == n;
+}
+int main() { printf("%s\n", isStrong(145) ? "Strong" : "No"); return 0; }
+Use code with caution.
+26. GCD (Greatest Common Divisor)
+c
+#include <stdio.h>
+int gcd(int a, int b) {
+    while (b != 0) { int t = b; b = a % b; a = t; }
+    return a;
+}
+int main() { printf("GCD: %d\n", gcd(48, 18)); return 0; }
+Use code with caution.
+27. LCM (Least Common Multiple)
+c
+#include <stdio.h>
+int gcd(int a, int b) { while (b != 0) { int t = b; b = a % b; a = t; } return a; }
+int lcm(int a, int b) { return (a * b) / gcd(a, b); }
+int main() { printf("LCM: %d\n", lcm(12, 15)); return 0; }
+Use code with caution.
+28. Decimal to Binary
+c
+#include <stdio.h>
+long long decToBin(int n) {
+    long long bin = 0, place = 1;
+    while (n > 0) { bin += (n % 2) * place; n /= 2; place *= 10; }
+    return bin;
+}
+int main() { printf("Binary: %lld\n", decToBin(10)); return 0; }
+Use code with caution.
+29. Binary to Decimal
+c
+#include <stdio.h>
+int binToDec(long long bin) {
+    int dec = 0, base = 1;
+    while (bin > 0) { dec += (bin % 10) * base; bin /= 10; base *= 2; }
+    return dec;
+}
+int main() { printf("Decimal: %d\n", binToDec(1010)); return 0; }
+Use code with caution.
+30. nCr (Combinations)
+c
+#include <stdio.h>
+long long fact(int n) { long long f = 1; for (int i = 1; i <= n; i++) f *= i; return f; }
+long long nCr(int n, int r) { return fact(n) / (fact(r) * fact(n - r)); }
+int main() { printf("5C2: %lld\n", nCr(5, 2)); return 0; }
+Use code with caution.
+
+Part 3: Recursion (Questions 31–40)
+
+31. Recursive Factorial
+c
+#include <stdio.h>
+int factRec(int n) { return (n <= 1) ? 1 : n * factRec(n - 1); }
+int main() { printf("%d\n", factRec(5)); return 0; }
+Use code with caution.
+32. Nth Fibonacci Term
+c
+#include <stdio.h>
+int fib(int n) { return (n <= 1) ? n : fib(n - 1) + fib(n - 2); }
+int main() { printf("%d\n", fib(6)); return 0; }
+Use code with caution.
+33. Sum of 1 to N (Recursive)
+c
+#include <stdio.h>
+int sumRec(int n) { return (n == 0) ? 0 : n + sumRec(n - 1); }
+int main() { printf("%d\n", sumRec(10)); return 0; }
+Use code with caution.
+34. Count Digits (Recursive)
+c
+#include <stdio.h>
+int countDigits(int n) { return (n == 0) ? 0 : 1 + countDigits(n / 10); }
+int main() { printf("%d\n", countDigits(98765)); return 0; }
+Use code with caution.
+35. Sum of Digits (Recursive)
+c
+#include <stdio.h>
+int sumDigitsRec(int n) { return (n == 0) ? 0 : (n % 10) + sumDigitsRec(n / 10); }
+int main() { printf("%d\n", sumDigitsRec(1234)); return 0; }
+Use code with caution.
+36. Reverse Number (Recursive)
+c
+#include <stdio.h>
+int revRec(int n, int rev) { return (n == 0) ? rev : revRec(n / 10, rev * 10 + n % 10); }
+int main() { printf("%d\n", revRec(1234, 0)); return 0; }
+Use code with caution.
+37. Recursive GCD
+c
+#include <stdio.h>
+int gcdRec(int a, int b) { return (b == 0) ? a : gcdRec(b, a % b); }
+int main() { printf("%d\n", gcdRec(48, 18)); return 0; }
+Use code with caution.
+38. Print N to 1 (Recursive)
+c
+#include <stdio.h>
+void printDesc(int n) { if (n == 0) return; printf("%d ", n); printDesc(n - 1); }
+int main() { printDesc(5); return 0; }
+Use code with caution.
+39. Decimal to Binary (Recursive)
+c
+#include <stdio.h>
+void decToBinRec(int n) { if (n == 0) return; decToBinRec(n / 2); printf("%d", n % 2); }
+int main() { decToBinRec(10); return 0; }
+Use code with caution.
+40. Tower of Hanoi
+c
+#include <stdio.h>
+void hanoi(int n, char from, char to, char aux) {
+    if (n == 0) return;
+    hanoi(n - 1, from, aux, to);
+    printf("Move disk %d from %c to %c\n", n, from, to);
+    hanoi(n - 1, aux, to, from);
+}
+int main() { hanoi(3, 'A', 'C', 'B'); return 0; }
+Use code with caution.
+
+Part 4: Arrays, Strings, Pointers & Advanced (Questions 41–50)
+
+41. Swap Two Numbers (Call by Reference)
+c
+#include <stdio.h>
+void swap(int *a, int *b) { int t = *a; *a = *b; *b = t; }
+int main() { int x = 5, y = 10; swap(&x, &y); printf("%d %d\n", x, y); return 0; }
+Use code with caution.
+42. Return Multiple Values via Pointers
+c
+#include <stdio.h>
+void mathOps(int a, int b, int *sum, int *diff) { *sum = a + b; *diff = a - b; }
+int main() { int s, d; mathOps(10, 4, &s, &d); printf("Sum:%d Diff:%d\n", s, d); return 0; }
+Use code with caution.
+43. Array Average
+c
+#include <stdio.h>
+float arrayAvg(int arr[], int n) {
+    int sum = 0;
+    for (int i = 0; i < n; i++) sum += arr[i];
+    return (float)sum / n;
+}
+int main() { int a[] = {10, 20, 30}; printf("%.2f\n", arrayAvg(a, 3)); return 0; }
+Use code with caution.
+44. Find Min and Max in Array
+c
+#include <stdio.h>
+void minMax(int arr[], int n, int *min, int *max) {
+    *min = *max = arr[0];
+    for (int i = 1; i < n; i++) {
+        if (arr[i] < *min) *min = arr[i];
+        if (arr[i] > *max) *max = arr[i];
+    }
+}
+int main() { int a[] = {4, 1, 9, 2}, mn, mx; minMax(a, 4, &mn, &mx); printf("%d %d\n", mn, mx); return 0; }
+Use code with caution.
+45. Reverse Array in Place
+c
+#include <stdio.h>
+void revArray(int arr[], int n) {
+    for (int i = 0; i < n / 2; i++) {
+        int t = arr[i]; arr[i] = arr[n - 1 - i]; arr[n - 1 - i] = t;
+    }
+}
+int main() { int a[] = {1, 2, 3, 4}; revArray(a, 4); printf("%d %d\n", a[0], a[3]); return 0; }
+Use code with caution.
+46. Custom strlen() Using Pointers
+c
+#include <stdio.h>
+int myStrlen(const char *s) {
+    int len = 0;
+    while (*s++) len++;
+    return len;
+}
+int main() { printf("%d\n", myStrlen("Coding")); return 0; }
+Use code with caution.
+47. Palindrome String
+c
+#include <stdio.h>
+#include <string.h>
+int isStrPalin(char s[]) {
+    int l = 0, r = strlen(s) - 1;
+    while (l < r) if (s[l++] != s[r--]) return 0;
+    return 1;
+}
+int main() { printf("%s\n", isStrPalin("madam") ? "Yes" : "No"); return 0; }
+Use code with caution.
+48. Count Words in a String
+c
+#include <stdio.h>
+int countWords(const char *s) {
+    int count = 0, inWord = 0;
+    while (*s) {
+        if (*s == ' ' || *s == '\n' || *s == '\t') inWord = 0;
+        else if (!inWord) { inWord = 1; count++; }
+        s++;
+    }
+    return count;
+}
+int main() { printf("Words: %d\n", countWords("C programming is fun")); return 0; }
+Use code with caution.
+49. Function Call Counter (static variable)
+c
+#include <stdio.h>
+void counter() {
+    static int calls = 0;
+    printf("Called %d times\n", ++calls);
+}
+int main() { counter(); counter(); counter(); return 0; }
+Use code with caution.
+50. Array of Function Pointers (Callback)
+c
+#include <stdio.h>
+int add(int a, int b) { return a + b; }
+int sub(int a, int b) { return a - b; }
+int mul(int a, int b) { return a * b; }
+
+int main() {
+    int (*ops[3])(int, int) = {add, sub, mul};
+    int choice = 2; // 0: add, 1: sub, 2: mul
+    printf("Result: %d\n", ops[choice](6, 4));
+    return 0;
+}
