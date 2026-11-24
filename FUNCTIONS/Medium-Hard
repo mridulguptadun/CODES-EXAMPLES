@@ -1,0 +1,2860 @@
+Q1. Employee Salary Management System
+Write a C program using separate functions to calculate an employee's gross salary, deductions, tax, and final net salary.
+•	Basic Salary = ₹45,000
+•	HRA = 20% of Basic Salary
+•	DA = 10% of Basic Salary
+•	PF = 12% of Basic Salary
+•	Income Tax = 5% of Gross Salary
+Display all salary details using separate functions.
+
+#include <stdio.h>
+
+// Gross Salary calculate karne ka function
+float calculateGrossSalary(float basic) {
+    float hra = 0.20 * basic; // 20% of Basic
+    float da = 0.10 * basic;  // 10% of Basic
+    return basic + hra + da;
+}
+
+// PF Deduction calculate karne ka function
+float calculatePF(float basic) {
+    return 0.12 * basic; // 12% of Basic
+}
+
+// Income Tax calculate karne ka function
+float calculateTax(float gross) {
+    return 0.05 * gross; // 5% of Gross
+}
+
+// Final Net Salary calculate karne ka function
+float calculateNetSalary(float gross, float pf, float tax) {
+    float totalDeductions = pf + tax;
+    return gross - totalDeductions;
+}
+
+// Saari salary details display karne ka function
+void displaySalaryDetails(float basic, float hra, float da, float gross, float pf, float tax, float net) {
+    printf("====================================\n");
+    printf("       EMPLOYEE SALARY SLIP         \n");
+    printf("====================================\n");
+    printf("Basic Salary       : Rs. %.2f\n", basic);
+    printf("HRA (20%%)          : Rs. %.2f\n", hra);
+    printf("DA (10%%)           : Rs. %.2f\n", da);
+    printf("------------------------------------\n");
+    printf("Gross Salary       : Rs. %.2f\n", gross);
+    printf("------------------------------------\n");
+    printf("PF Deduction (12%%) : Rs. %.2f\n", pf);
+    printf("Income Tax (5%%)    : Rs. %.2f\n", tax);
+    printf("Total Deductions   : Rs. %.2f\n", pf + tax);
+    printf("------------------------------------\n");
+    printf("Final Net Salary   : Rs. %.2f\n", net);
+    printf("====================================\n");
+}
+
+int main() {
+    float basicSalary = 45000.0;
+    float hra = 0.20 * basicSalary;
+    float da = 0.10 * basicSalary;
+
+    // Separate functions se calculations
+    float grossSalary = calculateGrossSalary(basicSalary);
+    float pf = calculatePF(basicSalary);
+    float tax = calculateTax(grossSalary);
+    float netSalary = calculateNetSalary(grossSalary, pf, tax);
+
+    // Separate function se display
+    displaySalaryDetails(basicSalary, hra, da, grossSalary, pf, tax, netSalary);
+
+    return 0;
+}
+=====================================================================================================
+
+Q2. Shopping Mall Billing System
+Create a billing program using functions that calculates:
+•	Total price of 5 different products.
+•	Discount based on the total amount.
+•	GST of 18% after discount.
+•	Final payable amount.
+•	Average price of products.
+
+#include <stdio.h>
+
+// 5 products ka total price calculate karne ka function
+float calculateTotal(float prices[]) {
+    float total = 0;
+    for (int i = 0; i < 5; i++) {
+        total += prices[i];
+    }
+    return total;
+}
+
+// Total amount ke hisab se Discount calculate karne ka function
+float calculateDiscount(float total) {
+    if (total >= 5000) {
+        return 0.10 * total; // 10% discount agar total 5000 ya usse zyada ho
+    } else if (total >= 2000) {
+        return 0.05 * total; // 5% discount agar total 2000 ya usse zyada ho
+    } else {
+        return 0.0;          // 2000 se kam par koi discount nahi
+    }
+}
+
+// Discount ke baad 18% GST calculate karne ka function
+float calculateGST(float amountAfterDiscount) {
+    return 0.18 * amountAfterDiscount;
+}
+
+// Final payable amount calculate karne ka function
+float calculateFinalAmount(float amountAfterDiscount, float gst) {
+    return amountAfterDiscount + gst;
+}
+
+// Products ka average price calculate karne ka function
+float calculateAverage(float total) {
+    return total / 5.0;
+}
+
+// Poora bill display karne ka function
+void displayBill(float total, float discount, float gst, float finalAmount, float average) {
+    printf("\n====================================\n");
+    printf("        SHOPPING MALL BILL          \n");
+    printf("====================================\n");
+    printf("Total Price (5 Items) : Rs. %.2f\n", total);
+    printf("Discount Applied      : Rs. %.2f\n", discount);
+    printf("Price After Discount  : Rs. %.2f\n", total - discount);
+    printf("GST (18%%)             : Rs. %.2f\n", gst);
+    printf("------------------------------------\n");
+    printf("Final Payable Amount  : Rs. %.2f\n", finalAmount);
+    printf("------------------------------------\n");
+    printf("Average Product Price : Rs. %.2f\n", average);
+    printf("====================================\n");
+}
+
+int main() {
+    float prices[5];
+
+    printf("5 products ke prices enter karein:\n");
+    for (int i = 0; i < 5; i++) {
+        printf("Product %d ka price: Rs. ", i + 1);
+        scanf("%f", &prices[i]);
+    }
+
+    // Separate functions se calculations
+    float total = calculateTotal(prices);
+    float discount = calculateDiscount(total);
+    float amountAfterDiscount = total - discount;
+    float gst = calculateGST(amountAfterDiscount);
+    float finalAmount = calculateFinalAmount(amountAfterDiscount, gst);
+    float average = calculateAverage(total);
+
+    // Bill display karna
+    displayBill(total, discount, gst, finalAmount, average);
+
+    return 0;
+}
+
+=======================================================================================
+
+Q3. Student Result Management System
+Write a program using functions to:
+•	Accept marks of 6 subjects.
+•	Calculate total marks and percentage.
+•	Find highest and lowest marks.
+•	Calculate average marks.
+•	Determine the student's grade.
+•	Display pass or fail status.
+
+#include <stdio.h>
+
+// 6 subjects ke marks input lene ka function
+void acceptMarks(float marks[]) {
+    printf("6 subjects ke marks enter karein (out of 100):\n");
+    for (int i = 0; i < 6; i++) {
+        printf("Subject %d: ", i + 1);
+        scanf("%f", &marks[i]);
+    }
+}
+
+// Total marks calculate karne ka function
+float calculateTotal(float marks[]) {
+    float total = 0;
+    for (int i = 0; i < 6; i++) {
+        total += marks[i];
+    }
+    return total;
+}
+
+// Percentage calculate karne ka function
+float calculatePercentage(float total) {
+    return (total / 600.0) * 100.0;
+}
+
+// Average marks calculate karne ka function
+float calculateAverage(float total) {
+    return total / 6.0;
+}
+
+// Highest marks find karne ka function
+float findHighest(float marks[]) {
+    float highest = marks[0];
+    for (int i = 1; i < 6; i++) {
+        if (marks[i] > highest) {
+            highest = marks[i];
+        }
+    }
+    return highest;
+}
+
+// Lowest marks find karne ka function
+float findLowest(float marks[]) {
+    float lowest = marks[0];
+    for (int i = 1; i < 6; i++) {
+        if (marks[i] < lowest) {
+            lowest = marks[i];
+        }
+    }
+    return lowest;
+}
+
+// Grade determine karne ka function
+char determineGrade(float percentage) {
+    if (percentage >= 90) return 'A';
+    else if (percentage >= 75) return 'B';
+    else if (percentage >= 60) return 'C';
+    else if (percentage >= 40) return 'D';
+    else return 'F';
+}
+
+// Pass ya Fail status display karne ka function
+void displayStatus(float marks[]) {
+    int isPass = 1;
+    for (int i = 0; i < 6; i++) {
+        if (marks[i] < 33) { // Har subject mein minimum 33 marks zaroori hain
+            isPass = 0;
+            break;
+        }
+    }
+    
+    if (isPass) {
+        printf("Result Status      : PASS\n");
+    } else {
+        printf("Result Status      : FAIL\n");
+    }
+}
+
+// Poora result display karne ka function
+void displayResult(float marks[], float total, float percentage, float average, float highest, float lowest, char grade) {
+    printf("\n====================================\n");
+    printf("        STUDENT RESULT CARD         \n");
+    printf("====================================\n");
+    printf("Total Marks        : %.2f / 600\n", total);
+    printf("Percentage         : %.2f%%\n", percentage);
+    printf("Average Marks      : %.2f\n", average);
+    printf("Highest Marks      : %.2f\n", highest);
+    printf("Lowest Marks       : %.2f\n", lowest);
+    printf("Grade              : %c\n", grade);
+    printf("------------------------------------\n");
+    displayStatus(marks);
+    printf("====================================\n");
+}
+
+int main() {
+    float marks[6];
+
+    // Marks input lena
+    acceptMarks(marks);
+
+    // Separate functions se calculations
+    float total = calculateTotal(marks);
+    float percentage = calculatePercentage(total);
+    float average = calculateAverage(total);
+    float highest = findHighest(marks);
+    float lowest = findLowest(marks);
+    char grade = determineGrade(percentage);
+
+    // Result display karna
+    displayResult(marks, total, percentage, average, highest, lowest, grade);
+
+    return 0;
+}
+====================================================================================
+Q4. Bank Account Management System
+Create a banking program using functions to perform:
+•	Deposit money.
+•	Withdraw money.
+•	Calculate interest.
+•	Display current balance.
+
+#include <stdio.h>
+
+// Paise deposit karne ka function
+float depositMoney(float balance) {
+    float amount;
+    printf("Deposit karne ke liye amount enter karein: Rs. ");
+    scanf("%f", &amount);
+
+    if (amount > 0) {
+        balance += amount;
+        printf("Rs. %.2f successfully deposit ho gaye!\n", amount);
+    } else {
+        printf("Invalid amount! Positive value enter karein.\n");
+    }
+    return balance;
+}
+
+// Paise withdraw karne ka function
+float withdrawMoney(float balance) {
+    float amount;
+    printf("Withdraw karne ke liye amount enter karein: Rs. ");
+    scanf("%f", &amount);
+
+    if (amount > balance) {
+        printf("Insufficient balance! Aapke account mein sirf Rs. %.2f hain.\n", balance);
+    } else if (amount <= 0) {
+        printf("Invalid amount! Positive value enter karein.\n");
+    } else {
+        balance -= amount;
+        printf("Rs. %.2f successfully withdraw ho gaye!\n", amount);
+    }
+    return balance;
+}
+
+// Interest calculate karne ka function (4% per annum)
+void calculateInterest(float balance) {
+    float rate = 4.0; // 4% annual interest rate
+    float years;
+    printf("Kitne saal (years) ke liye interest calculate karna hai? ");
+    scanf("%f", &years);
+
+    if (years > 0) {
+        float interest = (balance * rate * years) / 100.0;
+        printf("%.1f saal ka Interest (at %.1f%% rate) : Rs. %.2f\n", years, rate, interest);
+        printf("Interest ke baad Total Balance          : Rs. %.2f\n", balance + interest);
+    } else {
+        printf("Invalid time! Saal 0 se zyada hona chahiye.\n");
+    }
+}
+
+// Current balance display karne ka function
+void displayBalance(float balance) {
+    printf("\n====================================\n");
+    printf("Current Account Balance : Rs. %.2f\n", balance);
+    printf("====================================\n");
+}
+
+int main() {
+    float balance = 10000.0; // Initial default balance Rs. 10,000
+    int choice;
+
+    printf("====================================\n");
+    printf("   BANK ACCOUNT MANAGEMENT SYSTEM   \n");
+    printf("====================================\n");
+    printf("Initial Balance: Rs. %.2f\n", balance);
+
+    while (1) {
+        printf("\n--- MENU ---\n");
+        printf("1. Deposit Money\n");
+        printf("2. Withdraw Money\n");
+        printf("3. Calculate Interest\n");
+        printf("4. Display Current Balance\n");
+        printf("5. Exit\n");
+        printf("Apni choice enter karein (1-5): ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                balance = depositMoney(balance);
+                break;
+            case 2:
+                balance = withdrawMoney(balance);
+                break;
+            case 3:
+                calculateInterest(balance);
+                break;
+            case 4:
+                displayBalance(balance);
+                break;
+            case 5:
+                printf("Thank you for banking with us!\n");
+                return 0;
+            default:
+                printf("Invalid choice! Kripya 1 se 5 ke beech number chunein.\n");
+        }
+    }
+
+    return 0;
+}
+=================================================================================================
+Q5. Electricity Bill Calculator
+Write a C program using multiple functions to calculate an electricity bill.
+•	First 100 units: ₹2 per unit.
+•	Next 100 units: ₹3 per unit.
+•	Above 200 units: ₹5 per unit.
+•	Add a fixed meter charge of ₹150.
+•	Add 5% tax to the bill.
+Display the complete bill.
+
+#include <stdio.h>
+
+// Units ke hisab se basic bill calculate karne ka function
+float calculateUnitCharge(int units) {
+    float charge = 0;
+    if (units <= 100) {
+        charge = units * 2.0;
+    } else if (units <= 200) {
+        charge = (100 * 2.0) + ((units - 100) * 3.0);
+    } else {
+        charge = (100 * 2.0) + (100 * 3.0) + ((units - 200) * 5.0);
+    }
+    return charge;
+}
+
+// Fixed meter charge (Rs. 150) add karne ka function
+float addMeterCharge(float unitCharge) {
+    return unitCharge + 150.0;
+}
+
+// 5% tax calculate karne ka function
+float calculateTax(float subTotal) {
+    return 0.05 * subTotal;
+}
+
+// Final payable bill calculate karne ka function
+float calculateFinalBill(float subTotal, float tax) {
+    return subTotal + tax;
+}
+
+// Complete electricity bill display karne ka function
+void displayBill(int units, float unitCharge, float subTotal, float tax, float finalBill) {
+    printf("\n====================================\n");
+    printf("          ELECTRICITY BILL          \n");
+    printf("====================================\n");
+    printf("Total Units Consumed : %d units\n", units);
+    printf("Unit Charges         : Rs. %.2f\n", unitCharge);
+    printf("Fixed Meter Charge   : Rs. 150.00\n");
+    printf("------------------------------------\n");
+    printf("Sub-Total            : Rs. %.2f\n", subTotal);
+    printf("Tax (5%%)             : Rs. %.2f\n", tax);
+    printf("------------------------------------\n");
+    printf("Final Payable Bill   : Rs. %.2f\n", finalBill);
+    printf("====================================\n");
+}
+
+int main() {
+    int units;
+
+    printf("Total consumed electricity units enter karein: ");
+    scanf("%d", &units);
+
+    if (units < 0) {
+        printf("Invalid units! Negative value allowed nahi hai.\n");
+        return 0;
+    }
+
+    // Separate functions se calculations
+    float unitCharge = calculateUnitCharge(units);
+    float subTotal = addMeterCharge(unitCharge);
+    float tax = calculateTax(subTotal);
+    float finalBill = calculateFinalBill(subTotal, tax);
+
+    // Complete bill display karna
+    displayBill(units, unitCharge, subTotal, tax, finalBill);
+
+    return 0;
+}
+===================================================================================
+Q6. Employee Bonus and Promotion System
+Create a program that accepts employee salary, experience, and performance rating.
+Use separate functions to calculate:
+•	Experience bonus.
+•	Performance bonus.
+•	Promotion eligibility.
+•	Final annual salary.
+•	Monthly salary after bonuses.
+
+#include <stdio.h>
+
+// Experience ke basis par bonus calculate karne ka function
+float calculateExperienceBonus(float annualSalary, int experience) {
+    if (experience >= 10) {
+        return 0.15 * annualSalary; // 15% bonus for 10+ years
+    } else if (experience >= 5) {
+        return 0.10 * annualSalary; // 10% bonus for 5-9 years
+    } else if (experience >= 2) {
+        return 0.05 * annualSalary; // 5% bonus for 2-4 years
+    } else {
+        return 0.0;                 // 2 saal se kam par koi experience bonus nahi
+    }
+}
+
+// Performance rating (1 to 5) ke basis par bonus calculate karne ka function
+float calculatePerformanceBonus(float annualSalary, int rating) {
+    if (rating == 5) {
+        return 0.20 * annualSalary; // 20% bonus for Rating 5
+    } else if (rating == 4) {
+        return 0.12 * annualSalary; // 12% bonus for Rating 4
+    } else if (rating == 3) {
+        return 0.05 * annualSalary; // 5% bonus for Rating 3
+    } else {
+        return 0.0;                 // Rating 1 ya 2 par koi performance bonus nahi
+    }
+}
+
+// Promotion eligibility check karne ka function
+void checkPromotionEligibility(int experience, int rating) {
+    if (experience >= 3 && rating >= 4) {
+        printf("Promotion Status      : ELIGIBLE for Promotion!\n");
+    } else {
+        printf("Promotion Status      : NOT ELIGIBLE (Min 3 yrs exp & 4+ rating required)\n");
+    }
+}
+
+// Final annual salary calculate karne ka function
+float calculateFinalAnnualSalary(float annualSalary, float expBonus, float perfBonus) {
+    return annualSalary + expBonus + perfBonus;
+}
+
+// Bonuses ke baad monthly salary calculate karne ka function
+float calculateMonthlySalary(float finalAnnualSalary) {
+    return finalAnnualSalary / 12.0;
+}
+
+// Saari details display karne ka function
+void displayEmployeeReport(float annualSalary, float expBonus, float perfBonus, float finalAnnual, float monthlySalary, int experience, int rating) {
+    printf("\n=============================================\n");
+    printf("     EMPLOYEE BONUS & PROMOTION REPORT       \n");
+    printf("=============================================\n");
+    printf("Base Annual Salary    : Rs. %.2f\n", annualSalary);
+    printf("Experience Bonus      : Rs. %.2f\n", expBonus);
+    printf("Performance Bonus     : Rs. %.2f\n", perfBonus);
+    printf("---------------------------------------------\n");
+    printf("Final Annual Salary   : Rs. %.2f\n", finalAnnual);
+    printf("Monthly Salary        : Rs. %.2f\n", monthlySalary);
+    printf("---------------------------------------------\n");
+    checkPromotionEligibility(experience, rating);
+    printf("=============================================\n");
+}
+
+int main() {
+    float annualSalary;
+    int experience, rating;
+
+    printf("Employee ki Annual Salary enter karein: Rs. ");
+    scanf("%f", &annualSalary);
+
+    printf("Total Experience (in years) enter karein: ");
+    scanf("%d", &experience);
+
+    printf("Performance Rating enter karein (1 se 5 ke beech): ");
+    scanf("%d", &rating);
+
+    if (annualSalary < 0 || experience < 0 || rating < 1 || rating > 5) {
+        printf("Invalid input! Kripya sahi values enter karein.\n");
+        return 0;
+    }
+
+    // Separate functions se calculations
+    float expBonus = calculateExperienceBonus(annualSalary, experience);
+    float perfBonus = calculatePerformanceBonus(annualSalary, rating);
+    float finalAnnualSalary = calculateFinalAnnualSalary(annualSalary, expBonus, perfBonus);
+    float monthlySalary = calculateMonthlySalary(finalAnnualSalary);
+
+    // Report display karna
+    displayEmployeeReport(annualSalary, expBonus, perfBonus, finalAnnualSalary, monthlySalary, experience, rating);
+
+    return 0;
+}
+========================================================================================
+Q7. Hospital Patient Billing System
+Create a hospital billing system using functions.
+Calculate:
+•	Room charges based on the number of days.
+•	Doctor consultation fees.
+•	Medicine expenses.
+•	Laboratory test charges.
+•	Emergency charges.
+•	Total bill with 8% tax.
+
+#include <stdio.h>
+
+// Days aur Room Type ke hisab se Room Charges calculate karne ka function
+float calculateRoomCharges(int days, int roomType) {
+    float ratePerDay = 0;
+    if (roomType == 1) {
+        ratePerDay = 1500.0; // General Ward
+    } else if (roomType == 2) {
+        ratePerDay = 3000.0; // Semi-Private Room
+    } else if (roomType == 3) {
+        ratePerDay = 5000.0; // Private Room
+    }
+    return days * ratePerDay;
+}
+
+// Doctor consultation fees calculate karne ka function (Rs. 800 per visit)
+float calculateDoctorFees(int visits) {
+    return visits * 800.0;
+}
+
+// Medicine expenses input aur return karne ka function
+float getMedicineExpenses() {
+    float medCost;
+    printf("Total Medicine expenses enter karein: Rs. ");
+    scanf("%f", &medCost);
+    return medCost;
+}
+
+// Laboratory test charges input aur return karne ka function
+float getLabCharges() {
+    float labCost;
+    printf("Total Laboratory test charges enter karein: Rs. ");
+    scanf("%f", &labCost);
+    return labCost;
+}
+
+// Emergency charges calculate karne ka function
+float calculateEmergencyCharges(int isEmergency) {
+    if (isEmergency == 1) {
+        return 2000.0; // Fixed emergency charge Rs. 2000
+    } else {
+        return 0.0;
+    }
+}
+
+// 8% Tax calculate karne ka function
+float calculateTax(float subTotal) {
+    return 0.08 * subTotal;
+}
+
+// Final payable bill calculate karne ka function
+float calculateFinalBill(float subTotal, float tax) {
+    return subTotal + tax;
+}
+
+// Complete Hospital Bill display karne ka function
+void displayHospitalBill(float room, float doctor, float medicine, float lab, float emergency, float subTotal, float tax, float finalBill) {
+    printf("\n=============================================\n");
+    printf("          HOSPITAL PATIENT BILL              \n");
+    printf("=============================================\n");
+    printf("Room Charges            : Rs. %.2f\n", room);
+    printf("Doctor Consultation     : Rs. %.2f\n", doctor);
+    printf("Medicine Expenses       : Rs. %.2f\n", medicine);
+    printf("Laboratory Test Charges : Rs. %.2f\n", lab);
+    printf("Emergency Charges       : Rs. %.2f\n", emergency);
+    printf("---------------------------------------------\n");
+    printf("Sub-Total               : Rs. %.2f\n", subTotal);
+    printf("GST / Tax (8%%)          : Rs. %.2f\n", tax);
+    printf("---------------------------------------------\n");
+    printf("Final Payable Bill      : Rs. %.2f\n", finalBill);
+    printf("=============================================\n");
+}
+
+int main() {
+    int days, roomType, visits, isEmergency;
+
+    printf("Room Type chunein (1: General [Rs.1500/day], 2: Semi-Private [Rs.3000/day], 3: Private [Rs.5000/day]): ");
+    scanf("%d", &roomType);
+
+    printf("Kitne din (days) admit rahe? ");
+    scanf("%d", &days);
+
+    printf("Doctor ne kitni baar visit kiya? ");
+    scanf("%d", &visits);
+
+    printf("Kya ye Emergency case tha? (1 for Yes, 0 for No): ");
+    scanf("%d", &isEmergency);
+
+    // Separate functions se calculations
+    float roomCharges = calculateRoomCharges(days, roomType);
+    float doctorFees = calculateDoctorFees(visits);
+    float medicineExpenses = getMedicineExpenses();
+    float labCharges = getLabCharges();
+    float emergencyCharges = calculateEmergencyCharges(isEmergency);
+
+    float subTotal = roomCharges + doctorFees + medicineExpenses + labCharges + emergencyCharges;
+    float tax = calculateTax(subTotal);
+    float finalBill = calculateFinalBill(subTotal, tax);
+
+    // Complete bill display karna
+    displayHospitalBill(roomCharges, doctorFees, medicineExpenses, labCharges, emergencyCharges, subTotal, tax, finalBill);
+
+    return 0;
+}
+====================================================================================================
+Q8. Temperature Conversion System
+Create a menu-driven program using functions to convert:
+•	Celsius to Fahrenheit.
+•	Fahrenheit to Celsius.
+•	Celsius to Kelvin.
+•	Kelvin to Celsius.
+Also create a function to classify the temperature as Cold, Normal, or Hot.
+
+#include <stdio.h>
+
+// Celsius ko Fahrenheit mein convert karne ka function
+float celsiusToFahrenheit(float c) {
+    return (c * 9.0 / 5.0) + 32.0;
+}
+
+// Fahrenheit ko Celsius mein convert karne ka function
+float fahrenheitToCelsius(float f) {
+    return (f - 32.0) * 5.0 / 9.0;
+}
+
+// Celsius ko Kelvin mein convert karne ka function
+float celsiusToKelvin(float c) {
+    return c + 273.15;
+}
+
+// Kelvin ko Celsius mein convert karne ka function
+float kelvinToCelsius(float k) {
+    return k - 273.15;
+}
+
+// Temperature ko Cold, Normal, ya Hot classify karne ka function (Celsius ke base par)
+void classifyTemperature(float celsius) {
+    printf("Temperature Status : ");
+    if (celsius < 15.0) {
+        printf("COLD\n");
+    } else if (celsius <= 30.0) {
+        printf("NORMAL\n");
+    } else {
+        printf("HOT\n");
+    }
+}
+
+int main() {
+    int choice;
+    float temp, converted, tempInCelsius;
+
+    while (1) {
+        printf("\n====================================\n");
+        printf("   TEMPERATURE CONVERSION SYSTEM    \n");
+        printf("====================================\n");
+        printf("1. Celsius to Fahrenheit\n");
+        printf("2. Fahrenheit to Celsius\n");
+        printf("3. Celsius to Kelvin\n");
+        printf("4. Kelvin to Celsius\n");
+        printf("5. Exit\n");
+        printf("Apni choice enter karein (1-5): ");
+        scanf("%d", &choice);
+
+        if (choice == 5) {
+            printf("Program exit ho raha hai. Thank you!\n");
+            break;
+        }
+
+        if (choice < 1 || choice > 5) {
+            printf("Invalid choice! Kripya 1 se 5 ke beech number chunein.\n");
+            continue;
+        }
+
+        printf("Temperature enter karein: ");
+        scanf("%f", &temp);
+
+        printf("------------------------------------\n");
+        switch (choice) {
+            case 1:
+                converted = celsiusToFahrenheit(temp);
+                tempInCelsius = temp;
+                printf("%.2f Celsius = %.2f Fahrenheit\n", temp, converted);
+                break;
+            case 2:
+                converted = fahrenheitToCelsius(temp);
+                tempInCelsius = converted;
+                printf("%.2f Fahrenheit = %.2f Celsius\n", temp, converted);
+                break;
+            case 3:
+                converted = celsiusToKelvin(temp);
+                tempInCelsius = temp;
+                printf("%.2f Celsius = %.2f Kelvin\n", temp, converted);
+                break;
+            case 4:
+                converted = kelvinToCelsius(temp);
+                tempInCelsius = converted;
+                printf("%.2f Kelvin = %.2f Celsius\n", temp, converted);
+                break;
+        }
+
+        // Har conversion ke baad temperature ka status (Cold/Normal/Hot) dikhana
+        classifyTemperature(tempInCelsius);
+        printf("------------------------------------\n");
+    }
+
+    return 0;
+}
+==================================================================================================
+Q9. Number Analysis System
+Write a program using separate functions to check whether a number is:
+•	Prime.
+•	Armstrong.
+•	Palindrome.
+•	Perfect.
+•	Even or Odd.
+Display all applicable results for the entered number.
+
+#include <stdio.h>
+
+// Prime number check karne ka function
+int isPrime(int num) {
+    if (num <= 1) return 0;
+    for (int i = 2; i <= num / 2; i++) {
+        if (num % i == 0) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+// Armstrong number check karne ka function
+int isArmstrong(int num) {
+    if (num < 0) return 0;
+    int original = num, digits = 0, sum = 0, temp = num;
+
+    // Total digits count karna
+    while (temp != 0) {
+        digits++;
+        temp /= 10;
+    }
+
+    temp = num;
+    while (temp != 0) {
+        int rem = temp % 10;
+        int power = 1;
+        for (int i = 0; i < digits; i++) {
+            power *= rem;
+        }
+        sum += power;
+        temp /= 10;
+    }
+
+    return (sum == original);
+}
+
+// Palindrome number check karne ka function
+int isPalindrome(int num) {
+    if (num < 0) return 0;
+    int original = num, reversed = 0;
+
+    while (num != 0) {
+        int rem = num % 10;
+        reversed = reversed * 10 + rem;
+        num /= 10;
+    }
+
+    return (original == reversed);
+}
+
+// Perfect number check karne ka function
+int isPerfect(int num) {
+    if (num <= 1) return 0;
+    int sum = 0;
+
+    for (int i = 1; i <= num / 2; i++) {
+        if (num % i == 0) {
+            sum += i;
+        }
+    }
+
+    return (sum == num);
+}
+
+// Even ya Odd check karne ka function
+void checkEvenOdd(int num) {
+    if (num % 2 == 0) {
+        printf("Even / Odd   : EVEN Number\n");
+    } else {
+        printf("Even / Odd   : ODD Number\n");
+    }
+}
+
+// Saare results display karne ka function
+void displayAnalysis(int num) {
+    printf("\n====================================\n");
+    printf("      NUMBER ANALYSIS REPORT        \n");
+    printf("====================================\n");
+    printf("Entered Number : %d\n", num);
+    printf("------------------------------------\n");
+
+    checkEvenOdd(num);
+
+    if (isPrime(num)) {
+        printf("Prime Check    : YES (Prime Number)\n");
+    } else {
+        printf("Prime Check    : NO (Not Prime)\n");
+    }
+
+    if (isArmstrong(num)) {
+        printf("Armstrong      : YES (Armstrong Number)\n");
+    } else {
+        printf("Armstrong      : NO (Not Armstrong)\n");
+    }
+
+    if (isPalindrome(num)) {
+        printf("Palindrome     : YES (Palindrome Number)\n");
+    } else {
+        printf("Palindrome     : NO (Not Palindrome)\n");
+    }
+
+    if (isPerfect(num)) {
+        printf("Perfect Number : YES (Perfect Number)\n");
+    } else {
+        printf("Perfect Number : NO (Not Perfect)\n");
+    }
+
+    printf("====================================\n");
+}
+
+int main() {
+    int number;
+
+    printf("Analysis ke liye koi bhi integer number enter karein: ");
+    scanf("%d", &number);
+
+    // Separate function se poora analysis display karna
+    displayAnalysis(number);
+
+    return 0;
+}
+==================================================================================================
+Q10. Restaurant Order Management System
+Create a restaurant billing program using functions.
+•	Accept prices and quantities of 5 food items.
+•	Calculate individual item totals.
+•	Calculate the complete order amount.
+•	Apply a 10% discount if the bill exceeds ₹2,000.
+•	Add 5% GST.
+•	Add a delivery charge of ₹50.
+•	Display the final bill.
+
+#include <stdio.h>
+
+// 5 food items ke prices aur quantities input lene ka function
+void acceptOrder(float prices[], int quantities[]) {
+    printf("5 food items ke price aur quantity enter karein:\n");
+    for (int i = 0; i < 5; i++) {
+        printf("\nItem %d ka Price: Rs. ", i + 1);
+        scanf("%f", &prices[i]);
+        printf("Item %d ki Quantity: ", i + 1);
+        scanf("%d", &quantities[i]);
+    }
+}
+
+// Har individual item ka total calculate karne ka function
+void calculateItemTotals(float prices[], int quantities[], float itemTotals[]) {
+    for (int i = 0; i < 5; i++) {
+        itemTotals[i] = prices[i] * quantities[i];
+    }
+}
+
+// Complete order amount calculate karne ka function
+float calculateOrderAmount(float itemTotals[]) {
+    float total = 0;
+    for (int i = 0; i < 5; i++) {
+        total += itemTotals[i];
+    }
+    return total;
+}
+
+// Agar bill Rs. 2000 se zyada ho toh 10% discount calculate karne ka function
+float calculateDiscount(float orderAmount) {
+    if (orderAmount > 2000.0) {
+        return 0.10 * orderAmount;
+    } else {
+        return 0.0;
+    }
+}
+
+// Discount ke baad 5% GST calculate karne ka function
+float calculateGST(float amountAfterDiscount) {
+    return 0.05 * amountAfterDiscount;
+}
+
+// Final payable bill calculate karne ka function (Rs. 50 delivery charge ke saath)
+float calculateFinalBill(float amountAfterDiscount, float gst, float deliveryCharge) {
+    return amountAfterDiscount + gst + deliveryCharge;
+}
+
+// Poora restaurant bill display karne ka function
+void displayBill(float prices[], int quantities[], float itemTotals[], float orderAmount, float discount, float gst, float deliveryCharge, float finalBill) {
+    printf("\n=====================================================\n");
+    printf("                  RESTAURANT BILL                    \n");
+    printf("=====================================================\n");
+    printf("Item\t\tPrice\t\tQty\tTotal\n");
+    printf("-----------------------------------------------------\n");
+    for (int i = 0; i < 5; i++) {
+        printf("Food Item %d\tRs. %.2f\t%d\tRs. %.2f\n", i + 1, prices[i], quantities[i], itemTotals[i]);
+    }
+    printf("-----------------------------------------------------\n");
+    printf("Complete Order Amount    : Rs. %.2f\n", orderAmount);
+    printf("Discount (10%% if >2000)  : - Rs. %.2f\n", discount);
+    printf("Amount After Discount    : Rs. %.2f\n", orderAmount - discount);
+    printf("GST (5%%)                 : + Rs. %.2f\n", gst);
+    printf("Delivery Charge          : + Rs. %.2f\n", deliveryCharge);
+    printf("-----------------------------------------------------\n");
+    printf("Final Payable Bill       : Rs. %.2f\n", finalBill);
+    printf("=====================================================\n");
+}
+
+int main() {
+    float prices[5], itemTotals[5];
+    int quantities[5];
+    float deliveryCharge = 50.0;
+
+    // Input lena
+    acceptOrder(prices, quantities);
+
+    // Separate functions se calculations
+    calculateItemTotals(prices, quantities, itemTotals);
+    float orderAmount = calculateOrderAmount(itemTotals);
+    float discount = calculateDiscount(orderAmount);
+    float amountAfterDiscount = orderAmount - discount;
+    float gst = calculateGST(amountAfterDiscount);
+    float finalBill = calculateFinalBill(amountAfterDiscount, gst, deliveryCharge);
+
+    // Final bill display karna
+    displayBill(prices, quantities, itemTotals, orderAmount, discount, gst, deliveryCharge, finalBill);
+
+    return 0;
+}
+=======================================================================================================
+Q11. Banking Transaction System
+Create a program using functions to manage multiple bank transactions.
+•	Initial balance = ₹50,000.
+•	Perform multiple deposits and withdrawals.
+•	Reject withdrawals if the balance is insufficient.
+•	Calculate total deposited amount.
+•	Calculate total withdrawn amount.
+•	Display the final balance and transaction summary.
+
+#include <stdio.h>
+
+// Paise deposit karne aur total deposited update karne ka function
+float depositMoney(float balance, float *totalDeposited) {
+    float amount;
+    printf("Deposit karne ke liye amount enter karein: Rs. ");
+    scanf("%f", &amount);
+
+    if (amount > 0) {
+        balance += amount;
+        *totalDeposited += amount;
+        printf("Rs. %.2f successfully deposit ho gaye! New Balance: Rs. %.2f\n", amount, balance);
+    } else {
+        printf("Invalid amount! Positive value enter karein.\n");
+    }
+    return balance;
+}
+
+// Paise withdraw karne aur total withdrawn update karne ka function
+float withdrawMoney(float balance, float *totalWithdrawn) {
+    float amount;
+    printf("Withdraw karne ke liye amount enter karein: Rs. ");
+    scanf("%f", &amount);
+
+    if (amount > balance) {
+        printf("Transaction Rejected! Insufficient balance (Available: Rs. %.2f)\n", balance);
+    } else if (amount <= 0) {
+        printf("Invalid amount! Positive value enter karein.\n");
+    } else {
+        balance -= amount;
+        *totalWithdrawn += amount;
+        printf("Rs. %.2f successfully withdraw ho gaye! New Balance: Rs. %.2f\n", amount, balance);
+    }
+    return balance;
+}
+
+// Final balance aur poori transaction summary display karne ka function
+void displayTransactionSummary(float initialBalance, float totalDeposited, float totalWithdrawn, float finalBalance) {
+    printf("\n=============================================\n");
+    printf("         BANKING TRANSACTION SUMMARY         \n");
+    printf("=============================================\n");
+    printf("Initial Balance         : Rs. %.2f\n", initialBalance);
+    printf("Total Deposited Amount  : + Rs. %.2f\n", totalDeposited);
+    printf("Total Withdrawn Amount  : - Rs. %.2f\n", totalWithdrawn);
+    printf("---------------------------------------------\n");
+    printf("Final Account Balance   : Rs. %.2f\n", finalBalance);
+    printf("=============================================\n");
+}
+
+int main() {
+    float initialBalance = 50000.0;
+    float balance = initialBalance;
+    float totalDeposited = 0.0;
+    float totalWithdrawn = 0.0;
+    int choice;
+
+    printf("=============================================\n");
+    printf("         BANKING TRANSACTION SYSTEM          \n");
+    printf("=============================================\n");
+    printf("Initial Account Balance: Rs. %.2f\n", initialBalance);
+
+    while (1) {
+        printf("\n--- TRANSACTION MENU ---\n");
+        printf("1. Deposit Money\n");
+        printf("2. Withdraw Money\n");
+        printf("3. Exit & Display Transaction Summary\n");
+        printf("Apni choice enter karein (1-3): ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                balance = depositMoney(balance, &totalDeposited);
+                break;
+            case 2:
+                balance = withdrawMoney(balance, &totalWithdrawn);
+                break;
+            case 3:
+                displayTransactionSummary(initialBalance, totalDeposited, totalWithdrawn, balance);
+                return 0;
+            default:
+                printf("Invalid choice! Kripya 1, 2, ya 3 chunein.\n");
+        }
+    }
+
+    return 0;
+}
+=================================================================================================
+Q12. Library Management System
+Write a program using functions to manage library book records.
+•	Accept details of 5 books.
+•	Calculate total book prices.
+•	Find the most expensive and cheapest book.
+•	Search for a book using its ID.
+•	Calculate the average book price.
+•	Display all book details.
+
+#include <stdio.h>
+
+// 5 books ki details input lene ka function
+void acceptBooks(int ids[], char titles[][50], float prices[]) {
+    printf("5 books ki details enter karein:\n");
+    for (int i = 0; i < 5; i++) {
+        printf("\n--- Book %d ---\n", i + 1);
+        printf("Book ID: ");
+        scanf("%d", &ids[i]);
+        printf("Book Name (bina space ke, e.g., Let_Us_C): ");
+        scanf("%s", titles[i]);
+        printf("Book Price: Rs. ");
+        scanf("%f", &prices[i]);
+    }
+}
+
+// Total book prices calculate karne ka function
+float calculateTotalPrice(float prices[]) {
+    float total = 0;
+    for (int i = 0; i < 5; i++) {
+        total += prices[i];
+    }
+    return total;
+}
+
+// Average book price calculate karne ka function
+float calculateAveragePrice(float total) {
+    return total / 5.0;
+}
+
+// Most expensive book find aur display karne ka function
+void findMostExpensive(int ids[], char titles[][50], float prices[]) {
+    int maxIndex = 0;
+    for (int i = 1; i < 5; i++) {
+        if (prices[i] > prices[maxIndex]) {
+            maxIndex = i;
+        }
+    }
+    printf("Most Expensive Book : %s (ID: %d) - Rs. %.2f\n", titles[maxIndex], ids[maxIndex], prices[maxIndex]);
+}
+
+// Cheapest book find aur display karne ka function
+void findCheapest(int ids[], char titles[][50], float prices[]) {
+    int minIndex = 0;
+    for (int i = 1; i < 5; i++) {
+        if (prices[i] < prices[minIndex]) {
+            minIndex = i;
+        }
+    }
+    printf("Cheapest Book       : %s (ID: %d) - Rs. %.2f\n", titles[minIndex], ids[minIndex], prices[minIndex]);
+}
+
+// Book ID se search karne ka function
+void searchBookByID(int ids[], char titles[][50], float prices[], int searchId) {
+    int found = 0;
+    for (int i = 0; i < 5; i++) {
+        if (ids[i] == searchId) {
+            printf("\nBook Found!\n");
+            printf("ID: %d | Title: %s | Price: Rs. %.2f\n", ids[i], titles[i], prices[i]);
+            found = 1;
+            break;
+        }
+    }
+    if (!found) {
+        printf("\nBook ID %d record mein nahi mili!\n", searchId);
+    }
+}
+
+// Saari books ki details aur summary display karne ka function
+void displayAllBooks(int ids[], char titles[][50], float prices[], float total, float average) {
+    printf("\n=====================================================\n");
+    printf("               LIBRARY BOOK RECORDS                  \n");
+    printf("=====================================================\n");
+    printf("Book ID\t\tBook Title\t\tPrice\n");
+    printf("-----------------------------------------------------\n");
+    for (int i = 0; i < 5; i++) {
+        printf("%d\t\t%-15s\t\tRs. %.2f\n", ids[i], titles[i], prices[i]);
+    }
+    printf("-----------------------------------------------------\n");
+    printf("Total Books Price   : Rs. %.2f\n", total);
+    printf("Average Book Price  : Rs. %.2f\n", average);
+    findMostExpensive(ids, titles, prices);
+    findCheapest(ids, titles, prices);
+    printf("=====================================================\n");
+}
+
+int main() {
+    int ids;
+    char titles[50];
+    float prices;
+    int searchId;
+
+    // 5 books ka input lena
+    acceptBooks(ids, titles, prices);
+
+    // Calculations
+    float total = calculateTotalPrice(prices);
+    float average = calculateAveragePrice(total);
+
+    // Saari details display karna
+    displayAllBooks(ids, titles, prices, total, average);
+
+    // ID se book search karna
+    printf("\nSearch karne ke liye Book ID enter karein: ");
+    scanf("%d", &searchId);
+    searchBookByID(ids, titles, prices, searchId);
+
+    return 0;
+}
+========================================================================================
+Q13. E-Commerce Order and Discount System
+Create a shopping application using functions.
+•	Accept 4 products and their quantities.
+•	Calculate the total order value.
+•	Apply different discounts based on order value.
+•	Calculate GST.
+•	Add delivery charges.
+•	Calculate the final payable amount.
+•	Display the complete order summary.
+
+#include <stdio.h>
+
+// 4 products ke prices aur quantities input lene ka function
+void acceptProducts(float prices[], int quantities[]) {
+    printf("4 products ke price aur quantity enter karein:\n");
+    for (int i = 0; i < 4; i++) {
+        printf("\nProduct %d ka Price: Rs. ", i + 1);
+        scanf("%f", &prices[i]);
+        printf("Product %d ki Quantity: ", i + 1);
+        scanf("%d", &quantities[i]);
+    }
+}
+
+// Total order value calculate karne ka function
+float calculateOrderValue(float prices[], int quantities[]) {
+    float total = 0;
+    for (int i = 0; i < 4; i++) {
+        total += prices[i] * quantities[i];
+    }
+    return total;
+}
+
+// Order value ke basis par alag-alag discount calculate karne ka function
+float calculateDiscount(float orderValue) {
+    if (orderValue >= 5000.0) {
+        return 0.15 * orderValue; // 15% discount
+    } else if (orderValue >= 2000.0) {
+        return 0.10 * orderValue; // 10% discount
+    } else if (orderValue >= 1000.0) {
+        return 0.05 * orderValue; // 5% discount
+    } else {
+        return 0.0;               // Koi discount nahi
+    }
+}
+
+// Discount ke baad 18% GST calculate karne ka function
+float calculateGST(float discountedAmount) {
+    return 0.18 * discountedAmount;
+}
+
+// Delivery charges calculate karne ka function (Rs. 1000 se kam par Rs. 60, warna Free)
+float calculateDeliveryCharge(float discountedAmount) {
+    if (discountedAmount < 1000.0 && discountedAmount > 0) {
+        return 60.0;
+    } else {
+        return 0.0;
+    }
+}
+
+// Final payable amount calculate karne ka function
+float calculateFinalAmount(float discountedAmount, float gst, float delivery) {
+    return discountedAmount + gst + delivery;
+}
+
+// Complete order summary display karne ka function
+void displayOrderSummary(float prices[], int quantities[], float orderValue, float discount, float gst, float delivery, float finalAmount) {
+    printf("\n=====================================================\n");
+    printf("             E-COMMERCE ORDER SUMMARY                \n");
+    printf("=====================================================\n");
+    printf("Product\t\tPrice\t\tQty\tTotal\n");
+    printf("-----------------------------------------------------\n");
+    for (int i = 0; i < 4; i++) {
+        printf("Product %d\tRs. %.2f\t%d\tRs. %.2f\n", i + 1, prices[i], quantities[i], prices[i] * quantities[i]);
+    }
+    printf("-----------------------------------------------------\n");
+    printf("Total Order Value        : Rs. %.2f\n", orderValue);
+    printf("Discount Applied         : - Rs. %.2f\n", discount);
+    printf("Amount After Discount    : Rs. %.2f\n", orderValue - discount);
+    printf("GST (18%%)                : + Rs. %.2f\n", gst);
+    printf("Delivery Charges         : + Rs. %.2f\n", delivery);
+    printf("-----------------------------------------------------\n");
+    printf("Final Payable Amount     : Rs. %.2f\n", finalAmount);
+    printf("=====================================================\n");
+}
+
+int main() {
+    float prices[4];
+    int quantities[4];
+
+    // Products ka input lena
+    acceptProducts(prices, quantities);
+
+    // Separate functions se calculations
+    float orderValue = calculateOrderValue(prices, quantities);
+    float discount = calculateDiscount(orderValue);
+    float discountedAmount = orderValue - discount;
+    float gst = calculateGST(discountedAmount);
+    float delivery = calculateDeliveryCharge(discountedAmount);
+    float finalAmount = calculateFinalAmount(discountedAmount, gst, delivery);
+
+    // Complete order summary display karna
+    displayOrderSummary(prices, quantities, orderValue, discount, gst, delivery, finalAmount);
+
+    return 0;
+}
+===========================================================================================
+Q14. Recursive Number Calculator
+Write a program using recursive functions to calculate:
+•	Factorial of a number.
+•	Sum of digits.
+•	Power of a number.
+•	Fibonacci series.
+•	Greatest Common Divisor (GCD).
+
+#include <stdio.h>
+
+// 1. Factorial calculate karne ka recursive function
+long long factorial(int n) {
+    if (n <= 1) {
+        return 1;
+    }
+    return n * factorial(n - 1);
+}
+
+// 2. Sum of digits calculate karne ka recursive function
+int sumOfDigits(int n) {
+    if (n == 0) {
+        return 0;
+    }
+    return (n % 10) + sumOfDigits(n / 10);
+}
+
+// 3. Power (base^exp) calculate karne ka recursive function
+long long power(int base, int exp) {
+    if (exp == 0) {
+        return 1;
+    }
+    return base * power(base, exp - 1);
+}
+
+// 4. Fibonacci series ka nth term nikalne ka recursive function
+int fibonacci(int n) {
+    if (n == 0) {
+        return 0;
+    }
+    if (n == 1) {
+        return 1;
+    }
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+// 5. Greatest Common Divisor (GCD) nikalne ka recursive function
+int gcd(int a, int b) {
+    if (b == 0) {
+        return a;
+    }
+    return gcd(b, a % b);
+}
+
+int main() {
+    int choice, num, base, exp, terms, num1, num2;
+
+    while (1) {
+        printf("\n========================================\n");
+        printf("      RECURSIVE NUMBER CALCULATOR       \n");
+        printf("========================================\n");
+        printf("1. Factorial of a number\n");
+        printf("2. Sum of digits\n");
+        printf("3. Power of a number\n");
+        printf("4. Fibonacci series\n");
+        printf("5. Greatest Common Divisor (GCD)\n");
+        printf("6. Exit\n");
+        printf("Apni choice enter karein (1-6): ");
+        scanf("%d", &choice);
+
+        if (choice == 6) {
+            printf("Program exit ho raha hai. Thank you!\n");
+            break;
+        }
+
+        printf("----------------------------------------\n");
+        switch (choice) {
+            case 1:
+                printf("Number enter karein (non-negative): ");
+                scanf("%d", &num);
+                if (num < 0) {
+                    printf("Negative number ka factorial nahi hota!\n");
+                } else {
+                    printf("%d ka Factorial = %lld\n", num, factorial(num));
+                }
+                break;
+
+            case 2:
+                printf("Number enter karein: ");
+                scanf("%d", &num);
+                if (num < 0) num = -num; // Negative number ko positive bana kar sum nikalna
+                printf("Digits ka Sum = %d\n", sumOfDigits(num));
+                break;
+
+            case 3:
+                printf("Base number enter karein: ");
+                scanf("%d", &base);
+                printf("Exponent (power) enter karein (non-negative): ");
+                scanf("%d", &exp);
+                if (exp < 0) {
+                    printf("Negative exponent supported nahi hai!\n");
+                } else {
+                    printf("%d ^ %d = %lld\n", base, exp, power(base, exp));
+                }
+                break;
+
+            case 4:
+                printf("Fibonacci series ke kitne terms print karne hain? ");
+                scanf("%d", &terms);
+                if (terms <= 0) {
+                    printf("Kripya 1 ya usse zyada terms enter karein!\n");
+                } else {
+                    printf("Fibonacci Series: ");
+                    for (int i = 0; i < terms; i++) {
+                        printf("%d ", fibonacci(i));
+                    }
+                    printf("\n");
+                }
+                break;
+
+            case 5:
+                printf("Do numbers enter karein (space dekar): ");
+                scanf("%d %d", &num1, &num2);
+                if (num1 < 0) num1 = -num1;
+                if (num2 < 0) num2 = -num2;
+                printf("%d aur %d ka GCD = %d\n", num1, num2, gcd(num1, num2));
+                break;
+
+            default:
+                printf("Invalid choice! Kripya 1 se 6 ke beech number chunein.\n");
+        }
+        printf("----------------------------------------\n");
+    }
+
+    return 0;
+}
+===================================================================================================
+Q15. Employee Performance Analysis
+Create a program to manage performance records of 10 employees.
+Use functions to:
+•	Calculate average performance scores.
+•	Find the highest and lowest scores.
+•	Count employees who passed the performance criteria.
+•	Calculate bonus based on performance.
+•	Display employees eligible for promotion.
+
+#include <stdio.h>
+
+// 10 employees ke performance scores input lene ka function
+void acceptScores(float scores[]) {
+    printf("10 employees ke performance scores enter karein (0 se 100 ke beech):\n");
+    for (int i = 0; i < 10; i++) {
+        printf("Employee %d ka score: ", i + 1);
+        scanf("%f", &scores[i]);
+    }
+}
+
+// Average performance score calculate karne ka function
+float calculateAverage(float scores[]) {
+    float total = 0;
+    for (int i = 0; i < 10; i++) {
+        total += scores[i];
+    }
+    return total / 10.0;
+}
+
+// Highest score find karne ka function
+float findHighestScore(float scores[]) {
+    float highest = scores;
+    for (int i = 1; i < 10; i++) {
+        if (scores[i] > highest) {
+            highest = scores[i];
+        }
+    }
+    return highest;
+}
+
+// Lowest score find karne ka function
+float findLowestScore(float scores[]) {
+    float lowest = scores;
+    for (int i = 1; i < 10; i++) {
+        if (scores[i] < lowest) {
+            lowest = scores[i];
+        }
+    }
+    return lowest;
+}
+
+// Pass hone wale employees count karne ka function (Passing score >= 60)
+int countPassedEmployees(float scores[]) {
+    int count = 0;
+    for (int i = 0; i < 10; i++) {
+        if (scores[i] >= 60.0) {
+            count++;
+        }
+    }
+    return count;
+}
+
+// Score ke basis par individual bonus calculate karne ka function
+float calculateBonus(float score) {
+    if (score >= 90.0) {
+        return 10000.0; // Excellent performance bonus
+    } else if (score >= 75.0) {
+        return 5000.0;  // Good performance bonus
+    } else if (score >= 60.0) {
+        return 2000.0;  // Average performance bonus
+    } else {
+        return 0.0;     // Below passing criteria (no bonus)
+    }
+}
+
+// Promotion ke liye eligible employees display karne ka function (Score >= 80)
+void displayPromotionEligible(float scores[]) {
+    printf("\nEmployees Eligible for Promotion (Score >= 80):\n");
+    int found = 0;
+    for (int i = 0; i < 10; i++) {
+        if (scores[i] >= 80.0) {
+            printf("-> Employee %d (Score: %.2f)\n", i + 1, scores[i]);
+            found = 1;
+        }
+    }
+    if (!found) {
+        printf("Koi bhi employee promotion ke liye eligible nahi hai.\n");
+    }
+}
+
+// Complete performance report display karne ka function
+void displayReport(float scores[], float average, float highest, float lowest, int passedCount) {
+    printf("\n=====================================================\n");
+    printf("         EMPLOYEE PERFORMANCE ANALYSIS REPORT        \n");
+    printf("=====================================================\n");
+    printf("Emp ID\t\tScore\t\tStatus\t\tBonus\n");
+    printf("-----------------------------------------------------\n");
+    for (int i = 0; i < 10; i++) {
+        float bonus = calculateBonus(scores[i]);
+        char *status = (scores[i] >= 60.0) ? "PASS" : "FAIL";
+        printf("Emp %d\t\t%.2f\t\t%s\t\tRs. %.2f\n", i + 1, scores[i], status, bonus);
+    }
+    printf("-----------------------------------------------------\n");
+    printf("Average Score         : %.2f\n", average);
+    printf("Highest Score         : %.2f\n", highest);
+    printf("Lowest Score          : %.2f\n", lowest);
+    printf("Total Passed Emp      : %d / 10\n", passedCount);
+    printf("-----------------------------------------------------\n");
+    displayPromotionEligible(scores);
+    printf("=====================================================\n");
+}
+
+int main() {
+    float scores;
+
+    // 10 employees ke scores input lena
+    acceptScores(scores);
+
+    // Separate functions se calculations
+    float average = calculateAverage(scores);
+    float highest = findHighestScore(scores);
+    float lowest = findLowestScore(scores);
+    int passedCount = countPassedEmployees(scores);
+
+    // Complete report display karna
+    displayReport(scores, average, highest, lowest, passedCount);
+
+    return 0;
+}
+=====================================================================================================
+Q16. Hotel Reservation Management System
+Create a hotel billing system using multiple functions.
+•	Accept customer details.
+•	Calculate room charges based on room type.
+•	Calculate food and laundry charges.
+•	Apply discounts based on the number of booking days.
+•	Add 12% tax.
+•	Calculate the final bill.
+•	Display the complete reservation summary.
+
+#include <stdio.h>
+
+// Customer details input lene ka function
+void acceptCustomerDetails(char name[], char phone[], int *roomType, int *days) {
+    printf("Customer ka Name enter karein (bina space ke, e.g., Rahul_Sharma): ");
+    scanf("%s", name);
+    printf("Customer ka Phone Number enter karein: ");
+    scanf("%s", phone);
+    printf("Room Type chunein (1: Standard [Rs.2000/day], 2: Deluxe [Rs.3500/day], 3: Suite [Rs.6000/day]): ");
+    scanf("%d", roomType);
+    printf("Kitne din (days) ke liye booking hai? ");
+    scanf("%d", days);
+}
+
+// Room type aur days ke basis par Room Charges calculate karne ka function
+float calculateRoomCharges(int roomType, int days) {
+    float rate = 0;
+    if (roomType == 1) {
+        rate = 2000.0; // Standard Room
+    } else if (roomType == 2) {
+        rate = 3500.0; // Deluxe Room
+    } else if (roomType == 3) {
+        rate = 6000.0; // Suite Room
+    }
+    return rate * days;
+}
+
+// Food aur Laundry charges input aur total calculate karne ka function
+float calculateServiceCharges(float *food, float *laundry) {
+    printf("Total Food charges enter karein: Rs. ");
+    scanf("%f", food);
+    printf("Total Laundry charges enter karein: Rs. ");
+    scanf("%f", laundry);
+    return (*food) + (*laundry);
+}
+
+// Booking days ke basis par Discount calculate karne ka function
+float calculateDiscount(float totalBeforeDiscount, int days) {
+    if (days >= 7) {
+        return 0.15 * totalBeforeDiscount; // 7 ya zyada din par 15% discount
+    } else if (days >= 3) {
+        return 0.10 * totalBeforeDiscount; // 3 se 6 din par 10% discount
+    } else {
+        return 0.0;                        // 3 din se kam par koi discount nahi
+    }
+}
+
+// 12% Tax calculate karne ka function
+float calculateTax(float amountAfterDiscount) {
+    return 0.12 * amountAfterDiscount;
+}
+
+// Final payable bill calculate karne ka function
+float calculateFinalBill(float amountAfterDiscount, float tax) {
+    return amountAfterDiscount + tax;
+}
+
+// Complete reservation summary display karne ka function
+void displayReservationSummary(char name[], char phone[], int roomType, int days, float roomCharges, float food, float laundry, float discount, float tax, float finalBill) {
+    char *roomName = (roomType == 1) ? "Standard" : (roomType == 2) ? "Deluxe" : "Suite";
+    float subTotal = roomCharges + food + laundry;
+
+    printf("\n=====================================================\n");
+    printf("           HOTEL RESERVATION & BILL SUMMARY          \n");
+    printf("=====================================================\n");
+    printf("Customer Name            : %s\n", name);
+    printf("Phone Number             : %s\n", phone);
+    printf("Room Type                : %s\n", roomName);
+    printf("Booking Duration         : %d Days\n", days);
+    printf("-----------------------------------------------------\n");
+    printf("Room Charges             : Rs. %.2f\n", roomCharges);
+    printf("Food Charges             : Rs. %.2f\n", food);
+    printf("Laundry Charges          : Rs. %.2f\n", laundry);
+    printf("Sub-Total                : Rs. %.2f\n", subTotal);
+    printf("Stay Discount Applied    : - Rs. %.2f\n", discount);
+    printf("Amount After Discount    : Rs. %.2f\n", subTotal - discount);
+    printf("GST / Tax (12%%)          : + Rs. %.2f\n", tax);
+    printf("-----------------------------------------------------\n");
+    printf("Final Payable Bill       : Rs. %.2f\n", finalBill);
+    printf("=====================================================\n");
+}
+
+int main() {
+    char name, phone;
+    int roomType, days;
+    float food, laundry;
+
+    // Customer details input lena
+    acceptCustomerDetails(name, phone, &roomType, &days);
+
+    if (roomType < 1 || roomType > 3 || days <= 0) {
+        printf("Invalid Room Type ya Days! Kripya sahi details enter karein.\n");
+        return 0;
+    }
+
+    // Separate functions se calculations
+    float roomCharges = calculateRoomCharges(roomType, days);
+    float serviceCharges = calculateServiceCharges(&food, &laundry);
+    float totalBeforeDiscount = roomCharges + serviceCharges;
+    float discount = calculateDiscount(totalBeforeDiscount, days);
+    float amountAfterDiscount = totalBeforeDiscount - discount;
+    float tax = calculateTax(amountAfterDiscount);
+    float finalBill = calculateFinalBill(amountAfterDiscount, tax);
+
+    // Complete summary display karna
+    displayReservationSummary(name, phone, roomType, days, roomCharges, food, laundry, discount, tax, finalBill);
+
+    return 0;
+}
+=======================================================================================================
+Q17. Matrix Operations Using Functions
+Write a C program using separate functions to perform:
+•	Matrix addition.
+•	Matrix subtraction.
+•	Matrix multiplication.
+•	Matrix transpose.
+•	Matrix diagonal sum.
+Use 2D arrays as function parameters.
+
+#include <stdio.h>
+
+// Matrix input lene ka function
+void acceptMatrix(int mat[10][10], int rows, int cols, char name) {
+    printf("\nMatrix %c (%dx%d) ke elements enter karein:\n", name, rows, cols);
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            printf("Element [%d][%d]: ", i, j);
+            scanf("%d", &mat[i][j]);
+        }
+    }
+}
+
+// Matrix display karne ka function
+void displayMatrix(int mat[10][10], int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            printf("%d\t", mat[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+// 1. Matrix Addition ka function
+void addMatrices(int a[10][10], int b[10][10], int res[10][10], int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            res[i][j] = a[i][j] + b[i][j];
+        }
+    }
+    printf("\n--- Matrix Addition Result ---\n");
+    displayMatrix(res, rows, cols);
+}
+
+// 2. Matrix Subtraction ka function
+void subtractMatrices(int a[10][10], int b[10][10], int res[10][10], int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            res[i][j] = a[i][j] - b[i][j];
+        }
+    }
+    printf("\n--- Matrix Subtraction Result (A - B) ---\n");
+    displayMatrix(res, rows, cols);
+}
+
+// 3. Matrix Multiplication ka function
+void multiplyMatrices(int a[10][10], int b[10][10], int res[10][10], int r1, int c1, int c2) {
+    for (int i = 0; i < r1; i++) {
+        for (int j = 0; j < c2; j++) {
+            res[i][j] = 0;
+            for (int k = 0; k < c1; k++) {
+                res[i][j] += a[i][k] * b[k][j];
+            }
+        }
+    }
+    printf("\n--- Matrix Multiplication Result (A * B) ---\n");
+    displayMatrix(res, r1, c2);
+}
+
+// 4. Matrix Transpose ka function
+void transposeMatrix(int mat[10][10], int trans[10][10], int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            trans[j][i] = mat[i][j];
+        }
+    }
+    printf("\n--- Transpose of Matrix A ---\n");
+    displayMatrix(trans, cols, rows);
+}
+
+// 5. Matrix Diagonal Sum ka function (Square matrix ke liye)
+void diagonalSum(int mat[10][10], int rows, int cols) {
+    if (rows != cols) {
+        printf("\nDiagonal sum sirf Square Matrix (rows == cols) ke liye possible hai!\n");
+        return;
+    }
+    int mainDiag = 0, secDiag = 0;
+    for (int i = 0; i < rows; i++) {
+        mainDiag += mat[i][i];
+        secDiag += mat[i][rows - 1 - i];
+    }
+    printf("\n--- Diagonal Sum of Matrix A ---\n");
+    printf("Main Diagonal Sum      : %d\n", mainDiag);
+    printf("Secondary Diagonal Sum : %d\n", secDiag);
+}
+
+int main() {
+    int a[10][10], b[10][10], result[10][10];
+    int r1, c1, r2, c2;
+
+    printf("Matrix A ke rows aur columns enter karein (max 10): ");
+    scanf("%d %d", &r1, &c1);
+
+    printf("Matrix B ke rows aur columns enter karein (max 10): ");
+    scanf("%d %d", &r2, &c2);
+
+    // Dono matrices input lena
+    acceptMatrix(a, r1, c1, 'A');
+    acceptMatrix(b, r2, c2, 'B');
+
+    printf("\n========================================\n");
+    printf("        MATRIX OPERATIONS OUTPUT        \n");
+    printf("========================================\n");
+
+    // Addition aur Subtraction check (Dimensions same hone chahiye)
+    if (r1 == r2 && c1 == c2) {
+        addMatrices(a, b, result, r1, c1);
+        subtractMatrices(a, b, result, r1, c1);
+    } else {
+        printf("\nAddition aur Subtraction possible nahi hai (Dimensions alag hain).\n");
+    }
+
+    // Multiplication check (c1 == r2 hona chahiye)
+    if (c1 == r2) {
+        multiplyMatrices(a, b, result, r1, c1, c2);
+    } else {
+        printf("\nMultiplication possible nahi hai (Matrix A ke columns != Matrix B ke rows).\n");
+    }
+
+    // Matrix A ka Transpose aur Diagonal Sum
+    transposeMatrix(a, result, r1, c1);
+    diagonalSum(a, r1, c1);
+
+    printf("========================================\n");
+
+    return 0;
+}
+==========================================================================================
+Q18. Inventory and Stock Management System
+Create an inventory management program using functions.
+•	Store details of 10 products.
+•	Calculate total stock value.
+•	Update product quantities after sales.
+•	Add new stock.
+•	Find products with low stock.
+•	Calculate total revenue from sold products.
+•	Display the complete inventory report.
+
+#include <stdio.h>
+
+// 10 products ki details store (input) karne ka function
+void storeProducts(int ids[], char names[][30], float prices[], int stock[]) {
+    printf("10 products ki details enter karein:\n");
+    for (int i = 0; i < 10; i++) {
+        printf("\n--- Product %d ---\n", i + 1);
+        printf("Product ID: ");
+        scanf("%d", &ids[i]);
+        printf("Product Name (bina space ke, e.g., Pen_Set): ");
+        scanf("%s", names[i]);
+        printf("Unit Price: Rs. ");
+        scanf("%f", &prices[i]);
+        printf("Available Stock Quantity: ");
+        scanf("%d", &stock[i]);
+    }
+}
+
+// Total stock value calculate karne ka function
+float calculateTotalStockValue(float prices[], int stock[]) {
+    float totalValue = 0;
+    for (int i = 0; i < 10; i++) {
+        totalValue += prices[i] * stock[i];
+    }
+    return totalValue;
+}
+
+// Sale ke baad quantity update karne aur revenue jodne ka function
+void recordSale(int ids[], char names[][30], float prices[], int stock[], float *totalRevenue) {
+    int searchId, qty, found = 0;
+    printf("Sold Product ka ID enter karein: ");
+    scanf("%d", &searchId);
+
+    for (int i = 0; i < 10; i++) {
+        if (ids[i] == searchId) {
+            found = 1;
+            printf("Kitni quantity sell hui (%s - Available: %d)? ", names[i], stock[i]);
+            scanf("%d", &qty);
+
+            if (qty <= 0) {
+                printf("Invalid quantity!\n");
+            } else if (qty > stock[i]) {
+                printf("Insufficient stock! Sirf %d units available hain.\n", stock[i]);
+            } else {
+                stock[i] -= qty;
+                float saleAmount = qty * prices[i];
+                *totalRevenue += saleAmount;
+                printf("Sale recorded! Revenue earned: Rs. %.2f | Remaining Stock: %d\n", saleAmount, stock[i]);
+            }
+            break;
+        }
+    }
+    if (!found) {
+        printf("Product ID %d inventory mein nahi mila!\n", searchId);
+    }
+}
+
+// Naya stock add karne ka function
+void addNewStock(int ids[], char names[][30], int stock[]) {
+    int searchId, qty, found = 0;
+    printf("Stock add karne ke liye Product ID enter karein: ");
+    scanf("%d", &searchId);
+
+    for (int i = 0; i < 10; i++) {
+        if (ids[i] == searchId) {
+            found = 1;
+            printf("Kitni new units add karni hain (%s)? ", names[i]);
+            scanf("%d", &qty);
+
+            if (qty > 0) {
+                stock[i] += qty;
+                printf("Stock updated! %s ka naya stock = %d units.\n", names[i], stock[i]);
+            } else {
+                printf("Invalid quantity! Positive number enter karein.\n");
+            }
+            break;
+        }
+    }
+    if (!found) {
+        printf("Product ID %d inventory mein nahi mila!\n", searchId);
+    }
+}
+
+// Low stock wale products (< 5 units) find aur display karne ka function
+void findLowStock(int ids[], char names[][30], int stock[]) {
+    int found = 0;
+    printf("\n--- LOW STOCK ALERTS (Stock < 5) ---\n");
+    for (int i = 0; i < 10; i++) {
+        if (stock[i] < 5) {
+            printf("-> ID: %d | %s (Remaining Stock: %d)\n", ids[i], names[i], stock[i]);
+            found = 1;
+        }
+    }
+    if (!found) {
+        printf("Koi bhi product low stock mein nahi hai.\n");
+    }
+}
+
+// Complete inventory report display karne ka function
+void displayInventoryReport(int ids[], char names[][30], float prices[], int stock[], float totalRevenue) {
+    float totalStockValue = calculateTotalStockValue(prices, stock);
+
+    printf("\n==============================================================\n");
+    printf("                  COMPLETE INVENTORY REPORT                   \n");
+    printf("==============================================================\n");
+    printf("ID\tProduct Name\t\tPrice\t\tStock\tValue\n");
+    printf("--------------------------------------------------------------\n");
+    for (int i = 0; i < 10; i++) {
+        printf("%d\t%-15s\t\tRs. %.2f\t%d\tRs. %.2f\n", ids[i], names[i], prices[i], stock[i], prices[i] * stock[i]);
+    }
+    printf("--------------------------------------------------------------\n");
+    printf("Total Current Stock Value : Rs. %.2f\n", totalStockValue);
+    printf("Total Revenue from Sales  : Rs. %.2f\n", totalRevenue);
+    findLowStock(ids, names, stock);
+    printf("==============================================================\n");
+}
+
+int main() {
+    int ids[10], stock[10];
+    char names[10][30];
+    float prices[10];
+    float totalRevenue = 0.0;
+    int choice;
+
+    // 10 products ka initial data store karna
+    storeProducts(ids, names, prices, stock);
+
+    while (1) {
+        printf("\n--- INVENTORY MANAGEMENT MENU ---\n");
+        printf("1. Record a Sale (Update Stock & Revenue)\n");
+        printf("2. Add New Stock\n");
+        printf("3. Check Low Stock Products\n");
+        printf("4. Display Complete Inventory Report\n");
+        printf("5. Exit\n");
+        printf("Apni choice enter karein (1-5): ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                recordSale(ids, names, prices, stock, &totalRevenue);
+                break;
+            case 2:
+                addNewStock(ids, names, stock);
+                break;
+            case 3:
+                findLowStock(ids, names, stock);
+                break;
+            case 4:
+                displayInventoryReport(ids, names, prices, stock, totalRevenue);
+                break;
+            case 5:
+                printf("Program exit ho raha hai. Thank you!\n");
+                return 0;
+            default:
+                printf("Invalid choice! Kripya 1 se 5 ke beech number chunein.\n");
+        }
+    }
+
+    return 0;
+}
+====================================================================================================
+Q19. String Analysis System
+Write a C program using separate functions to:
+•	Find string length without using strlen().
+•	Count vowels and consonants.
+•	Count words.
+•	Reverse a string.
+•	Check whether a string is a palindrome.
+•	Convert lowercase characters to uppercase.
+
+#include <stdio.h>
+
+// 1. Bina strlen() ke string length nikalne ka function
+int findLength(char str[]) {
+    int len = 0;
+    while (str[len] != '\0') {
+        len++;
+    }
+    return len;
+}
+
+// 2. Vowels aur Consonants count karne ka function
+void countVowelsAndConsonants(char str[], int *vowels, int *consonants) {
+    *vowels = 0;
+    *consonants = 0;
+
+    for (int i = 0; str[i] != '\0'; i++) {
+        char ch = str[i];
+        if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z')) {
+            if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' ||
+                ch == 'A' || ch == 'E' || ch == 'I' || ch == 'O' || ch == 'U') {
+                (*vowels)++;
+            } else {
+                (*consonants)++;
+            }
+        }
+    }
+}
+
+// 3. Total words count karne ka function
+int countWords(char str[]) {
+    int words = 0, inWord = 0;
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] == ' ' || str[i] == '\t' || str[i] == '\n') {
+            inWord = 0;
+        } else if (inWord == 0) {
+            inWord = 1;
+            words++;
+        }
+    }
+    return words;
+}
+
+// 4. String ko reverse karne ka function
+void reverseString(char str[], char rev[]) {
+    int len = findLength(str);
+    for (int i = 0; i < len; i++) {
+        rev[i] = str[len - 1 - i];
+    }
+    rev[len] = '\0';
+}
+
+// 5. Palindrome check karne ka function (Case-insensitive)
+int isPalindrome(char str[]) {
+    int left = 0;
+    int right = findLength(str) - 1;
+
+    while (left < right) {
+        char c1 = str[left];
+        char c2 = str[right];
+
+        // Comparison ke liye lowercase mein convert karna
+        if (c1 >= 'A' && c1 <= 'Z') c1 += 32;
+        if (c2 >= 'A' && c2 <= 'Z') c2 += 32;
+
+        if (c1 != c2) {
+            return 0; // Palindrome nahi hai
+        }
+        left++;
+        right--;
+    }
+    return 1; // Palindrome hai
+}
+
+// 6. Lowercase characters ko Uppercase mein convert karne ka function
+void toUpperCase(char str[], char upper[]) {
+    int i = 0;
+    while (str[i] != '\0') {
+        if (str[i] >= 'a' && str[i] <= 'z') {
+            upper[i] = str[i] - 32;
+        } else {
+            upper[i] = str[i];
+        }
+        i++;
+    }
+    upper[i] = '\0';
+}
+
+// Poora analysis display karne ka function
+void displayAnalysis(char str[]) {
+    int vowels, consonants;
+    char reversed[200], uppercase[200];
+
+    int length = findLength(str);
+    countVowelsAndConsonants(str, &vowels, &consonants);
+    int words = countWords(str);
+    reverseString(str, reversed);
+    toUpperCase(str, uppercase);
+
+    printf("\n========================================\n");
+    printf("        STRING ANALYSIS REPORT          \n");
+    printf("========================================\n");
+    printf("Original String   : %s\n", str);
+    printf("String Length     : %d\n", length);
+    printf("Vowels Count      : %d\n", vowels);
+    printf("Consonants Count  : %d\n", consonants);
+    printf("Words Count       : %d\n", words);
+    printf("Reversed String   : %s\n", reversed);
+    printf("Uppercase String  : %s\n", uppercase);
+    if (isPalindrome(str)) {
+        printf("Palindrome Check  : YES (Palindrome)\n");
+    } else {
+        printf("Palindrome Check  : NO (Not Palindrome)\n");
+    }
+    printf("========================================\n");
+}
+
+int main() {
+    char str[200];
+
+    printf("Koi bhi string ya sentence enter karein: ");
+    scanf(" %[^\n]", str); // Spaces ke saath poori line read karne ke liye
+
+    displayAnalysis(str);
+
+    return 0;
+}
+=================================================================================================
+Q20. Railway Ticket Reservation System
+Create a railway reservation program using functions.
+•	Accept passenger details.
+•	Calculate ticket price based on distance.
+•	Apply senior citizen discounts.
+•	Calculate reservation charges.
+•	Calculate total fare for multiple passengers.
+•	Display the final booking summary.
+
+#include <stdio.h>
+
+// Passengers ki details input lene ka function
+void acceptPassengerDetails(char names[], int ages[], int count) {
+    for (int i = 0; i < count; i++) {
+        printf("\n--- Passenger %d ---\n", i + 1);
+        printf("Name (bina space ke, e.g., Amit_Verma): ");
+        scanf("%s", names[i]);
+        printf("Age: ");
+        scanf("%d", &ages[i]);
+    }
+}
+
+// Distance ke basis par base ticket price calculate karne ka function (Rs. 2 per km)
+float calculateBaseTicketPrice(float distance) {
+    return distance * 2.0;
+}
+
+// Senior citizen discount calculate karne ka function (Age >= 60 par 40% off)
+float calculateSeniorDiscount(float basePrice, int age) {
+    if (age >= 60) {
+        return 0.40 * basePrice;
+    } else {
+        return 0.0;
+    }
+}
+
+// Reservation charges calculate karne ka function (Rs. 40 per passenger)
+float calculateReservationCharges(int count) {
+    return count * 40.0;
+}
+
+// Multiple passengers ka total fare calculate karne ka function
+float calculateTotalFare(float basePrice, int ages[], int count, float *totalDiscount, float *totalResCharges) {
+    float netTicketTotal = 0.0;
+    *totalDiscount = 0.0;
+
+    for (int i = 0; i < count; i++) {
+        float discount = calculateSeniorDiscount(basePrice, ages[i]);
+        *totalDiscount += discount;
+        netTicketTotal += (basePrice - discount);
+    }
+
+    *totalResCharges = calculateReservationCharges(count);
+    return netTicketTotal + (*totalResCharges);
+}
+
+// Final booking summary display karne ka function
+void displayBookingSummary(char names[], int ages[], int count, float distance, float basePrice, float totalDiscount, float totalResCharges, float finalFare) {
+    printf("\n=====================================================\n");
+    printf("          RAILWAY TICKET BOOKING SUMMARY             \n");
+    printf("=====================================================\n");
+    printf("Travel Distance          : %.1f km\n", distance);
+    printf("Base Fare per Ticket     : Rs. %.2f\n", basePrice);
+    printf("Total Passengers         : %d\n", count);
+    printf("-----------------------------------------------------\n");
+    printf("No.\tPassenger Name\t\tAge\tCategory\n");
+    printf("-----------------------------------------------------\n");
+    for (int i = 0; i < count; i++) {
+        char *cat = (ages[i] >= 60) ? "Senior Citizen" : "General";
+        printf("%d\t%-15s\t\t%d\t%s\n", i + 1, names[i], ages[i], cat);
+    }
+    printf("-----------------------------------------------------\n");
+    printf("Gross Ticket Amount      : Rs. %.2f\n", basePrice * count);
+    printf("Senior Citizen Discount  : - Rs. %.2f\n", totalDiscount);
+    printf("Reservation Charges      : + Rs. %.2f\n", totalResCharges);
+    printf("-----------------------------------------------------\n");
+    printf("Total Payable Fare       : Rs. %.2f\n", finalFare);
+    printf("=====================================================\n");
+}
+
+int main() {
+    int count;
+    float distance;
+    char names;
+    int ages;
+    float totalDiscount = 0.0, totalResCharges = 0.0;
+
+    printf("Kitne passengers ke liye ticket book karni hai (max 10)? ");
+    scanf("%d", &count);
+
+    if (count < 1 || count > 10) {
+        printf("Invalid passenger count! 1 se 10 ke beech number enter karein.\n");
+        return 0;
+    }
+
+    printf("Journey ka total distance enter karein (in km): ");
+    scanf("%f", &distance);
+
+    if (distance <= 0) {
+        printf("Invalid distance! Positive value enter karein.\n");
+        return 0;
+    }
+
+    // Input lena
+    acceptPassengerDetails(names, ages, count);
+
+    // Separate functions se calculations
+    float basePrice = calculateBaseTicketPrice(distance);
+    float finalFare = calculateTotalFare(basePrice, ages, count, &totalDiscount, &totalResCharges);
+
+    // Final booking summary display karna
+    displayBookingSummary(names, ages, count, distance, basePrice, totalDiscount, totalResCharges, finalFare);
+
+    return 0;
+}
+==============================================================================================
+Q21. ATM Simulation System
+Create an ATM simulation program using functions.
+•	Validate a PIN.
+•	Check account balance.
+•	Deposit money.
+•	Withdraw money.
+•	Transfer money between two accounts.
+•	Calculate transaction charges.
+•	Display transaction history.
+
+#include <stdio.h>
+
+// 1. PIN validate karne ka function (Default PIN: 1234)
+int validatePIN() {
+    int enteredPin, attempts = 0;
+    int correctPin = 1234;
+
+    while (attempts < 3) {
+        printf("ATM PIN enter karein (Default: 1234): ");
+        scanf("%d", &enteredPin);
+
+        if (enteredPin == correctPin) {
+            printf("PIN Verified! Welcome to ATM.\n");
+            return 1;
+        } else {
+            attempts++;
+            printf("Galat PIN! %d attempt(s) baaki hain.\n", 3 - attempts);
+        }
+    }
+    return 0; // 3 galat attempts ke baad card block
+}
+
+// 2. Transaction charges calculate karne ka function (Rs. 10,000 se zyada par 1% charge)
+float calculateTransactionCharge(float amount) {
+    if (amount > 10000.0) {
+        return 0.01 * amount;
+    } else {
+        return 0.0;
+    }
+}
+
+// Transaction ko history array mein record karne ka helper function
+void recordTransaction(char history[], int *count, char type[], float amount, float charge) {
+    if (*count < 50) {
+        sprintf(history[*count], "%-10s | Amount: Rs. %.2f | Charge: Rs. %.2f", type, amount, charge);
+        (*count)++;
+    }
+}
+
+// 3. Account balance display karne ka function
+void checkBalance(float balance) {
+    printf("\n----------------------------------------\n");
+    printf("Available Account Balance : Rs. %.2f\n", balance);
+    printf("----------------------------------------\n");
+}
+
+// 4. Paise deposit karne ka function
+float depositMoney(float balance, char history[], int *count) {
+    float amount;
+    printf("Deposit karne ke liye amount enter karein: Rs. ");
+    scanf("%f", &amount);
+
+    if (amount > 0) {
+        balance += amount;
+        recordTransaction(history, count, "DEPOSIT", amount, 0.0);
+        printf("Rs. %.2f successfully deposit ho gaye! New Balance: Rs. %.2f\n", amount, balance);
+    } else {
+        printf("Invalid amount! Positive value enter karein.\n");
+    }
+    return balance;
+}
+
+// 5. Paise withdraw karne ka function
+float withdrawMoney(float balance, char history[], int *count) {
+    float amount;
+    printf("Withdraw karne ke liye amount enter karein: Rs. ");
+    scanf("%f", &amount);
+
+    if (amount <= 0) {
+        printf("Invalid amount! Positive value enter karein.\n");
+        return balance;
+    }
+
+    float charge = calculateTransactionCharge(amount);
+    float totalDeduction = amount + charge;
+
+    if (totalDeduction > balance) {
+        printf("Insufficient balance! (Required: Rs. %.2f including Rs. %.2f charge)\n", totalDeduction, charge);
+    } else {
+        balance -= totalDeduction;
+        recordTransaction(history, count, "WITHDRAW", amount, charge);
+        printf("Rs. %.2f withdraw ho gaye! (Transaction Charge: Rs. %.2f)\n", amount, charge);
+        printf("Remaining Balance: Rs. %.2f\n", balance);
+    }
+    return balance;
+}
+
+// 6. Doosre account mein paise transfer karne ka function
+void transferMoney(float *senderBalance, float *receiverBalance, char history[], int *count) {
+    float amount;
+    printf("Receiver Account (Acc #2) mein transfer karne ke liye amount enter karein: Rs. ");
+    scanf("%f", &amount);
+
+    if (amount <= 0) {
+        printf("Invalid amount! Positive value enter karein.\n");
+        return;
+    }
+
+    float charge = calculateTransactionCharge(amount);
+    float totalDeduction = amount + charge;
+
+    if (totalDeduction > *senderBalance) {
+        printf("Transfer Failed! Insufficient balance (Required: Rs. %.2f including Rs. %.2f charge)\n", totalDeduction, charge);
+    } else {
+        *senderBalance -= totalDeduction;
+        *receiverBalance += amount;
+        recordTransaction(history, count, "TRANSFER", amount, charge);
+        printf("Rs. %.2f successfully Account #2 mein transfer ho gaye!\n", amount);
+        printf("Transaction Charge: Rs. %.2f | Your New Balance: Rs. %.2f\n", charge, *senderBalance);
+        printf("Account #2 New Balance: Rs. %.2f\n", *receiverBalance);
+    }
+}
+
+// 7. Transaction history display karne ka function
+void displayTransactionHistory(char history[], int count) {
+    printf("\n=====================================================\n");
+    printf("                 TRANSACTION HISTORY                 \n");
+    printf("=====================================================\n");
+    if (count == 0) {
+        printf("Abhi tak koi transaction nahi hui hai.\n");
+    } else {
+        for (int i = 0; i < count; i++) {
+            printf("%d. %s\n", i + 1, history[i]);
+        }
+    }
+    printf("=====================================================\n");
+}
+
+int main() {
+    float primaryBalance = 25000.0;   // Primary Account Balance
+    float secondaryBalance = 10000.0; // Second Account Balance (Transfer ke liye)
+    char history;
+    int transactionCount = 0;
+    int choice;
+
+    printf("========================================\n");
+    printf("         ATM SIMULATION SYSTEM          \n");
+    printf("========================================\n");
+
+    // Step 1: PIN Validation
+    if (!validatePIN()) {
+        printf("\n3 galat attempts! Aapka ATM card temporarily block kar diya gaya hai.\n");
+        return 0;
+    }
+
+    // Step 2: ATM Menu Loop
+    while (1) {
+        printf("\n--- ATM MAIN MENU ---\n");
+        printf("1. Check Account Balance\n");
+        printf("2. Deposit Money\n");
+        printf("3. Withdraw Money\n");
+        printf("4. Transfer Money (to Account #2)\n");
+        printf("5. Display Transaction History\n");
+        printf("6. Exit\n");
+        printf("Apni choice enter karein (1-6): ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                checkBalance(primaryBalance);
+                break;
+            case 2:
+                primaryBalance = depositMoney(primaryBalance, history, &transactionCount);
+                break;
+            case 3:
+                primaryBalance = withdrawMoney(primaryBalance, history, &transactionCount);
+                break;
+            case 4:
+                transferMoney(&primaryBalance, &secondaryBalance, history, &transactionCount);
+                break;
+            case 5:
+                displayTransactionHistory(history, transactionCount);
+                break;
+            case 6:
+                printf("Thank you for using our ATM! Have a great day.\n");
+                return 0;
+            default:
+                printf("Invalid choice! Kripya 1 se 6 ke beech number chunein.\n");
+        }
+    }
+
+    return 0;
+}
+=========================================================================================================
+Q22. Hospital Management and Patient Report
+Create a hospital management program using functions.
+•	Store records of 10 patients.
+•	Calculate each patient's total medical expenses.
+•	Apply insurance coverage.
+•	Calculate the remaining payable amount.
+•	Find the patient with the highest bill.
+•	Calculate the average hospital expense.
+•	Display a complete patient report.
+
+#include <stdio.h>
+
+// 1. 10 patients ke records input lene ka function
+void storePatientRecords(int ids[], char names[], float roomCharges[], float doctorFees[], float medicineCosts[], int hasInsurance[]) {
+    printf("10 patients ke records enter karein:\n");
+    for (int i = 0; i < 10; i++) {
+        printf("\n--- Patient %d ---\n", i + 1);
+        printf("Patient ID: ");
+        scanf("%d", &ids[i]);
+        printf("Patient Name (bina space ke, e.g., Neha_Singh): ");
+        scanf("%s", names[i]);
+        printf("Room Charges: Rs. ");
+        scanf("%f", &roomCharges[i]);
+        printf("Doctor Fees: Rs. ");
+        scanf("%f", &doctorFees[i]);
+        printf("Medicine Costs: Rs. ");
+        scanf("%f", &medicineCosts[i]);
+        printf("Kya Insurance hai? (1 for Yes, 0 for No): ");
+        scanf("%d", &hasInsurance[i]);
+    }
+}
+
+// 2. Har patient ka total medical expense calculate karne ka function
+void calculateTotalExpenses(float roomCharges[], float doctorFees[], float medicineCosts[], float totalExpenses[]) {
+    for (int i = 0; i < 10; i++) {
+        totalExpenses[i] = roomCharges[i] + doctorFees[i] + medicineCosts[i];
+    }
+}
+
+// 3. Insurance coverage calculate karne ka function (60% coverage agar insurance hai)
+void applyInsuranceCoverage(float totalExpenses[], int hasInsurance[], float insuranceCovered[]) {
+    for (int i = 0; i < 10; i++) {
+        if (hasInsurance[i] == 1) {
+            insuranceCovered[i] = 0.60 * totalExpenses[i]; // 60% insurance coverage
+        } else {
+            insuranceCovered[i] = 0.0;
+        }
+    }
+}
+
+// 4. Remaining payable amount calculate karne ka function
+void calculatePayableAmount(float totalExpenses[], float insuranceCovered[], float payableAmount[]) {
+    for (int i = 0; i < 10; i++) {
+        payableAmount[i] = totalExpenses[i] - insuranceCovered[i];
+    }
+}
+
+// 5. Highest bill wale patient ko find aur display karne ka function
+void findHighestBillPatient(int ids[], char names[], float totalExpenses[]) {
+    int maxIndex = 0;
+    for (int i = 1; i < 10; i++) {
+        if (totalExpenses[i] > totalExpenses[maxIndex]) {
+            maxIndex = i;
+        }
+    }
+    printf("Highest Bill Patient  : %s (ID: %d) - Total Expense: Rs. %.2f\n", names[maxIndex], ids[maxIndex], totalExpenses[maxIndex]);
+}
+
+// 6. Average hospital expense calculate karne ka function
+float calculateAverageExpense(float totalExpenses[]) {
+    float sum = 0.0;
+    for (int i = 0; i < 10; i++) {
+        sum += totalExpenses[i];
+    }
+    return sum / 10.0;
+}
+
+// 7. Complete patient report display karne ka function
+void displayPatientReport(int ids[], char names[], float totalExpenses[], float insuranceCovered[], float payableAmount[], float averageExpense) {
+    printf("\n=================================================================================\n");
+    printf("                        HOSPITAL PATIENT BILLING REPORT                          \n");
+    printf("=================================================================================\n");
+    printf("ID\tPatient Name\t\tTotal Expense\tInsurance\tPayable Amount\n");
+    printf("---------------------------------------------------------------------------------\n");
+    for (int i = 0; i < 10; i++) {
+        printf("%d\t%-15s\t\tRs. %.2f\tRs. %.2f\tRs. %.2f\n", ids[i], names[i], totalExpenses[i], insuranceCovered[i], payableAmount[i]);
+    }
+    printf("---------------------------------------------------------------------------------\n");
+    printf("Average Hospital Expense : Rs. %.2f\n", averageExpense);
+    findHighestBillPatient(ids, names, totalExpenses);
+    printf("=================================================================================\n");
+}
+
+int main() {
+    int ids[10], hasInsurance[10];
+    char names[10][50];
+    float roomCharges[10], doctorFees[10], medicineCosts[10];
+    float totalExpenses[10], insuranceCovered[10], payableAmount[10];
+
+    // 10 patients ka data input lena
+    storePatientRecords(ids, names, roomCharges, doctorFees, medicineCosts, hasInsurance);
+
+    // Separate functions se calculations
+    calculateTotalExpenses(roomCharges, doctorFees, medicineCosts, totalExpenses);
+    applyInsuranceCoverage(totalExpenses, hasInsurance, insuranceCovered);
+    calculatePayableAmount(totalExpenses, insuranceCovered, payableAmount);
+    float averageExpense = calculateAverageExpense(totalExpenses);
+
+    // Complete patient report display karna
+    displayPatientReport(ids, names, totalExpenses, insuranceCovered, payableAmount, averageExpense);
+
+    return 0;
+}
+========================================================================================================================
+Q23. Array-Based Sales Analysis System
+Write a C program using functions to analyze monthly sales data for 12 months.
+•	Calculate total annual sales.
+•	Calculate average monthly sales.
+•	Find the highest and lowest sales months.
+•	Calculate quarterly sales.
+•	Identify months with sales above average.
+•	Calculate annual growth percentage.
+
+#include <stdio.h>
+
+// 12 months ka sales data input lene ka function
+void acceptSalesData(float sales[], char months[]) {
+    printf("12 months ka sales data enter karein:\n");
+    for (int i = 0; i < 12; i++) {
+        printf("%s ki sales: Rs. ", months[i]);
+        scanf("%f", &sales[i]);
+    }
+}
+
+// 1. Total annual sales calculate karne ka function
+float calculateTotalSales(float sales[]) {
+    float total = 0;
+    for (int i = 0; i < 12; i++) {
+        total += sales[i];
+    }
+    return total;
+}
+
+// 2. Average monthly sales calculate karne ka function
+float calculateAverageSales(float total) {
+    return total / 12.0;
+}
+
+// 3. Highest sales month find aur display karne ka function
+void findHighestSalesMonth(float sales[], char months[]) {
+    int maxIdx = 0;
+    for (int i = 1; i < 12; i++) {
+        if (sales[i] > sales[maxIdx]) {
+            maxIdx = i;
+        }
+    }
+    printf("Highest Sales Month      : %s (Rs. %.2f)\n", months[maxIdx], sales[maxIdx]);
+}
+
+// 4. Lowest sales month find aur display karne ka function
+void findLowestSalesMonth(float sales[], char months[]) {
+    int minIdx = 0;
+    for (int i = 1; i < 12; i++) {
+        if (sales[i] < sales[minIdx]) {
+            minIdx = i;
+        }
+    }
+    printf("Lowest Sales Month       : %s (Rs. %.2f)\n", months[minIdx], sales[minIdx]);
+}
+
+// 5. Quarterly sales calculate aur display karne ka function
+void calculateQuarterlySales(float sales[]) {
+    float q1 = sales + sales + sales;
+    float q2 = sales + sales + sales;
+    float q3 = sales + sales + sales;
+    float q4 = sales + sales + sales;
+
+    printf("\n--- QUARTERLY SALES BREAKDOWN ---\n");
+    printf("Quarter 1 (Jan - Mar)    : Rs. %.2f\n", q1);
+    printf("Quarter 2 (Apr - Jun)    : Rs. %.2f\n", q2);
+    printf("Quarter 3 (Jul - Sep)    : Rs. %.2f\n", q3);
+    printf("Quarter 4 (Oct - Dec)    : Rs. %.2f\n", q4);
+}
+
+// 6. Average se zyada sales wale months identify karne ka function
+void displayAboveAverageMonths(float sales[], char months[], float average) {
+    printf("\n--- MONTHS WITH ABOVE-AVERAGE SALES (> Rs. %.2f) ---\n", average);
+    int found = 0;
+    for (int i = 0; i < 12; i++) {
+        if (sales[i] > average) {
+            printf("-> %-10s : Rs. %.2f\n", months[i], sales[i]);
+            found = 1;
+        }
+    }
+    if (!found) {
+        printf("Koi bhi month average se zyada nahi hai.\n");
+    }
+}
+
+// 7. Annual growth percentage calculate karne ka function (Jan se Dec tak ka growth)
+float calculateAnnualGrowth(float sales[]) {
+    if (sales == 0) {
+        return 0.0; // Division by zero se bachne ke liye
+    }
+    return ((sales - sales) / sales) * 100.0;
+}
+
+// Complete sales analysis report display karne ka function
+void displaySalesReport(float sales[], char months[], float total, float average, float growth) {
+    printf("\n=====================================================\n");
+    printf("            ANNUAL SALES ANALYSIS REPORT             \n");
+    printf("=====================================================\n");
+    printf("Total Annual Sales       : Rs. %.2f\n", total);
+    printf("Average Monthly Sales    : Rs. %.2f\n", average);
+    findHighestSalesMonth(sales, months);
+    findLowestSalesMonth(sales, months);
+    printf("Annual Growth (Jan->Dec) : %.2f%%\n", growth);
+    calculateQuarterlySales(sales);
+    displayAboveAverageMonths(sales, months, average);
+    printf("=====================================================\n");
+}
+
+int main() {
+    float sales;
+    char months = {
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    };
+
+    // 12 months ka data input lena
+    acceptSalesData(sales, months);
+
+    // Separate functions se calculations
+    float total = calculateTotalSales(sales);
+    float average = calculateAverageSales(total);
+    float growth = calculateAnnualGrowth(sales);
+
+    // Complete report display karna
+    displaySalesReport(sales, months, total, average, growth);
+
+    return 0;
+}
+==================================================================================================
+Q24. Banking System Using Recursion and Pointers
+Create a banking application using multiple functions.
+•	Accept an initial account balance.
+•	Perform deposits and withdrawals.
+•	Update the original balance using pointers.
+•	Calculate compound interest using recursion.
+•	Display the final balance.
+•	Display total deposits, withdrawals, and interest earned.
+
+#include <stdio.h>
+
+// 1. Pointers ka use karke deposit aur original balance update karne ka function
+void depositMoney(float *balance, float *totalDeposits) {
+    float amount;
+    printf("Deposit karne ke liye amount enter karein: Rs. ");
+    scanf("%f", &amount);
+
+    if (amount > 0) {
+        *balance += amount;
+        *totalDeposits += amount;
+        printf("Rs. %.2f successfully deposit ho gaye! Updated Balance: Rs. %.2f\n", amount, *balance);
+    } else {
+        printf("Invalid amount! Positive value enter karein.\n");
+    }
+}
+
+// 2. Pointers ka use karke withdraw aur original balance update karne ka function
+void withdrawMoney(float *balance, float *totalWithdrawals) {
+    float amount;
+    printf("Withdraw karne ke liye amount enter karein: Rs. ");
+    scanf("%f", &amount);
+
+    if (amount > *balance) {
+        printf("Insufficient balance! Available Balance: Rs. %.2f\n", *balance);
+    } else if (amount <= 0) {
+        printf("Invalid amount! Positive value enter karein.\n");
+    } else {
+        *balance -= amount;
+        *totalWithdrawals += amount;
+        printf("Rs. %.2f successfully withdraw ho gaye! Updated Balance: Rs. %.2f\n", amount, *balance);
+    }
+}
+
+// 3. Recursion ka use karke compound amount calculate karne ka function
+float calculateCompoundRecursive(float principal, float rate, int years) {
+    if (years == 0) {
+        return principal;
+    }
+    float nextYearAmount = principal + (principal * rate / 100.0);
+    return calculateCompoundRecursive(nextYearAmount, rate, years - 1);
+}
+
+// 4. Interest apply karne aur pointer se original balance update karne ka function
+void applyCompoundInterest(float *balance, float *totalInterest) {
+    float rate;
+    int years;
+
+    printf("Annual Interest Rate (%%) enter karein: ");
+    scanf("%f", &rate);
+    printf("Kitne saal (years) ke liye interest calculate karna hai? ");
+    scanf("%d", &years);
+
+    if (rate < 0 || years <= 0) {
+        printf("Invalid rate ya years! Sahi values enter karein.\n");
+        return;
+    }
+
+    float newBalance = calculateCompoundRecursive(*balance, rate, years);
+    float interestEarned = newBalance - (*balance);
+
+    *balance = newBalance;
+    *totalInterest += interestEarned;
+
+    printf("%d saal ka Compound Interest: Rs. %.2f\n", years, interestEarned);
+    printf("Interest add hone ke baad Updated Balance: Rs. %.2f\n", *balance);
+}
+
+// 5. Final balance aur poori summary display karne ka function
+void displaySummary(float initialBalance, float finalBalance, float totalDeposits, float totalWithdrawals, float totalInterest) {
+    printf("\n=====================================================\n");
+    printf("             BANKING TRANSACTION SUMMARY             \n");
+    printf("=====================================================\n");
+    printf("Initial Balance          : Rs. %.2f\n", initialBalance);
+    printf("Total Deposits           : + Rs. %.2f\n", totalDeposits);
+    printf("Total Withdrawals        : - Rs. %.2f\n", totalWithdrawals);
+    printf("Total Interest Earned    : + Rs. %.2f\n", totalInterest);
+    printf("-----------------------------------------------------\n");
+    printf("Final Account Balance    : Rs. %.2f\n", finalBalance);
+    printf("=====================================================\n");
+}
+
+int main() {
+    float initialBalance, balance;
+    float totalDeposits = 0.0, totalWithdrawals = 0.0, totalInterest = 0.0;
+    int choice;
+
+    printf("Initial Account Balance enter karein: Rs. ");
+    scanf("%f", &initialBalance);
+
+    if (initialBalance < 0) {
+        printf("Invalid balance! Positive value enter karein.\n");
+        return 0;
+    }
+
+    balance = initialBalance;
+
+    while (1) {
+        printf("\n--- BANKING MENU ---\n");
+        printf("1. Deposit Money\n");
+        printf("2. Withdraw Money\n");
+        printf("3. Calculate & Add Compound Interest (Recursive)\n");
+        printf("4. Exit & Display Final Summary\n");
+        printf("Apni choice enter karein (1-4): ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                depositMoney(&balance, &totalDeposits);
+                break;
+            case 2:
+                withdrawMoney(&balance, &totalWithdrawals);
+                break;
+            case 3:
+                applyCompoundInterest(&balance, &totalInterest);
+                break;
+            case 4:
+                displaySummary(initialBalance, balance, totalDeposits, totalWithdrawals, totalInterest);
+                return 0;
+            default:
+                printf("Invalid choice! Kripya 1 se 4 ke beech number chunein.\n");
+        }
+    }
+
+    return 0;
+}
+
