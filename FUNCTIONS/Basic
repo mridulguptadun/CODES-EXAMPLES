@@ -1,23 +1,54 @@
 1. Print a Greeting
 #include <stdio.h>
-void greet() { printf("Hello, C Functions!\n"); }
-int main() { greet(); return 0; }
+void greet() 
+{ 
+printf("Hello, C Functions!\n"); 
+}
+int main() 
+{ 
+greet(); 
+return 0; 
+}
 ============================================================================
 2. Add Two Numbers
 #include <stdio.h>
-int add(int a, int b) { return a + b; }
-int main() { printf("Sum: %d\n", add(5, 7)); return 0; }
+int add(int a, int b) 
+{ 
+return a + b; 
+}
+int main() 
+{ 
+printf("Sum: %d\n", add(5, 7)); 
+return 0; 
+}
 ============================================================================
 3. Square and Cube
 #include <stdio.h>
-int square(int n) { return n * n; }
-int cube(int n) { return n * n * n; }
-int main() { printf("Sq: %d, Cube: %d\n", square(3), cube(3)); return 0; }
+int square(int n) 
+{ 
+return n * n; 
+}
+int cube(int n) 
+{ 
+return n * n * n; 
+}
+int main() 
+{ 
+printf("Sq: %d, Cube: %d\n", square(3), cube(3)); 
+return 0; 
+}
 ============================================================================
 4. Even or Odd
 #include <stdio.h>
-int isEven(int n) { return (n % 2 == 0); }
-int main() { printf("%s\n", isEven(4) ? "Even" : "Odd"); return 0; }
+int isEven(int n) 
+{ 
+return (n % 2 == 0); 
+}
+int main() 
+{ 
+printf("%s\n", isEven(4) ? "Even" : "Odd"); 
+return 0; 
+}
 ============================================================================
 5. Maximum of Three Numbers
 #include <stdio.h>
@@ -27,12 +58,23 @@ int maxOfThree(int a, int b, int c) {
     if (c > max) max = c;
     return max;
 }
-int main() { printf("Max: %d\n", maxOfThree(10, 25, 15)); return 0; }
+int main() 
+{ 
+printf("Max: %d\n", maxOfThree(10, 25, 15)); 
+return 0; 
+}
 ============================================================================
 6. Simple Interest
 #include <stdio.h>
-float simpleInterest(float p, float r, float t) { return (p * r * t) / 100.0; }
-int main() { printf("SI: %.2f\n", simpleInterest(1000, 5, 2)); return 0; }
+float simpleInterest(float p, float r, float t) 
+{ 
+return (p * r * t) / 100.0; 
+}
+int main() 
+{ 
+printf("SI: %.2f\n", simpleInterest(1000, 5, 2)); 
+return 0; 
+}
 ============================================================================
 7. Area of Circle, Rectangle, Triangle
 #include <stdio.h>
