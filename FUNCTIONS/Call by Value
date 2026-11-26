@@ -236,6 +236,44 @@ int main() {
     return 0;
 }
 ============================================================================================================
+def calculate_hra(bs):
+	return 0.20 * bs
+
+def calculate_da(bs):
+	return 0.10 * bs
+
+def calculate_pf(bs):
+	return 0.12 * bs
+
+def calculate_tax(bs):
+	return 0.05 * bs
+
+def calculate_gross(bs, hra, da):
+	return bs+hra+da
+
+def calculate_net_salary(gross_salary, pf, tax):
+	return gross_salary-pf-tax
+
+def display(bs):
+	hra = calculate_hra(bs)
+	da = calculate_da(bs)
+	pf = calculate_pf(bs)
+	tax = calculate_tax(bs)
+	gross_salary = calculate_gross(bs, hra, da)
+	net_salary = calculate_net_salary(gross_salary, pf, tax)
+
+	print(hra)
+	print(da)
+	print(pf)
+	print(tax)
+	print(gross_salary)
+	print(net_salary)
+	print(bs)
+
+bs = 40000
+display(bs)
+
+============================================================================================================
 Question 2: Shopping Mall Billing Management System
 Write a C program to develop a Shopping Mall Billing Management System using Call by Value. A customer purchases the following products:
 •	Laptop: ₹50,000
@@ -251,8 +289,43 @@ The program should perform the following operations using separate functions:
 6.	Display the original prices of all products after calculations.
 All functions must receive values using Call by Value. Original product prices must remain unchanged.
 
-#include <stdio.h>
+products = {
+	"Laptop" : 50000,
+	"Smartphone" : 20000,
+	"Heaphone" : 3000,
+	"Keyboard" : 2000
+}
 
+def calculate_total_price(items):
+	return sum(items.values())
+
+def calculate_discount(total):
+	return total * 0.10
+
+def calculate_GST(discount_price):
+	return dicount * 0.18
+
+def calculate_final_amount(discount_price, gst):
+	return discount_price + gst
+
+def calculate_avg_price(items):
+	return sum(items.values()) / len(items)
+
+def display(items):
+	total = calculate_total_price(items)
+	discount = calculate_discount(total)
+	discount_price = total - discount
+	gst = calculate_GST(discount_price)
+	final_amount = calculate_final_amount(discount_price, gst)
+	avg_price = calculate_avg_price(items)
+
+	for product, price in items.items():
+		print(product, ":", price)
+display(products)
+
+==================================================================================================
+
+#include <stdio.h>
 // 1. Calculate total price of all products
 float calculateTotal(float p1, float p2, float p3, float p4) {
     float total = p1 + p2 + p3 + p4;
