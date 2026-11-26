@@ -473,4 +473,35 @@ except ArithmeticError as e:
 print("Payment Error:", e)
 finally:    
 print("Payment processing completed.")
+===========================================================================================
 
+class InsufficientBalanceError(Exception):
+	pass
+
+def withdraw_money(balance, amount):
+	if amount <= 0:
+		raise ValueError("Amount can't be 0 or negative")
+	if amount > balance:
+		raise InsufficientBalanceError(
+			f"Account Balance {balance}, You can't withdraw {amount}"
+		)
+	return balance - amount
+
+balance = 5000
+
+try:
+	amount = float(input("Enter Amount : "))
+	balance = withdraw_money(balance, amount)
+
+except ValueError as e:
+	print("Input Error: ",e)
+
+except InsufficientBalanceError as e:
+	print("Transaction Failed :",e)
+
+else:
+	print("Success", amount)
+	print("Remaining Balance:", balance)
+
+finally:
+	print("Thanks")
