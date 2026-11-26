@@ -341,74 +341,69 @@ display(products)
 ==================================================================================================
 
 #include <stdio.h>
-// 1. Calculate total price of all products
-float calculateTotal(float p1, float p2, float p3, float p4) {
-    float total = p1 + p2 + p3 + p4;
-    p1 = p2 = p3 = p4 = 0; // Local copies modified; originals remain unchanged
-    return total;
+
+float calculate_total_price(float p1, float p2, float p3, float p4) {
+    return p1 + p2 + p3 + p4;
 }
 
-// 2. Calculate 10% discount on the total price
-float calculateDiscount(float total) {
-    float discount = total * 0.10;
-    total = 0;
-    return discount;
+float calculate_discount(float total) {
+    return total * 0.10;
 }
 
-// 3. Calculate 18% GST on the discounted price
-float calculateGST(float discountedPrice) {
-    float gst = discountedPrice * 0.18;
-    discountedPrice = 0;
-    return gst;
+float calculate_GST(float discount_price) {
+    return discount_price * 0.18;
 }
 
-// 4. Calculate final payable amount
-float calculateFinalAmount(float discountedPrice, float gst) {
-    float finalAmount = discountedPrice + gst;
-    discountedPrice = 0;
-    return finalAmount;
+float calculate_final_amount(float discount_price, float gst) {
+    return discount_price + gst;
 }
 
-// 5. Calculate average price of the purchased products
-float calculateAverage(float p1, float p2, float p3, float p4) {
-    float avg = (p1 + p2 + p3 + p4) / 4.0;
-    p1 = p2 = p3 = p4 = 0;
-    return avg;
+float calculate_avg_price(float total) {
+    return total / 4;
+}
+
+void display(float p1, float p2, float p3, float p4) {
+    float total = calculate_total_price(p1, p2, p3, p4);
+    float discount = calculate_discount(total);
+    float discount_price = total - discount;
+    float gst = calculate_GST(discount_price);
+    float final_amount = calculate_final_amount(discount_price, gst);
+    float avg_price = calculate_avg_price(total);
+
+    printf("\nTotal Price: %.2f\n", total);
+    printf("Discount (10%%): %.2f\n", discount);
+    printf("Price After Discount: %.2f\n", discount_price);
+    printf("GST (18%%): %.2f\n", gst);
+    printf("Final Payable Amount: %.2f\n", final_amount);
+    printf("Average Price: %.2f\n", avg_price);
+
+    printf("\nOriginal Product Prices:\n");
+    printf("Laptop : %.2f\n", p1);
+    printf("Smartphone : %.2f\n", p2);
+    printf("Headphones : %.2f\n", p3);
+    printf("Keyboard : %.2f\n", p4);
 }
 
 int main() {
-    float laptop = 50000.0;
-    float smartphone = 20000.0;
-    float headphones = 3000.0;
-    float keyboard = 2000.0;
+    float laptop, smartphone, headphones, keyboard;
 
-    // Performing calculations using Call by Value
-    float totalPrice = calculateTotal(laptop, smartphone, headphones, keyboard);
-    float discount = calculateDiscount(totalPrice);
-    float discountedPrice = totalPrice - discount;
-    float gst = calculateGST(discountedPrice);
-    float finalPayable = calculateFinalAmount(discountedPrice, gst);
-    float averagePrice = calculateAverage(laptop, smartphone, headphones, keyboard);
+    printf("Laptop ka price enter karo: ");
+    scanf("%f", &laptop);
 
-    // Display Billing Summary
-    printf("--- Shopping Mall Billing Summary ---\n");
-    printf("Total Price:             ₹%.2f\n", totalPrice);
-    printf("Discount (10%%):          ₹%.2f\n", discount);
-    printf("Price After Discount:    ₹%.2f\n", discountedPrice);
-    printf("GST (18%%):               ₹%.2f\n", gst);
-    printf("Final Payable Amount:    ₹%.2f\n", finalPayable);
-    printf("Average Product Price:   ₹%.2f\n", averagePrice);
-    printf("-------------------------------------\n");
+    printf("Smartphone ka price enter karo: ");
+    scanf("%f", &smartphone);
 
-    // 6. Display original prices of all products
-    printf("Original Product Prices:\n");
-    printf("Laptop:                  ₹%.2f\n", laptop);
-    printf("Smartphone:              ₹%.2f\n", smartphone);
-    printf("Headphones:              ₹%.2f\n", headphones);
-    printf("Keyboard:                ₹%.2f\n", keyboard);
+    printf("Headphones ka price enter karo: ");
+    scanf("%f", &headphones);
+
+    printf("Keyboard ka price enter karo: ");
+    scanf("%f", &keyboard);
+
+    display(laptop, smartphone, headphones, keyboard);
 
     return 0;
 }
+
 ====================================================================================================================
 Question 3: Student Academic Performance Management System
 Write a C program to develop a Student Academic Performance Management System using Call by Value. A student has obtained the following marks:
