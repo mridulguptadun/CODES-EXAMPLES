@@ -1,12 +1,6 @@
-
-Part 1: 1D Arrays with Functions — Calculations & Searches (Questions 1–10)
-
-
 1. Pass an array to a function and print all its elements.
 
-c
 #include <stdio.h>
-
 void printArray(int arr[], int n) {
     for (int i = 0; i < n; i++) printf("%d ", arr[i]);
     printf("\n");
@@ -17,13 +11,11 @@ int main() {
     printArray(arr, 5);
     return 0;
 }
-Use code with caution.
+==========================================================================================
 
 2. Write a function that returns the sum of all elements in an array.
 
-c
 #include <stdio.h>
-
 int findSum(int arr[], int n) {
     int sum = 0;
     for (int i = 0; i < n; i++) sum += arr[i];
@@ -35,13 +27,11 @@ int main() {
     printf("Sum = %d\n", findSum(arr, 4));
     return 0;
 }
-Use code with caution.
+==========================================================================================
 
 3. Write a function that returns the average of elements in an array.
 
-c
 #include <stdio.h>
-
 float findAverage(int arr[], int n) {
     int sum = 0;
     for (int i = 0; i < n; i++) sum += arr[i];
@@ -53,13 +43,11 @@ int main() {
     printf("Average = %.2f\n", findAverage(arr, 4));
     return 0;
 }
-Use code with caution.
+==========================================================================================
 
 4. Write a function to find and return the maximum element in an array.
 
-c
 #include <stdio.h>
-
 int getMax(int arr[], int n) {
     int max = arr[0];
     for (int i = 1; i < n; i++) {
@@ -73,13 +61,11 @@ int main() {
     printf("Max = %d\n", getMax(arr, 5));
     return 0;
 }
-Use code with caution.
+==========================================================================================
 
 5. Write a function to find and return the minimum element in an array.
 
-c
 #include <stdio.h>
-
 int getMin(int arr[], int n) {
     int min = arr[0];
     for (int i = 1; i < n; i++) {
@@ -93,13 +79,11 @@ int main() {
     printf("Min = %d\n", getMin(arr, 5));
     return 0;
 }
-Use code with caution.
+==========================================================================================
 
 6. Write a function to perform Linear Search and return the index of a target element.
 
-c
 #include <stdio.h>
-
 int linearSearch(int arr[], int n, int target) {
     for (int i = 0; i < n; i++) {
         if (arr[i] == target) return i;
@@ -113,13 +97,11 @@ int main() {
     printf("Index = %d\n", idx);
     return 0;
 }
-Use code with caution.
+==========================================================================================
 
 7. Write a function to perform Binary Search on a sorted array.
 
-c
 #include <stdio.h>
-
 int binarySearch(int arr[], int n, int target) {
     int left = 0, right = n - 1;
     while (left <= right) {
@@ -136,13 +118,11 @@ int main() {
     printf("Found at index: %d\n", binarySearch(arr, 5, 44));
     return 0;
 }
-Use code with caution.
+==========================================================================================
 
 8. Write a function to count how many prime numbers exist in an array.
 
-c
 #include <stdio.h>
-
 int isPrime(int num) {
     if (num <= 1) return 0;
     for (int i = 2; i * i <= num; i++) {
@@ -164,13 +144,11 @@ int main() {
     printf("Prime count = %d\n", countPrimes(arr, 6));
     return 0;
 }
-Use code with caution.
+==========================================================================================
 
 9. Write a function to check whether an array is sorted in ascending order.
 
-c
 #include <stdio.h>
-
 int isSorted(int arr[], int n) {
     for (int i = 0; i < n - 1; i++) {
         if (arr[i] > arr[i + 1]) return 0;
@@ -183,13 +161,11 @@ int main() {
     printf(isSorted(arr, 4) ? "Sorted\n" : "Not Sorted\n");
     return 0;
 }
-Use code with caution.
+==========================================================================================
 
 10. Write a function to check if an array is a palindrome.
 
-c
 #include <stdio.h>
-
 int isArrayPalindrome(int arr[], int n) {
     for (int i = 0; i < n / 2; i++) {
         if (arr[i] != arr[n - 1 - i]) return 0;
@@ -202,16 +178,13 @@ int main() {
     printf(isArrayPalindrome(arr, 5) ? "Palindrome\n" : "Not Palindrome\n");
     return 0;
 }
-Use code with caution.
+==========================================================================================
 
 Part 2: Modifying & Transforming Arrays via Functions (Questions 11–18)
 
-
 11. Write a function to reverse an array in-place.
 
-c
 #include <stdio.h>
-
 void reverseArray(int arr[], int n) {
     int start = 0, end = n - 1, temp;
     while (start < end) {
@@ -229,13 +202,11 @@ int main() {
     for (int i = 0; i < 5; i++) printf("%d ", arr[i]);
     return 0;
 }
-Use code with caution.
+==========================================================================================
 
 12. Write a function to sort an array using Selection Sort.
 
-c
 #include <stdio.h>
-
 void selectionSort(int arr[], int n) {
     for (int i = 0; i < n - 1; i++) {
         int minIdx = i;
@@ -254,13 +225,11 @@ int main() {
     for (int i = 0; i < 5; i++) printf("%d ", arr[i]);
     return 0;
 }
-Use code with caution.
+==========================================================================================
 
 13. Write a function to replace all negative numbers in an array with 0.
 
-c
 #include <stdio.h>
-
 void replaceNegatives(int arr[], int n) {
     for (int i = 0; i < n; i++) {
         if (arr[i] < 0) arr[i] = 0;
@@ -273,13 +242,11 @@ int main() {
     for (int i = 0; i < 5; i++) printf("%d ", arr[i]);
     return 0;
 }
-Use code with caution.
+==========================================================================================
 
 14. Write a function to left-rotate an array by 1 position.
 
-c
 #include <stdio.h>
-
 void leftRotateByOne(int arr[], int n) {
     int first = arr[0];
     for (int i = 0; i < n - 1; i++) {
@@ -294,13 +261,11 @@ int main() {
     for (int i = 0; i < 5; i++) printf("%d ", arr[i]);
     return 0;
 }
-Use code with caution.
+==========================================================================================
 
 15. Write a function to right-rotate an array by 1 position.
 
-c
 #include <stdio.h>
-
 void rightRotateByOne(int arr[], int n) {
     int last = arr[n - 1];
     for (int i = n - 1; i > 0; i--) {
@@ -315,13 +280,11 @@ int main() {
     for (int i = 0; i < 5; i++) printf("%d ", arr[i]);
     return 0;
 }
-Use code with caution.
+==========================================================================================
 
 16. Write a function to move all zeros in an array to the end while keeping non-zero order.
 
-c
 #include <stdio.h>
-
 void moveZerosToEnd(int arr[], int n) {
     int index = 0;
     for (int i = 0; i < n; i++) {
@@ -336,13 +299,11 @@ int main() {
     for (int i = 0; i < 5; i++) printf("%d ", arr[i]);
     return 0;
 }
-Use code with caution.
+==========================================================================================
 
 17. Write a function to swap corresponding elements of two equal-sized arrays.
 
-c
 #include <stdio.h>
-
 void swapArrays(int a[], int b[], int n) {
     for (int i = 0; i < n; i++) {
         int temp = a[i];
@@ -358,13 +319,11 @@ int main() {
     for (int i = 0; i < 3; i++) printf("%d ", a[i]);
     return 0;
 }
-Use code with caution.
+==========================================================================================
 
 18. Write a function to find the missing number in an array containing 1 to N.
 
-c
 #include <stdio.h>
-
 int findMissing(int arr[], int size, int n) {
     int expectedSum = n * (n + 1) / 2;
     int actualSum = 0;
@@ -377,16 +336,11 @@ int main() {
     printf("Missing number = %d\n", findMissing(arr, 4, 5));
     return 0;
 }
-Use code with caution.
-
-Part 3: Functions with 2D Arrays & Recursion (Questions 19–25)
-
+==========================================================================================
 
 19. Write a function to print a 2D matrix of size R x C.
 
-c
 #include <stdio.h>
-
 void printMatrix(int rows, int cols, int mat[rows][cols]) {
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) printf("%d ", mat[i][j]);
@@ -399,13 +353,11 @@ int main() {
     printMatrix(2, 3, mat);
     return 0;
 }
-Use code with caution.
+==========================================================================================
 
 20. Write a function to return the sum of all elements in a 2D matrix.
 
-c
 #include <stdio.h>
-
 int matrixSum(int rows, int cols, int mat[rows][cols]) {
     int sum = 0;
     for (int i = 0; i < rows; i++) {
@@ -419,13 +371,11 @@ int main() {
     printf("Total sum = %d\n", matrixSum(2, 2, mat));
     return 0;
 }
-Use code with caution.
+==========================================================================================
 
 21. Write a function to find the largest element in a 2D matrix.
 
-c
 #include <stdio.h>
-
 int maxInMatrix(int rows, int cols, int mat[rows][cols]) {
     int max = mat[0][0];
     for (int i = 0; i < rows; i++) {
@@ -441,13 +391,11 @@ int main() {
     printf("Max element = %d\n", maxInMatrix(2, 3, mat));
     return 0;
 }
-Use code with caution.
+==========================================================================================
 
 22. Write a function to check if a square matrix is an Identity Matrix.
 
-c
 #include <stdio.h>
-
 int isIdentity(int n, int mat[n][n]) {
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
@@ -463,13 +411,11 @@ int main() {
     printf(isIdentity(3, mat) ? "Identity Matrix\n" : "Not Identity\n");
     return 0;
 }
-Use code with caution.
+==========================================================================================
 
 23. Write a function to check if a square matrix is Symmetric (mat[i][j] == mat[j][i]).
 
-c
 #include <stdio.h>
-
 int isSymmetric(int n, int mat[n][n]) {
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
@@ -484,13 +430,11 @@ int main() {
     printf(isSymmetric(3, mat) ? "Symmetric\n" : "Not Symmetric\n");
     return 0;
 }
-Use code with caution.
+==========================================================================================
 
 24. Write a recursive function to calculate the sum of array elements.
 
-c
 #include <stdio.h>
-
 int recursiveArraySum(int arr[], int n) {
     if (n <= 0) return 0;
     return arr[n - 1] + recursiveArraySum(arr, n - 1);
@@ -501,13 +445,11 @@ int main() {
     printf("Recursive Sum = %d\n", recursiveArraySum(arr, 5));
     return 0;
 }
-Use code with caution.
+==========================================================================================
 
 25. Write a recursive function to find the maximum element in an array.
 
-c
 #include <stdio.h>
-
 int recursiveMax(int arr[], int n) {
     if (n == 1) return arr[0];
     int maxRest = recursiveMax(arr, n - 1);
