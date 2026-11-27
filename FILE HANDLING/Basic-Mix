@@ -1,105 +1,103 @@
 1. Create a file and write three lines of text into it.
-python
+
 with open("notes.txt", "w") as file:
     file.write("Python is easy to learn.\n")
     file.write("File handling is very useful.\n")
     file.write("Practice makes perfect.\n")
-Use code with caution.
+===========================================================================
 2. Read and display the entire content of a file safely (handling missing files).
-python
+
 try:
     with open("notes.txt", "r") as file:
         print(file.read())
 except FileNotFoundError:
     print("The file does not exist.")
-Use code with caution.
+===========================================================================
 3. Append a user-entered string to an existing file without overwriting it.
-python
+
 text = input("Enter a note to append: ")
 with open("notes.txt", "a") as file:
     file.write(text + "\n")
-Use code with caution.
+===========================================================================
 4. Count the total number of lines in a text file.
-python
+
 with open("notes.txt", "r") as file:
     lines = file.readlines()
     print("Total lines:", len(lines))
-Use code with caution.
+===========================================================================
 5. Count the total number of words in a text file.
-python
+
 with open("notes.txt", "r") as file:
     words = file.read().split()
     print("Total words:", len(words))
-Use code with caution.
+===========================================================================
 6. Count the total number of characters (excluding spaces and newlines).
-python
+
 with open("notes.txt", "r") as file:
     content = file.read().replace(" ", "").replace("\n", "")
     print("Total characters:", len(content))
-Use code with caution.
+===========================================================================
 7. Read a file line by line and print each line with its line number.
-python
+
 with open("notes.txt", "r") as file:
     for index, line in enumerate(file, start=1):
         print(f"Line {index}: {line.strip()}")
-Use code with caution.
+===========================================================================
 8. Copy the contents of one text file (source.txt) into another (destination.txt).
-python
+
 with open("notes.txt", "r") as src, open("backup.txt", "w") as dest:
     dest.write(src.read())
-Use code with caution.
+===========================================================================
 9. Write a list of fruits into a file, one item per line.
-python
+
 fruits = ["Apple", "Banana", "Mango", "Orange"]
 with open("fruits.txt", "w") as file:
     for fruit in fruits:
         file.write(fruit + "\n")
-Use code with caution.
+===========================================================================
 10. Read only the first 3 lines of a file.
-python
+
 with open("notes.txt", "r") as file:
     for _ in range(3):
         line = file.readline()
         if not line:
             break
         print(line.strip())
-Use code with caution.
-
-Part 2: Medium Level (Searching, Filtering & Modifying Text)
+===========================================================================
 
 11. Count how many lines start with a specific letter (e.g., 'P').
-python
+
 count = 0
 with open("notes.txt", "r") as file:
     for line in file:
         if line.startswith("P"):
             count += 1
 print("Lines starting with 'P':", count)
-Use code with caution.
+===========================================================================
 12. Search for a specific word in a file and print the line numbers where it appears.
-python
+
 target = "Python"
 with open("notes.txt", "r") as file:
     for line_num, line in enumerate(file, start=1):
         if target in line:
             print(f"Found '{target}' on line {line_num}")
-Use code with caution.
+===========================================================================
 13. Count the frequency of a specific word (case-insensitive) in a file.
-python
+
 target = "python"
 with open("notes.txt", "r") as file:
     words = file.read().lower().split()
     print(f"Occurrences of '{target}':", words.count(target))
-Use code with caution.
+===========================================================================
 14. Find and display the longest word in a text file.
-python
+
 with open("notes.txt", "r") as file:
     words = file.read().split()
     longest = max(words, key=len)
     print("Longest word:", longest)
-Use code with caution.
+===========================================================================
 15. Count the number of uppercase and lowercase letters in a file.
-python
+
 upper, lower = 0, 0
 with open("notes.txt", "r") as file:
     for char in file.read():
@@ -108,17 +106,17 @@ with open("notes.txt", "r") as file:
         elif char.islower():
             lower += 1
 print(f"Uppercase: {upper}, Lowercase: {lower}")
-Use code with caution.
+===========================================================================
 16. Remove all blank/empty lines from a file and save the clean text back.
-python
+
 with open("notes.txt", "r") as file:
     non_empty = [line for line in file if line.strip()]
 
 with open("notes.txt", "w") as file:
     file.writelines(non_empty)
-Use code with caution.
+===========================================================================
 17. Replace a specific word with another word throughout the entire file.
-python
+
 with open("notes.txt", "r") as file:
     content = file.read()
 
@@ -126,73 +124,66 @@ content = content.replace("easy", "fun")
 
 with open("notes.txt", "w") as file:
     file.write(content)
-Use code with caution.
+===========================================================================
 18. Read the last N lines of a file.
-python
+
 n = 2
 with open("notes.txt", "r") as file:
     lines = file.readlines()
     for line in lines[-n:]:
         print(line.strip())
-Use code with caution.
+===========================================================================
 19. Merge the contents of two files (file1.txt and file2.txt) into a third file (merged.txt).
-python
+
 with open("notes.txt", "r") as f1, open("fruits.txt", "r") as f2, open("merged.txt", "w") as out:
     out.write(f1.read() + "\n" + f2.read())
-Use code with caution.
+===========================================================================
 20. Extract all numbers/digits present in a text file and calculate their sum.
-python
+
 total = 0
 with open("data.txt", "r") as file:
     for word in file.read().split():
         if word.isdigit():
             total += int(word)
 print("Sum of numbers in file:", total)
-Use code with caution.
-
-Part 3: Medium Level (CSV, JSON, Binary & OS Operations)
+===========================================================================
 
 21. Write student records (Name, Marks) into a CSV file.
-python
-import csv
 
+import csv
 students = [["Name", "Marks"], ["Amit", 85], ["Priya", 92], ["Rahul", 78]]
 with open("students.csv", "w", newline="") as file:
     writer = csv.writer(file)
     writer.writerows(students)
-Use code with caution.
+===========================================================================
 22. Read a CSV file and print students who scored more than 80.
-python
-import csv
 
+import csv
 with open("students.csv", "r") as file:
     reader = csv.DictReader(file)
     for row in reader:
         if int(row["Marks"]) > 80:
             print(row["Name"], "-", row["Marks"])
-Use code with caution.
+===========================================================================
 23. Save a Python dictionary to a JSON file and read it back.
-python
+
 import json
-
 user_data = {"username": "coder123", "level": "intermediate", "active": True}
-
 with open("user.json", "w") as file:
     json.dump(user_data, file, indent=4)
 
 with open("user.json", "r") as file:
     loaded_data = json.load(file)
     print(loaded_data["username"])
-Use code with caution.
+===========================================================================
 24. Copy an image or binary file using binary mode (rb and wb).
-python
+
 with open("photo.jpg", "rb") as src, open("photo_copy.jpg", "wb") as dest:
     dest.write(src.read())
-Use code with caution.
+===========================================================================
 25. Check if a file exists, print its size in bytes, and rename it.
-python
-import os
 
+import os
 old_name = "backup.txt"
 new_name = "archived_notes.txt"
 
