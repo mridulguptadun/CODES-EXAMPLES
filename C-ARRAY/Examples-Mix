@@ -147,8 +147,6 @@ int main() {
 }
 ==========================================================================================
 
-Part 2: Intermediate 1D Array Problems (Questions 11–18)
-
 11. Reverse an array in-place (modifying the original array).
 
 #include <stdio.h>
