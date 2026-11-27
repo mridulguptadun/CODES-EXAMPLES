@@ -1,0 +1,457 @@
+
+1. Read and print elements of an array.
+
+c
+#include <stdio.h>
+
+int main() {
+    int arr[5] = {10, 20, 30, 40, 50};
+    printf("Array elements: ");
+    for (int i = 0; i < 5; i++) {
+        printf("%d ", arr[i]);
+    }
+    return 0;
+}
+Use code with caution.
+
+2. Print all elements of an array in reverse order.
+
+c
+#include <stdio.h>
+
+int main() {
+    int arr[5] = {10, 20, 30, 40, 50};
+    printf("Reversed order: ");
+    for (int i = 4; i >= 0; i--) {
+        printf("%d ", arr[i]);
+    }
+    return 0;
+}
+Use code with caution.
+
+3. Find the sum of all elements in an array.
+
+c
+#include <stdio.h>
+
+int main() {
+    int arr[5] = {5, 10, 15, 20, 25}, sum = 0;
+    for (int i = 0; i < 5; i++) {
+        sum += arr[i];
+    }
+    printf("Sum = %d\n", sum);
+    return 0;
+}
+Use code with caution.
+
+4. Calculate the average of all elements in an array.
+
+c
+#include <stdio.h>
+
+int main() {
+    int arr[5] = {10, 20, 30, 40, 50}, sum = 0;
+    for (int i = 0; i < 5; i++) {
+        sum += arr[i];
+    }
+    float avg = (float)sum / 5;
+    printf("Average = %.2f\n", avg);
+    return 0;
+}
+Use code with caution.
+
+5. Find the largest (maximum) element in an array.
+
+c
+#include <stdio.h>
+
+int main() {
+    int arr[5] = {12, 45, 7, 89, 23};
+    int max = arr[0];
+    for (int i = 1; i < 5; i++) {
+        if (arr[i] > max) {
+            max = arr[i];
+        }
+    }
+    printf("Largest element = %d\n", max);
+    return 0;
+}
+Use code with caution.
+
+6. Find the smallest (minimum) element in an array.
+
+c
+#include <stdio.h>
+
+int main() {
+    int arr[5] = {12, 45, 7, 89, 23};
+    int min = arr[0];
+    for (int i = 1; i < 5; i++) {
+        if (arr[i] < min) {
+            min = arr[i];
+        }
+    }
+    printf("Smallest element = %d\n", min);
+    return 0;
+}
+Use code with caution.
+
+7. Count the total number of even and odd elements in an array.
+
+c
+#include <stdio.h>
+
+int main() {
+    int arr[6] = {11, 22, 33, 44, 55, 66};
+    int even = 0, odd = 0;
+    for (int i = 0; i < 6; i++) {
+        if (arr[i] % 2 == 0) even++;
+        else odd++;
+    }
+    printf("Even: %d, Odd: %d\n", even, odd);
+    return 0;
+}
+Use code with caution.
+
+8. Count the total number of positive, negative, and zero elements in an array.
+
+c
+#include <stdio.h>
+
+int main() {
+    int arr[6] = {-5, 0, 12, -3, 8, 0};
+    int pos = 0, neg = 0, zero = 0;
+    for (int i = 0; i < 6; i++) {
+        if (arr[i] > 0) pos++;
+        else if (arr[i] < 0) neg++;
+        else zero++;
+    }
+    printf("Positive: %d, Negative: %d, Zero: %d\n", pos, neg, zero);
+    return 0;
+}
+Use code with caution.
+
+9. Copy all elements from one array to another array.
+
+c
+#include <stdio.h>
+
+int main() {
+    int arr1[5] = {1, 2, 3, 4, 5}, arr2[5];
+    for (int i = 0; i < 5; i++) {
+        arr2[i] = arr1[i];
+    }
+    printf("Copied array: ");
+    for (int i = 0; i < 5; i++) {
+        printf("%d ", arr2[i]);
+    }
+    return 0;
+}
+Use code with caution.
+
+10. Search for a given element in an array (Linear Search).
+
+c
+#include <stdio.h>
+
+int main() {
+    int arr[5] = {14, 28, 35, 42, 56}, target = 35, found = -1;
+    for (int i = 0; i < 5; i++) {
+        if (arr[i] == target) {
+            found = i;
+            break;
+        }
+    }
+    if (found != -1) printf("Element found at index %d\n", found);
+    else printf("Element not found\n");
+    return 0;
+}
+Use code with caution.
+
+Part 2: Intermediate 1D Array Problems (Questions 11–18)
+
+
+11. Reverse an array in-place (modifying the original array).
+
+c
+#include <stdio.h>
+
+int main() {
+    int arr[5] = {10, 20, 30, 40, 50};
+    int start = 0, end = 4, temp;
+    while (start < end) {
+        temp = arr[start];
+        arr[start] = arr[end];
+        arr[end] = temp;
+        start++;
+        end--;
+    }
+    printf("Reversed array: ");
+    for (int i = 0; i < 5; i++) printf("%d ", arr[i]);
+    return 0;
+}
+Use code with caution.
+
+12. Find the second largest element in an array.
+
+c
+#include <stdio.h>
+#include <limits.h>
+
+int main() {
+    int arr[5] = {12, 35, 1, 10, 34};
+    int first = INT_MIN, second = INT_MIN;
+    for (int i = 0; i < 5; i++) {
+        if (arr[i] > first) {
+            second = first;
+            first = arr[i];
+        } else if (arr[i] > second && arr[i] != first) {
+            second = arr[i];
+        }
+    }
+    printf("Second largest = %d\n", second);
+    return 0;
+}
+Use code with caution.
+
+13. Sort an array in ascending order using Bubble Sort.
+
+c
+#include <stdio.h>
+
+int main() {
+    int arr[5] = {64, 34, 25, 12, 22}, temp;
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4 - i; j++) {
+            if (arr[j] > arr[j + 1]) {
+                temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+    printf("Sorted array: ");
+    for (int i = 0; i < 5; i++) printf("%d ", arr[i]);
+    return 0;
+}
+Use code with caution.
+
+14. Insert an element at a specific position in an array.
+
+c
+#include <stdio.h>
+
+int main() {
+    int arr[10] = {10, 20, 30, 40, 50};
+    int n = 5, pos = 2, val = 99; // Insert 99 at index 2
+    for (int i = n; i > pos; i--) {
+        arr[i] = arr[i - 1];
+    }
+    arr[pos] = val;
+    n++;
+    printf("Array after insertion: ");
+    for (int i = 0; i < n; i++) printf("%d ", arr[i]);
+    return 0;
+}
+Use code with caution.
+
+15. Delete an element from a specific position in an array.
+
+c
+#include <stdio.h>
+
+int main() {
+    int arr[5] = {10, 20, 30, 40, 50};
+    int n = 5, pos = 2; // Delete element at index 2 (30)
+    for (int i = pos; i < n - 1; i++) {
+        arr[i] = arr[i + 1];
+    }
+    n--;
+    printf("Array after deletion: ");
+    for (int i = 0; i < n; i++) printf("%d ", arr[i]);
+    return 0;
+}
+Use code with caution.
+
+16. Merge two arrays into a third array.
+
+c
+#include <stdio.h>
+
+int main() {
+    int arr1[3] = {1, 2, 3}, arr2[3] = {4, 5, 6}, merged[6];
+    for (int i = 0; i < 3; i++) merged[i] = arr1[i];
+    for (int i = 0; i < 3; i++) merged[3 + i] = arr2[i];
+
+    printf("Merged array: ");
+    for (int i = 0; i < 6; i++) printf("%d ", merged[i]);
+    return 0;
+}
+Use code with caution.
+
+17. Count the frequency of a specific element in an array.
+
+c
+#include <stdio.h>
+
+int main() {
+    int arr[7] = {1, 2, 3, 2, 4, 2, 5}, target = 2, count = 0;
+    for (int i = 0; i < 7; i++) {
+        if (arr[i] == target) count++;
+    }
+    printf("Frequency of %d is %d\n", target, count);
+    return 0;
+}
+Use code with caution.
+
+18. Print all unique (non-duplicate) elements in an array.
+
+c
+#include <stdio.h>
+
+int main() {
+    int arr[6] = {4, 5, 4, 6, 7, 5};
+    printf("Unique elements: ");
+    for (int i = 0; i < 6; i++) {
+        int count = 0;
+        for (int j = 0; j < 6; j++) {
+            if (arr[i] == arr[j]) count++;
+        }
+        if (count == 1) printf("%d ", arr[i]);
+    }
+    return 0;
+}
+Use code with caution.
+
+Part 3: 2D Array & Matrix Operations (Questions 19–25)
+
+
+19. Read and print a 2x2 matrix.
+
+c
+#include <stdio.h>
+
+int main() {
+    int mat[2][2] = {{1, 2}, {3, 4}};
+    printf("Matrix:\n");
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 2; j++) {
+            printf("%d ", mat[i][j]);
+        }
+        printf("\n");
+    }
+    return 0;
+}
+Use code with caution.
+
+20. Add two 2x2 matrices.
+
+c
+#include <stdio.h>
+
+int main() {
+    int a[2][2] = {{1, 2}, {3, 4}}, b[2][2] = {{5, 6}, {7, 8}}, sum[2][2];
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 2; j++) {
+            sum[i][j] = a[i][j] + b[i][j];
+            printf("%d ", sum[i][j]);
+        }
+        printf("\n");
+    }
+    return 0;
+}
+Use code with caution.
+
+21. Subtract two 2x2 matrices.
+
+c
+#include <stdio.h>
+
+int main() {
+    int a[2][2] = {{10, 20}, {30, 40}}, b[2][2] = {{1, 2}, {3, 4}}, diff[2][2];
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 2; j++) {
+            diff[i][j] = a[i][j] - b[i][j];
+            printf("%d ", diff[i][j]);
+        }
+        printf("\n");
+    }
+    return 0;
+}
+Use code with caution.
+
+22. Multiply two 2x2 matrices.
+
+c
+#include <stdio.h>
+
+int main() {
+    int a[2][2] = {{1, 2}, {3, 4}}, b[2][2] = {{2, 0}, {1, 2}}, prod[2][2] = {0};
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 2; j++) {
+            for (int k = 0; k < 2; k++) {
+                prod[i][j] += a[i][k] * b[k][j];
+            }
+            printf("%d ", prod[i][j]);
+        }
+        printf("\n");
+    }
+    return 0;
+}
+Use code with caution.
+
+23. Find the transpose of a 2x3 matrix.
+
+c
+#include <stdio.h>
+
+int main() {
+    int mat[2][3] = {{1, 2, 3}, {4, 5, 6}}, trans[3][2];
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 3; j++) {
+            trans[j][i] = mat[i][j];
+        }
+    }
+    printf("Transpose:\n");
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 2; j++) {
+            printf("%d ", trans[i][j]);
+        }
+        printf("\n");
+    }
+    return 0;
+}
+Use code with caution.
+
+24. Find the sum of the main diagonal elements of a 3x3 matrix.
+
+c
+#include <stdio.h>
+
+int main() {
+    int mat[3][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}, sum = 0;
+    for (int i = 0; i < 3; i++) {
+        sum += mat[i][i];
+    }
+    printf("Main diagonal sum = %d\n", sum);
+    return 0;
+}
+Use code with caution.
+
+25. Calculate the sum of each row and each column of a 2x2 matrix.
+
+c
+#include <stdio.h>
+
+int main() {
+    int mat[2][2] = {{10, 20}, {30, 40}};
+    for (int i = 0; i < 2; i++) {
+        int rowSum = 0, colSum = 0;
+        for (int j = 0; j < 2; j++) {
+            rowSum += mat[i][j];
+            colSum += mat[j][i];
+        }
+        printf("Row %d sum = %d, Column %d sum = %d\n", i + 1, rowSum, i + 1, colSum);
+    }
+    return 0;
+}
