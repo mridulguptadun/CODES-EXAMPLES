@@ -1,0 +1,228 @@
+1. Write a function to read and display a file's content, handling the error if the file does not exist.
+
+def read_file_safely(filename):
+    try:
+        with open(filename, "r") as f:
+            print(f.read())
+    except FileNotFoundError:
+        print(f"Error: '{filename}' was not found!")
+
+read_file_safely("data.txt")
+===================================================================================================
+2. Write a function to append user text to a file while handling potential IOError issues.
+
+def append_note(filename, text):
+    try:
+        with open(filename, "a") as f:
+            f.write(text + "\n")
+        print("Note saved successfully.")
+    except IOError as e:
+        print("An error occurred while writing to the file:", e)
+
+append_note("notes.txt", "Python functions are awesome.")
+===================================================================================================
+3. Write a function that counts and returns the total number of words in a file, returning 0 if the file is missing.
+
+def count_words(filename):
+    try:
+        with open(filename, "r") as f:
+            return len(f.read().split())
+    except FileNotFoundError:
+        print("File not found.")
+        return 0
+
+print("Total words:", count_words("notes.txt"))
+===================================================================================================
+4. Write a function to create a new file only if it does not already exist using 'x' mode and handling FileExistsError.
+
+def create_new_file(filename, content):
+    try:
+        with open(filename, "x") as f:
+            f.write(content)
+        print("New file created successfully!")
+    except FileExistsError:
+        print(f"Error: '{filename}' already exists.")
+
+create_new_file("notes.txt", "Hello World")
+===================================================================================================
+5. Write a function to copy data from a source file to a destination file, handling missing source files.
+
+def copy_file(src, dest):
+    try:
+        with open(src, "r") as f1, open(dest, "w") as f2:
+            f2.write(f1.read())
+        print("File copied successfully.")
+    except FileNotFoundError:
+        print(f"Source file '{src}' not found.")
+
+copy_file("notes.txt", "copy_notes.txt")
+===================================================================================================
+
+6. Write a function to read numbers from a file and return their sum, skipping any non-numeric lines (ValueError).
+
+def sum_numbers_in_file(filename):
+    total = 0
+    try:
+        with open(filename, "r") as f:
+            for line in f:
+                try:
+                    total += float(line.strip())
+                except ValueError:
+                    print(f"Skipping invalid number: {line.strip()}")
+        return total
+    except FileNotFoundError:
+        return 0
+
+print("Total Sum:", sum_numbers_in_file("numbers.txt"))
+===================================================================================================
+7. Write a function to read two numbers from a file and divide them, handling ZeroDivisionError and ValueError.
+
+def divide_from_file(filename):
+    try:
+        with open(filename, "r") as f:
+            a = int(f.readline().strip())
+            b = int(f.readline().strip())
+            print("Result:", a / b)
+    except FileNotFoundError:
+        print("File not found.")
+    except ValueError:
+        print("File does not contain valid integers.")
+    except ZeroDivisionError:
+        print("Cannot divide by zero!")
+
+divide_from_file("math.txt")
+===================================================================================================
+8. Write a function to calculate the average of marks stored in a file, handling an empty file (ZeroDivisionError).
+
+def average_marks(filename):
+    try:
+        with open(filename, "r") as f:
+            marks = [int(line.strip()) for line in f if line.strip()]
+            avg = sum(marks) / len(marks)
+            print("Average Marks:", avg)
+    except FileNotFoundError:
+        print("Marks file is missing.")
+    except ZeroDivisionError:
+        print("File is empty, cannot calculate average.")
+    except ValueError:
+        print("Invalid data format inside the file.")
+
+average_marks("marks.txt")
+===================================================================================================
+9. Write a function to print a specific line number from a file, handling out-of-range line numbers (IndexError).
+
+def get_specific_line(filename, line_no):
+    try:
+        with open(filename, "r") as f:
+            lines = f.readlines()
+            print(f"Line {line_no}:", lines[line_no - 1].strip())
+    except FileNotFoundError:
+        print("File not found.")
+    except IndexError:
+        print(f"Error: Line {line_no} does not exist in the file.")
+
+get_specific_line("notes.txt", 10)
+===================================================================================================
+10. Write a function to search for a word in a file and raise a custom ValueError if the file is completely empty.
+
+def search_word(filename, word):
+    try:
+        with open(filename, "r") as f:
+            content = f.read()
+            if not content.strip():
+                raise ValueError("The file is completely empty!")
+            if word in content:
+                print(f"'{word}' found!")
+            else:
+                print(f"'{word}' not found.")
+    except (FileNotFoundError, ValueError) as e:
+        print("Error:", e)
+
+search_word("notes.txt", "Python")
+===================================================================================================
+
+11. Write a function to load a JSON configuration file and handle corrupted JSON data (JSONDecodeError).
+
+import json
+
+def load_config(filename):
+    try:
+        with open(filename, "r") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        print("Config file not found, using default settings.")
+        return {}
+    except json.JSONDecodeError:
+        print("Error: JSON file is corrupted!")
+        return {}
+
+config = load_config("config.json")
+===================================================================================================
+12. Write a function to save a student's name and marks to a CSV file, raising a ValueError if marks are not between 0 and 100.
+
+import csv
+
+def add_student(filename, name, marks):
+    try:
+        if marks < 0 or marks > 100:
+            raise ValueError("Marks must be between 0 and 100.")
+        with open(filename, "a", newline="") as f:
+            writer = csv.writer(f)
+            writer.writerow([name, marks])
+        print("Student record added!")
+    except ValueError as e:
+        print("Validation Error:", e)
+    except IOError:
+        print("Failed to save the record.")
+
+add_student("students.csv", "Rohan", 88)
+===================================================================================================
+13. Write a function to replace a word in a file and use a finally block to confirm the operation finished.
+
+def replace_word_in_file(filename, old_word, new_word):
+    try:
+        with open(filename, "r") as f:
+            text = f.read()
+        text = text.replace(old_word, new_word)
+        with open(filename, "w") as f:
+            f.write(text)
+        print("Word replaced successfully.")
+    except FileNotFoundError:
+        print("File not found.")
+    finally:
+        print("File operation process completed.")
+
+replace_word_in_file("notes.txt", "awesome", "powerful")
+===================================================================================================
+14. Write a function to delete a file safely, handling both FileNotFoundError and PermissionError.
+
+import os
+
+def delete_file_safely(filename):
+    try:
+        os.remove(filename)
+        print(f"'{filename}' has been deleted.")
+    except FileNotFoundError:
+        print("File does not exist.")
+    except PermissionError:
+        print("Permission denied to delete this file.")
+
+delete_file_safely("temp.txt")
+===================================================================================================
+15. Write an error-logging function that records any exception message with a timestamp into error_log.txt when another function fails.
+
+from datetime import datetime
+
+def log_error(error_msg):
+    with open("error_log.txt", "a") as log:
+        time_now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        log.write(f"[{time_now}] ERROR: {error_msg}\n")
+
+def risky_division(a, b):
+    try:
+        return a / b
+    except Exception as e:
+        log_error(e)
+        print("Something went wrong! Error saved to error_log.txt.")
+
+risky_division(10, 0)
