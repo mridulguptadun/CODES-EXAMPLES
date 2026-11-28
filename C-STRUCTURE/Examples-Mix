@@ -1,7 +1,5 @@
-
 1. Pass a Circle structure to a function and return its area.
 
-c
 #include <stdio.h>
 
 struct Circle {
@@ -17,11 +15,10 @@ int main() {
     printf("Area = %.2f\n", calculateArea(c1));
     return 0;
 }
-Use code with caution.
+================================================================================================
 
 2. Write a function that takes a Student structure and prints their grade based on marks.
 
-c
 #include <stdio.h>
 
 struct Student {
@@ -39,11 +36,10 @@ int main() {
     printGrade(s1);
     return 0;
 }
-Use code with caution.
+================================================================================================
 
 3. Write a function that returns a Rectangle scaled by a given factor.
 
-c
 #include <stdio.h>
 
 struct Rectangle {
@@ -63,11 +59,10 @@ int main() {
     printf("New dimensions: %.1f x %.1f\n", rect.length, rect.width);
     return 0;
 }
-Use code with caution.
+================================================================================================
 
 4. Write a function to check if two Date structures represent the exact same date.
 
-c
 #include <stdio.h>
 
 struct Date {
@@ -83,11 +78,10 @@ int main() {
     printf(areDatesEqual(d1, d2) ? "Same Date\n" : "Different Dates\n");
     return 0;
 }
-Use code with caution.
+================================================================================================
 
 5. Write a function to compare two Date structures and return which one is earlier.
 
-c
 #include <stdio.h>
 
 struct Date {
@@ -106,11 +100,10 @@ int main() {
     printf("Earlier Date: %02d/%02d/%d\n", early.day, early.month, early.year);
     return 0;
 }
-Use code with caution.
+================================================================================================
 
 6. Write a function to multiply two Complex numbers and return the resulting structure.
 
-c
 #include <stdio.h>
 
 struct Complex {
@@ -130,11 +123,10 @@ int main() {
     printf("Product = %d + %di\n", prod.real, prod.imag);
     return 0;
 }
-Use code with caution.
+================================================================================================
 
 7. Write a function that takes a BankAccount structure, deposits an amount, and returns the updated account.
 
-c
 #include <stdio.h>
 
 struct BankAccount {
@@ -153,11 +145,10 @@ int main() {
     printf("Account %d Balance: %.2f\n", myAcc.accNo, myAcc.balance);
     return 0;
 }
-Use code with caution.
+================================================================================================
 
 8. Write a function to withdraw money from a BankAccount only if sufficient balance exists.
 
-c
 #include <stdio.h>
 
 struct BankAccount {
@@ -181,11 +172,10 @@ int main() {
     printf("Remaining Balance: %.2f\n", myAcc.balance);
     return 0;
 }
-Use code with caution.
+================================================================================================
 
 9. Write a function that takes a Time structure (in seconds) and returns a normalized Time (hours, minutes, seconds).
 
-c
 #include <stdio.h>
 
 struct Time {
@@ -205,11 +195,10 @@ int main() {
     printf("Time = %02d:%02d:%02d\n", t.hrs, t.mins, t.secs);
     return 0;
 }
-Use code with caution.
+================================================================================================
 
 10. Write a function to find the midpoint between two 2D Point structures.
 
-c
 #include <stdio.h>
 
 struct Point {
@@ -229,14 +218,10 @@ int main() {
     printf("Midpoint = (%.1f, %.1f)\n", m.x, m.y);
     return 0;
 }
-Use code with caution.
-
-Part 2: Functions with Arrays of Structures (Questions 11–20)
-
+================================================================================================
 
 11. Write a function to calculate and return the average salary of all employees.
 
-c
 #include <stdio.h>
 
 struct Employee {
@@ -255,11 +240,10 @@ int main() {
     printf("Average Salary = %.2f\n", averageSalary(list, 3));
     return 0;
 }
-Use code with caution.
+================================================================================================
 
 12. Write a function to count how many students passed (marks >= 40).
 
-c
 #include <stdio.h>
 
 struct Student {
@@ -280,11 +264,10 @@ int main() {
     printf("Passed students: %d\n", countPassed(cls, 4));
     return 0;
 }
-Use code with caution.
+================================================================================================
 
 13. Write a function that returns the Employee structure with the highest salary.
 
-c
 #include <stdio.h>
 
 struct Employee {
@@ -306,11 +289,10 @@ int main() {
     printf("Highest Paid: %s (%.2f)\n", top.name, top.salary);
     return 0;
 }
-Use code with caution.
+================================================================================================
 
 14. Write a function to apply a 10% salary raise to all employees earning less than 50,000.
 
-c
 #include <stdio.h>
 
 struct Employee {
@@ -330,11 +312,10 @@ int main() {
     for (int i = 0; i < 2; i++) printf("%s: %.2f\n", staff[i].name, staff[i].salary);
     return 0;
 }
-Use code with caution.
+================================================================================================
 
 15. Write a function to search for a book by title and return its index (-1 if not found).
 
-c
 #include <stdio.h>
 #include <string.h>
 
@@ -356,11 +337,10 @@ int main() {
     printf(idx != -1 ? "Found at index %d\n" : "Not found\n", idx);
     return 0;
 }
-Use code with caution.
+================================================================================================
 
 16. Write a function to sort an array of Product structures by price in ascending order.
 
-c
 #include <stdio.h>
 
 struct Product {
@@ -386,11 +366,10 @@ int main() {
     for (int i = 0; i < 3; i++) printf("%s: %.2f\n", items[i].name, items[i].price);
     return 0;
 }
-Use code with caution.
+================================================================================================
 
 17. Write a function to print all products that are out of stock (quantity == 0).
 
-c
 #include <stdio.h>
 
 struct Item {
@@ -411,11 +390,10 @@ int main() {
     printOutOfStock(store, 3);
     return 0;
 }
-Use code with caution.
+================================================================================================
 
 18. Write a function to update a student's marks given their roll number.
 
-c
 #include <stdio.h>
 
 struct Student {
@@ -438,11 +416,10 @@ int main() {
     printf("Roll 101 new marks: %.1f\n", cls[0].marks);
     return 0;
 }
-Use code with caution.
+================================================================================================
 
 19. Write a function to filter and print cars manufactured after a given year.
 
-c
 #include <stdio.h>
 
 struct Car {
@@ -461,11 +438,10 @@ int main() {
     printNewCars(garage, 3, 2020);
     return 0;
 }
-Use code with caution.
+================================================================================================
 
 20. Write a function to generate a shopping bill with tax from an array of CartItem structures.
 
-c
 #include <stdio.h>
 
 struct CartItem {
@@ -485,14 +461,10 @@ int main() {
     printf("Final Bill (with 18%% tax): %.2f\n", calculateFinalBill(cart, 2, 18.0));
     return 0;
 }
-Use code with caution.
-
-Part 3: Nested Structures & Complex Logic with Functions (Questions 21–25)
-
+================================================================================================
 
 21. Write a function to check if a Point lies inside a Rectangle (nested structure).
 
-c
 #include <stdio.h>
 
 struct Point {
@@ -515,11 +487,10 @@ int main() {
     printf(isPointInside(box, pt) ? "Inside\n" : "Outside\n");
     return 0;
 }
-Use code with caution.
+================================================================================================
 
 22. Write a function to find the total runs scored by a cricket team using a Player array.
 
-c
 #include <stdio.h>
 
 struct Player {
@@ -539,11 +510,10 @@ int main() {
     printf("Total Team Runs: %d\n", totalTeamRuns(squad, 3));
     return 0;
 }
-Use code with caution.
+================================================================================================
 
 23. Write a function to find the player with the highest strike rate (runs / balls) * 100.
 
-c
 #include <stdio.h>
 
 struct Player {
@@ -570,11 +540,10 @@ int main() {
     bestStrikeRate(squad, 3);
     return 0;
 }
-Use code with caution.
+================================================================================================
 
 24. Write a function to print all employees living in a specific city using a nested Address structure.
 
-c
 #include <stdio.h>
 #include <string.h>
 
@@ -605,11 +574,10 @@ int main() {
     filterByCity(list, 3, "Dehradun");
     return 0;
 }
-Use code with caution.
+================================================================================================
 
 25. Write a function to reduce a Fraction (numerator and denominator) to its simplest form.
 
-c
 #include <stdio.h>
 
 struct Fraction {
