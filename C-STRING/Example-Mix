@@ -1,0 +1,412 @@
+
+1. Write a function to return the length of a string (without <string.h>).
+
+c
+#include <stdio.h>
+
+int getLength(char str[]) {
+    int count = 0;
+    while (str[count] != '\0') count++;
+    return count;
+}
+
+int main() {
+    char word[] = "Dehradun";
+    printf("Length = %d\n", getLength(word));
+    return 0;
+}
+Use code with caution.
+
+2. Write a function to count how many vowels are in a string.
+
+c
+#include <stdio.h>
+
+int countVowels(char str[]) {
+    int count = 0;
+    for (int i = 0; str[i] != '\0'; i++) {
+        char c = str[i];
+        if (c=='a'||c=='e'||c=='i'||c=='o'||c=='u'||
+            c=='A'||c=='E'||c=='I'||c=='O'||c=='U') {
+            count++;
+        }
+    }
+    return count;
+}
+
+int main() {
+    char text[] = "Education";
+    printf("Vowels = %d\n", countVowels(text));
+    return 0;
+}
+Use code with caution.
+
+3. Write a function to count uppercase letters in a string.
+
+c
+#include <stdio.h>
+
+int countUppercase(char str[]) {
+    int count = 0;
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] >= 'A' && str[i] <= 'Z') count++;
+    }
+    return count;
+}
+
+int main() {
+    char msg[] = "Hello World From C";
+    printf("Uppercase count = %d\n", countUppercase(msg));
+    return 0;
+}
+Use code with caution.
+
+4. Write a function to count digits (0–9) in a string.
+
+c
+#include <stdio.h>
+
+int countDigits(char str[]) {
+    int count = 0;
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] >= '0' && str[i] <= '9') count++;
+    }
+    return count;
+}
+
+int main() {
+    char code[] = "User2026ID99";
+    printf("Digits count = %d\n", countDigits(code));
+    return 0;
+}
+Use code with caution.
+
+5. Write a function to check if a specific character exists in a string.
+
+c
+#include <stdio.h>
+
+int containsChar(char str[], char target) {
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] == target) return 1;
+    }
+    return 0;
+}
+
+int main() {
+    char word[] = "computer";
+    printf(containsChar(word, 'p') ? "Found!\n" : "Not Found!\n");
+    return 0;
+}
+Use code with caution.
+
+6. Write a function to count how many times a specific character appears in a string.
+
+c
+#include <stdio.h>
+
+int charFrequency(char str[], char target) {
+    int count = 0;
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] == target) count++;
+    }
+    return count;
+}
+
+int main() {
+    char word[] = "mississippi";
+    printf("Count of 's' = %d\n", charFrequency(word, 's'));
+    return 0;
+}
+Use code with caution.
+
+7. Write a function to check if a string is a palindrome.
+
+c
+#include <stdio.h>
+#include <string.h>
+
+int isPalindrome(char str[]) {
+    int left = 0, right = strlen(str) - 1;
+    while (left < right) {
+        if (str[left] != str[right]) return 0;
+        left++;
+        right--;
+    }
+    return 1;
+}
+
+int main() {
+    char word[] = "level";
+    printf(isPalindrome(word) ? "Palindrome\n" : "Not Palindrome\n");
+    return 0;
+}
+Use code with caution.
+
+8. Write a function to check if two strings have the exact same length.
+
+c
+#include <stdio.h>
+#include <string.h>
+
+int isSameLength(char s1[], char s2[]) {
+    return strlen(s1) == strlen(s2);
+}
+
+int main() {
+    printf(isSameLength("code", "java") ? "Same Length\n" : "Different Length\n");
+    return 0;
+}
+Use code with caution.
+
+9. Write a function to check if a password is strong (at least 8 characters and contains a digit).
+
+c
+#include <stdio.h>
+#include <string.h>
+
+int isStrongPassword(char pass[]) {
+    if (strlen(pass) < 8) return 0;
+    for (int i = 0; pass[i] != '\0'; i++) {
+        if (pass[i] >= '0' && pass[i] <= '9') return 1;
+    }
+    return 0;
+}
+
+int main() {
+    char pass[] = "secret123";
+    printf(isStrongPassword(pass) ? "Strong Password\n" : "Weak Password\n");
+    return 0;
+}
+Use code with caution.
+
+10. Write a function to find the index of the last occurrence of a character in a string.
+
+c
+#include <stdio.h>
+
+int lastIndexOf(char str[], char target) {
+    int lastIdx = -1;
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] == target) lastIdx = i;
+    }
+    return lastIdx;
+}
+
+int main() {
+    char text[] = "banana";
+    printf("Last index of 'a' = %d\n", lastIndexOf(text, 'a'));
+    return 0;
+}
+Use code with caution.
+
+Part 2: Modifying & Building Strings via Functions (Questions 11–20)
+
+
+11. Write a function to convert a string to all lowercase letters.
+
+c
+#include <stdio.h>
+
+void toLowerStr(char str[]) {
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] >= 'A' && str[i] <= 'Z') {
+            str[i] = str[i] + 32;
+        }
+    }
+}
+
+int main() {
+    char text[] = "HELLO C";
+    toLowerStr(text);
+    printf("Lowercase: %s\n", text);
+    return 0;
+}
+Use code with caution.
+
+12. Write a function to replace all spaces in a string with underscores (_).
+
+c
+#include <stdio.h>
+
+void replaceSpaces(char str[]) {
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] == ' ') str[i] = '_';
+    }
+}
+
+int main() {
+    char filename[] = "my c program file";
+    replaceSpaces(filename);
+    printf("Updated: %s\n", filename);
+    return 0;
+}
+Use code with caution.
+
+13. Write a function to mask all digits in a string with '#'.
+
+c
+#include <stdio.h>
+
+void maskDigits(char str[]) {
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] >= '0' && str[i] <= '9') str[i] = '#';
+    }
+}
+
+int main() {
+    char card[] = "Card 4532 8890";
+    maskDigits(card);
+    printf("Masked: %s\n", card);
+    return 0;
+}
+Use code with caution.
+
+14. Write a function to copy a string into another array.
+
+c
+#include <stdio.h>
+
+void copyString(char dest[], char src[]) {
+    int i = 0;
+    while (src[i] != '\0') {
+        dest[i] = src[i];
+        i++;
+    }
+    dest[i] = '\0';
+}
+
+int main() {
+    char a[] = "Learn C", b[50];
+    copyString(b, a);
+    printf("Copied: %s\n", b);
+    return 0;
+}
+Use code with caution.
+
+15. Write a function to join (concatenate) two strings into a destination array.
+
+c
+#include <stdio.h>
+
+void joinStrings(char s1[], char s2[]) {
+    int i = 0, j = 0;
+    while (s1[i] != '\0') i++;
+    while (s2[j] != '\0') {
+        s1[i++] = s2[j++];
+    }
+    s1[i] = '\0';
+}
+
+int main() {
+    char first[50] = "Hello ", second[] = "World!";
+    joinStrings(first, second);
+    printf("Joined: %s\n", first);
+    return 0;
+}
+Use code with caution.
+
+16. Write a function to remove all vowels from a string.
+
+c
+#include <stdio.h>
+
+void removeVowels(char str[]) {
+    int j = 0;
+    for (int i = 0; str[i] != '\0'; i++) {
+        char c = str[i];
+        if (c!='a'&&c!='e'&&c!='i'&&c!='o'&&c!='u'&&
+            c!='A'&&c!='E'&&c!='I'&&c!='O'&&c!='U') {
+            str[j++] = str[i];
+        }
+    }
+    str[j] = '\0';
+}
+
+int main() {
+    char text[] = "programming";
+    removeVowels(text);
+    printf("Without vowels: %s\n", text);
+    return 0;
+}
+Use code with caution.
+
+17. Write a function to swap two strings using a temporary buffer.
+
+c
+#include <stdio.h>
+#include <string.h>
+
+void swapStrings(char s1[], char s2[]) {
+    char temp[100];
+    strcpy(temp, s1);
+    strcpy(s1, s2);
+    strcpy(s2, temp);
+}
+
+int main() {
+    char a[50] = "Apple", b[50] = "Banana";
+    swapStrings(a, b);
+    printf("a = %s, b = %s\n", a, b);
+    return 0;
+}
+Use code with caution.
+
+18. Write a function to extract and print the initials of a full name.
+
+c
+#include <stdio.h>
+
+void printInitials(char name[]) {
+    if (name[0] != ' ') printf("%c.", name[0]);
+    for (int i = 1; name[i] != '\0'; i++) {
+        if (name[i - 1] == ' ' && name[i] != ' ') {
+            printf("%c.", name[i]);
+        }
+    }
+    printf("\n");
+}
+
+int main() {
+    char fullName[] = "Rahul Kumar Sharma";
+    printInitials(fullName);
+    return 0;
+}
+Use code with caution.
+
+19. Write a function to check if a string starts with a given prefix.
+
+c
+#include <stdio.h>
+#include <string.h>
+
+int startsWith(char str[], char prefix[]) {
+    int len = strlen(prefix);
+    for (int i = 0; i < len; i++) {
+        if (str[i] != prefix[i]) return 0;
+    }
+    return 1;
+}
+
+int main() {
+    printf(startsWith("unhappy", "un") ? "Yes, starts with 'un'\n" : "No\n");
+    return 0;
+}
+Use code with caution.
+
+20. Write a function to print a string diagonally (one character per line with spaces).
+
+c
+#include <stdio.h>
+
+void printDiagonal(char str[]) {
+    for (int i = 0; str[i] != '\0'; i++) {
+        for (int s = 0; s < i; s++) printf(" ");
+        printf("%c\n", str[i]);
+    }
+}
+
+int main() {
+    printDiagonal("CODE");
+    return 0;
+}
