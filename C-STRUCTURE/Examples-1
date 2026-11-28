@@ -1,7 +1,5 @@
-
 1. Define a Student structure and print details of one student.
 
-c
 #include <stdio.h>
 
 struct Student {
@@ -15,11 +13,10 @@ int main() {
     printf("Roll: %d, Name: %s, Marks: %.2f\n", s1.rollNo, s1.name, s1.marks);
     return 0;
 }
-Use code with caution.
+================================================================================================
 
 2. Read and display details of a Book using user input (scanf).
 
-c
 #include <stdio.h>
 
 struct Book {
@@ -35,11 +32,10 @@ int main() {
     printf("Book: %s by %s ($%.2f)\n", b.title, b.author, b.price);
     return 0;
 }
-Use code with caution.
+================================================================================================
 
 3. Add two distances given in feet and inches using a structure.
 
-c
 #include <stdio.h>
 
 struct Distance {
@@ -59,11 +55,10 @@ int main() {
     printf("Total Distance = %d feet %.1f inches\n", sum.feet, sum.inches);
     return 0;
 }
-Use code with caution.
+================================================================================================
 
 4. Add two complex numbers (real and imaginary parts) using a structure.
 
-c
 #include <stdio.h>
 
 struct Complex {
@@ -78,11 +73,10 @@ int main() {
     printf("Sum = %.1f + %.1fi\n", res.real, res.imag);
     return 0;
 }
-Use code with caution.
+================================================================================================
 
 5. Calculate the difference between two time periods (hours, minutes, seconds).
 
-c
 #include <stdio.h>
 
 struct Time {
@@ -106,11 +100,10 @@ int main() {
     printf("Difference = %02d:%02d:%02d\n", diff.hrs, diff.mins, diff.secs);
     return 0;
 }
-Use code with caution.
+================================================================================================
 
 6. Calculate the area and perimeter of a rectangle using a structure.
 
-c
 #include <stdio.h>
 
 struct Rectangle {
@@ -124,11 +117,10 @@ int main() {
     printf("Perimeter = %.2f\n", 2 * (r.length + r.width));
     return 0;
 }
-Use code with caution.
+================================================================================================
 
 7. Use typedef to create a Point structure and find the distance between two 2D points.
 
-c
 #include <stdio.h>
 #include <math.h>
 
@@ -143,14 +135,10 @@ int main() {
     printf("Distance = %.2lf\n", dist);
     return 0;
 }
-Use code with caution.
-
-Part 2: Array of Structures (Questions 8–13)
-
+================================================================================================
 
 8. Store and display records of 3 employees using an array of structures.
 
-c
 #include <stdio.h>
 
 struct Employee {
@@ -170,11 +158,10 @@ int main() {
     }
     return 0;
 }
-Use code with caution.
+================================================================================================
 
 9. Find the student with the highest marks from an array of structures.
 
-c
 #include <stdio.h>
 
 struct Student {
@@ -191,11 +178,10 @@ int main() {
     printf("Topper: %s with %.2f marks\n", s[topIdx].name, s[topIdx].marks);
     return 0;
 }
-Use code with caution.
+================================================================================================
 
 10. Calculate total and average marks of 3 subjects for each student.
 
-c
 #include <stdio.h>
 
 struct Student {
@@ -214,11 +200,10 @@ int main() {
     }
     return 0;
 }
-Use code with caution.
+================================================================================================
 
 11. Search for an employee by id in an array of structures.
 
-c
 #include <stdio.h>
 
 struct Employee {
@@ -239,11 +224,10 @@ int main() {
     if (!found) printf("Employee not found.\n");
     return 0;
 }
-Use code with caution.
+================================================================================================
 
 12. Sort an array of students in descending order based on marks.
 
-c
 #include <stdio.h>
 
 struct Student {
@@ -265,11 +249,10 @@ int main() {
     for (int i = 0; i < 3; i++) printf("%s: %.1f\n", s[i].name, s[i].marks);
     return 0;
 }
-Use code with caution.
+================================================================================================
 
 13. Sort an array of books alphabetically by title.
 
-c
 #include <stdio.h>
 #include <string.h>
 
@@ -291,14 +274,10 @@ int main() {
     for (int i = 0; i < 3; i++) printf("%s\n", b[i].title);
     return 0;
 }
-Use code with caution.
-
-Part 3: Nested Structures, Pointers & Functions (Questions 14–20)
-
+================================================================================================
 
 14. Demonstrate a Nested Structure (Student containing a Date of birth).
 
-c
 #include <stdio.h>
 
 struct Date {
@@ -315,11 +294,10 @@ int main() {
     printf("Name: %s, DOB: %02d/%02d/%d\n", s.name, s.dob.day, s.dob.month, s.dob.year);
     return 0;
 }
-Use code with caution.
+================================================================================================
 
 15. Access and modify structure members using a pointer and the -> operator.
 
-c
 #include <stdio.h>
 
 struct Product {
@@ -335,11 +313,10 @@ int main() {
     printf("Product ID: %d, Updated Price: %.2f\n", ptr->id, ptr->price);
     return 0;
 }
-Use code with caution.
+================================================================================================
 
 16. Dynamically allocate memory for n structures using malloc().
 
-c
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -361,11 +338,10 @@ int main() {
     free(ptr);
     return 0;
 }
-Use code with caution.
+================================================================================================
 
 17. Pass a structure to a function by value to display its contents.
 
-c
 #include <stdio.h>
 
 struct Car {
@@ -382,11 +358,10 @@ int main() {
     displayCar(myCar);
     return 0;
 }
-Use code with caution.
+================================================================================================
 
 18. Pass a structure to a function by reference (pointer) to update employee salary.
 
-c
 #include <stdio.h>
 
 struct Employee {
@@ -404,11 +379,10 @@ int main() {
     printf("%s's new salary: %.2f\n", emp.name, emp.salary);
     return 0;
 }
-Use code with caution.
+================================================================================================
 
 19. Return a structure from a function (adding two complex numbers).
 
-c
 #include <stdio.h>
 
 struct Complex {
@@ -428,11 +402,10 @@ int main() {
     printf("Sum = %d + %di\n", sum.real, sum.imag);
     return 0;
 }
-Use code with caution.
+================================================================================================
 
 20. Pass an array of structures to a function to calculate total inventory value.
 
-c
 #include <stdio.h>
 
 struct Product {
