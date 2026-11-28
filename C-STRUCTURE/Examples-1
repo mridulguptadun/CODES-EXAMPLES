@@ -1,0 +1,455 @@
+
+1. Define a Student structure and print details of one student.
+
+c
+#include <stdio.h>
+
+struct Student {
+    int rollNo;
+    char name;
+    float marks;
+};
+
+int main() {
+    struct Student s1 = {101, "Aarav", 89.5};
+    printf("Roll: %d, Name: %s, Marks: %.2f\n", s1.rollNo, s1.name, s1.marks);
+    return 0;
+}
+Use code with caution.
+
+2. Read and display details of a Book using user input (scanf).
+
+c
+#include <stdio.h>
+
+struct Book {
+    char title;
+    char author;
+    float price;
+};
+
+int main() {
+    struct Book b;
+    printf("Enter title, author, and price: ");
+    scanf("%s %s %f", b.title, b.author, &b.price);
+    printf("Book: %s by %s ($%.2f)\n", b.title, b.author, b.price);
+    return 0;
+}
+Use code with caution.
+
+3. Add two distances given in feet and inches using a structure.
+
+c
+#include <stdio.h>
+
+struct Distance {
+    int feet;
+    float inches;
+};
+
+int main() {
+    struct Distance d1 = {5, 8.5}, d2 = {4, 6.5}, sum;
+    sum.feet = d1.feet + d2.feet;
+    sum.inches = d1.inches + d2.inches;
+
+    if (sum.inches >= 12.0) {
+        sum.feet += (int)(sum.inches / 12);
+        sum.inches = (int)sum.inches % 12 + (sum.inches - (int)sum.inches);
+    }
+    printf("Total Distance = %d feet %.1f inches\n", sum.feet, sum.inches);
+    return 0;
+}
+Use code with caution.
+
+4. Add two complex numbers (real and imaginary parts) using a structure.
+
+c
+#include <stdio.h>
+
+struct Complex {
+    float real;
+    float imag;
+};
+
+int main() {
+    struct Complex c1 = {3.5, 2.5}, c2 = {1.5, 4.0}, res;
+    res.real = c1.real + c2.real;
+    res.imag = c1.imag + c2.imag;
+    printf("Sum = %.1f + %.1fi\n", res.real, res.imag);
+    return 0;
+}
+Use code with caution.
+
+5. Calculate the difference between two time periods (hours, minutes, seconds).
+
+c
+#include <stdio.h>
+
+struct Time {
+    int hrs, mins, secs;
+};
+
+int main() {
+    struct Time t1 = {5, 40, 20}, t2 = {2, 50, 35}, diff;
+    if (t2.secs > t1.secs) {
+        t1.mins--;
+        t1.secs += 60;
+    }
+    diff.secs = t1.secs - t2.secs;
+    if (t2.mins > t1.mins) {
+        t1.hrs--;
+        t1.mins += 60;
+    }
+    diff.mins = t1.mins - t2.mins;
+    diff.hrs = t1.hrs - t2.hrs;
+
+    printf("Difference = %02d:%02d:%02d\n", diff.hrs, diff.mins, diff.secs);
+    return 0;
+}
+Use code with caution.
+
+6. Calculate the area and perimeter of a rectangle using a structure.
+
+c
+#include <stdio.h>
+
+struct Rectangle {
+    float length;
+    float width;
+};
+
+int main() {
+    struct Rectangle r = {10.0, 5.0};
+    printf("Area = %.2f\n", r.length * r.width);
+    printf("Perimeter = %.2f\n", 2 * (r.length + r.width));
+    return 0;
+}
+Use code with caution.
+
+7. Use typedef to create a Point structure and find the distance between two 2D points.
+
+c
+#include <stdio.h>
+#include <math.h>
+
+typedef struct {
+    double x;
+    double y;
+} Point;
+
+int main() {
+    Point p1 = {1.0, 2.0}, p2 = {4.0, 6.0};
+    double dist = sqrt(pow(p2.x - p1.x, 2) + pow(p2.y - p1.y, 2));
+    printf("Distance = %.2lf\n", dist);
+    return 0;
+}
+Use code with caution.
+
+Part 2: Array of Structures (Questions 8–13)
+
+
+8. Store and display records of 3 employees using an array of structures.
+
+c
+#include <stdio.h>
+
+struct Employee {
+    int id;
+    char name;
+    float salary;
+};
+
+int main() {
+    struct Employee emp = {
+        {1, "Rohan", 50000},
+        {2, "Sneha", 62000},
+        {3, "Kabir", 48000}
+    };
+    for (int i = 0; i < 3; i++) {
+        printf("ID: %d | Name: %s | Salary: %.2f\n", emp[i].id, emp[i].name, emp[i].salary);
+    }
+    return 0;
+}
+Use code with caution.
+
+9. Find the student with the highest marks from an array of structures.
+
+c
+#include <stdio.h>
+
+struct Student {
+    char name;
+    float marks;
+};
+
+int main() {
+    struct Student s = {{"Ananya", 82.5}, {"Vikram", 94.0}, {"Meera", 88.0}};
+    int topIdx = 0;
+    for (int i = 1; i < 3; i++) {
+        if (s[i].marks > s[topIdx].marks) topIdx = i;
+    }
+    printf("Topper: %s with %.2f marks\n", s[topIdx].name, s[topIdx].marks);
+    return 0;
+}
+Use code with caution.
+
+10. Calculate total and average marks of 3 subjects for each student.
+
+c
+#include <stdio.h>
+
+struct Student {
+    char name;
+    int marks;
+};
+
+int main() {
+    struct Student s = {
+        {"Dev", {80, 85, 90}},
+        {"Riya", {75, 95, 88}}
+    };
+    for (int i = 0; i < 2; i++) {
+        int total = s[i].marks + s[i].marks + s[i].marks;
+        printf("%s -> Total: %d, Average: %.2f\n", s[i].name, total, total / 3.0);
+    }
+    return 0;
+}
+Use code with caution.
+
+11. Search for an employee by id in an array of structures.
+
+c
+#include <stdio.h>
+
+struct Employee {
+    int id;
+    char name;
+};
+
+int main() {
+    struct Employee emp = {{101, "Amit"}, {102, "Neha"}, {103, "Raj"}};
+    int searchId = 102, found = 0;
+    for (int i = 0; i < 3; i++) {
+        if (emp[i].id == searchId) {
+            printf("Found: %s (ID: %d)\n", emp[i].name, emp[i].id);
+            found = 1;
+            break;
+        }
+    }
+    if (!found) printf("Employee not found.\n");
+    return 0;
+}
+Use code with caution.
+
+12. Sort an array of students in descending order based on marks.
+
+c
+#include <stdio.h>
+
+struct Student {
+    char name;
+    float marks;
+};
+
+int main() {
+    struct Student s = {{"A", 70}, {"B", 92}, {"C", 85}}, temp;
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 2 - i; j++) {
+            if (s[j].marks < s[j + 1].marks) {
+                temp = s[j];
+                s[j] = s[j + 1];
+                s[j + 1] = temp;
+            }
+        }
+    }
+    for (int i = 0; i < 3; i++) printf("%s: %.1f\n", s[i].name, s[i].marks);
+    return 0;
+}
+Use code with caution.
+
+13. Sort an array of books alphabetically by title.
+
+c
+#include <stdio.h>
+#include <string.h>
+
+struct Book {
+    char title;
+};
+
+int main() {
+    struct Book b = {{"Python"}, {"Algorithms"}, {"C Programming"}}, temp;
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 2 - i; j++) {
+            if (strcmp(b[j].title, b[j + 1].title) > 0) {
+                temp = b[j];
+                b[j] = b[j + 1];
+                b[j + 1] = temp;
+            }
+        }
+    }
+    for (int i = 0; i < 3; i++) printf("%s\n", b[i].title);
+    return 0;
+}
+Use code with caution.
+
+Part 3: Nested Structures, Pointers & Functions (Questions 14–20)
+
+
+14. Demonstrate a Nested Structure (Student containing a Date of birth).
+
+c
+#include <stdio.h>
+
+struct Date {
+    int day, month, year;
+};
+
+struct Student {
+    char name;
+    struct Date dob;
+};
+
+int main() {
+    struct Student s = {"Karan", {12, 5, 2004}};
+    printf("Name: %s, DOB: %02d/%02d/%d\n", s.name, s.dob.day, s.dob.month, s.dob.year);
+    return 0;
+}
+Use code with caution.
+
+15. Access and modify structure members using a pointer and the -> operator.
+
+c
+#include <stdio.h>
+
+struct Product {
+    int id;
+    float price;
+};
+
+int main() {
+    struct Product p = {10, 250.0};
+    struct Product *ptr = &p;
+
+    ptr->price = 299.99; // Updating using pointer
+    printf("Product ID: %d, Updated Price: %.2f\n", ptr->id, ptr->price);
+    return 0;
+}
+Use code with caution.
+
+16. Dynamically allocate memory for n structures using malloc().
+
+c
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Item {
+    int code;
+    float cost;
+};
+
+int main() {
+    int n = 2;
+    struct Item *ptr = (struct Item *)malloc(n * sizeof(struct Item));
+
+    ptr.code = 101; ptr.cost = 50.5;
+    ptr.code = 102; ptr.cost = 75.0;
+
+    for (int i = 0; i < n; i++) {
+        printf("Code: %d, Cost: %.2f\n", ptr[i].code, ptr[i].cost);
+    }
+    free(ptr);
+    return 0;
+}
+Use code with caution.
+
+17. Pass a structure to a function by value to display its contents.
+
+c
+#include <stdio.h>
+
+struct Car {
+    char model;
+    int year;
+};
+
+void displayCar(struct Car c) {
+    printf("Model: %s, Year: %d\n", c.model, c.year);
+}
+
+int main() {
+    struct Car myCar = {"Honda City", 2024};
+    displayCar(myCar);
+    return 0;
+}
+Use code with caution.
+
+18. Pass a structure to a function by reference (pointer) to update employee salary.
+
+c
+#include <stdio.h>
+
+struct Employee {
+    char name;
+    float salary;
+};
+
+void giveBonus(struct Employee *e, float bonus) {
+    e->salary += bonus;
+}
+
+int main() {
+    struct Employee emp = {"Suresh", 40000.0};
+    giveBonus(&emp, 5000.0);
+    printf("%s's new salary: %.2f\n", emp.name, emp.salary);
+    return 0;
+}
+Use code with caution.
+
+19. Return a structure from a function (adding two complex numbers).
+
+c
+#include <stdio.h>
+
+struct Complex {
+    int real, imag;
+};
+
+struct Complex addComplex(struct Complex a, struct Complex b) {
+    struct Complex result;
+    result.real = a.real + b.real;
+    result.imag = a.imag + b.imag;
+    return result;
+}
+
+int main() {
+    struct Complex c1 = {2, 3}, c2 = {4, 5};
+    struct Complex sum = addComplex(c1, c2);
+    printf("Sum = %d + %di\n", sum.real, sum.imag);
+    return 0;
+}
+Use code with caution.
+
+20. Pass an array of structures to a function to calculate total inventory value.
+
+c
+#include <stdio.h>
+
+struct Product {
+    int quantity;
+    float price;
+};
+
+float totalValue(struct Product items[], int n) {
+    float total = 0;
+    for (int i = 0; i < n; i++) {
+        total += items[i].quantity * items[i].price;
+    }
+    return total;
+}
+
+int main() {
+    struct Product stock = {{10, 15.0}, {5, 40.0}, {2, 100.0}};
+    printf("Total Inventory Value = %.2f\n", totalValue(stock, 3));
+    return 0;
+}
