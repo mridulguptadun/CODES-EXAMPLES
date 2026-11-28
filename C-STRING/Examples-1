@@ -1,0 +1,427 @@
+
+1. Find the length of a string without using strlen().
+
+c
+#include <stdio.h>
+
+int main() {
+    char str[] = "Programming";
+    int len = 0;
+    while (str[len] != '\0') {
+        len++;
+    }
+    printf("Length = %d\n", len);
+    return 0;
+}
+Use code with caution.
+
+2. Copy one string into another without using strcpy().
+
+c
+#include <stdio.h>
+
+int main() {
+    char src[] = "Hello C", dest;
+    int i = 0;
+    while (src[i] != '\0') {
+        dest[i] = src[i];
+        i++;
+    }
+    dest[i] = '\0';
+    printf("Copied String: %s\n", dest);
+    return 0;
+}
+Use code with caution.
+
+3. Concatenate two strings without using strcat().
+
+c
+#include <stdio.h>
+
+int main() {
+    char s1 = "Good ", s2[] = "Morning";
+    int i = 0, j = 0;
+    while (s1[i] != '\0') i++;
+    while (s2[j] != '\0') {
+        s1[i] = s2[j];
+        i++;
+        j++;
+    }
+    s1[i] = '\0';
+    printf("Combined String: %s\n", s1);
+    return 0;
+}
+Use code with caution.
+
+4. Compare two strings without using strcmp().
+
+c
+#include <stdio.h>
+
+int main() {
+    char s1[] = "apple", s2[] = "apple";
+    int i = 0, isEqual = 1;
+    while (s1[i] != '\0' || s2[i] != '\0') {
+        if (s1[i] != s2[i]) {
+            isEqual = 0;
+            break;
+        }
+        i++;
+    }
+    printf(isEqual ? "Strings are equal\n" : "Strings are not equal\n");
+    return 0;
+}
+Use code with caution.
+
+5. Print a string in reverse order.
+
+c
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char str[] = "hello";
+    int len = strlen(str);
+    printf("Reversed: ");
+    for (int i = len - 1; i >= 0; i--) {
+        printf("%c", str[i]);
+    }
+    printf("\n");
+    return 0;
+}
+Use code with caution.
+
+6. Check whether a given string is a palindrome.
+
+c
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char str[] = "madam";
+    int left = 0, right = strlen(str) - 1, isPal = 1;
+    while (left < right) {
+        if (str[left] != str[right]) {
+            isPal = 0;
+            break;
+        }
+        left++;
+        right--;
+    }
+    printf(isPal ? "Palindrome\n" : "Not a Palindrome\n");
+    return 0;
+}
+Use code with caution.
+
+7. Count the number of vowels, consonants, digits, and spaces in a string.
+
+c
+#include <stdio.h>
+#include <ctype.h>
+
+int main() {
+    char str[] = "C123 is fun 45!";
+    int vowels = 0, consonants = 0, digits = 0, spaces = 0;
+
+    for (int i = 0; str[i] != '\0'; i++) {
+        char ch = tolower(str[i]);
+        if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') vowels++;
+        else if (ch >= 'a' && ch <= 'z') consonants++;
+        else if (ch >= '0' && ch <= '9') digits++;
+        else if (ch == ' ') spaces++;
+    }
+    printf("Vowels: %d, Consonants: %d, Digits: %d, Spaces: %d\n",
+           vowels, consonants, digits, spaces);
+    return 0;
+}
+Use code with caution.
+
+8. Convert all lowercase letters to uppercase and uppercase to lowercase (toggle case).
+
+c
+#include <stdio.h>
+
+int main() {
+    char str[] = "HeLLo WoRLd";
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] >= 'a' && str[i] <= 'z') str[i] -= 32;
+        else if (str[i] >= 'A' && str[i] <= 'Z') str[i] += 32;
+    }
+    printf("Toggled: %s\n", str);
+    return 0;
+}
+Use code with caution.
+
+Part 2: Searching, Counting & String Manipulation (Questions 9–14)
+
+
+9. Count the frequency of a given character in a string.
+
+c
+#include <stdio.h>
+
+int main() {
+    char str[] = "banana", target = 'a';
+    int count = 0;
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] == target) count++;
+    }
+    printf("Frequency of '%c' = %d\n", target, count);
+    return 0;
+}
+Use code with caution.
+
+10. Remove all spaces from a string.
+
+c
+#include <stdio.h>
+
+int main() {
+    char str[] = "C programming language", result;
+    int j = 0;
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] != ' ') {
+            result[j++] = str[i];
+        }
+    }
+    result[j] = '\0';
+    printf("Without spaces: %s\n", result);
+    return 0;
+}
+Use code with caution.
+
+11. Count the total number of words in a string.
+
+c
+#include <stdio.h>
+
+int main() {
+    char str[] = "Learn C step by step";
+    int words = 0, inWord = 0;
+
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] != ' ' && str[i] != '\n' && str[i] != '\t') {
+            if (!inWord) {
+                words++;
+                inWord = 1;
+            }
+        } else {
+            inWord = 0;
+        }
+    }
+    printf("Total words = %d\n", words);
+    return 0;
+}
+Use code with caution.
+
+12. Find the first occurrence of a character in a string.
+
+c
+#include <stdio.h>
+
+int main() {
+    char str[] = "computer", ch = 'p';
+    int index = -1;
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] == ch) {
+            index = i;
+            break;
+        }
+    }
+    printf(index != -1 ? "First '%c' at index %d\n" : "Not found\n", ch, index);
+    return 0;
+}
+Use code with caution.
+
+13. Replace all occurrences of a character with another character in a string.
+
+c
+#include <stdio.h>
+
+int main() {
+    char str[] = "abracadabra";
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] == 'a') str[i] = '*';
+    }
+    printf("Updated: %s\n", str);
+    return 0;
+}
+Use code with caution.
+
+14. Sort characters of a string in alphabetical order.
+
+c
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char str[] = "dcba";
+    int n = strlen(str);
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - 1 - i; j++) {
+            if (str[j] > str[j + 1]) {
+                char temp = str[j];
+                str[j] = str[j + 1];
+                str[j + 1] = temp;
+            }
+        }
+    }
+    printf("Sorted string: %s\n", str);
+    return 0;
+}
+Use code with caution.
+
+Part 3: Functions with Strings & Arrays of Strings (Questions 15–20)
+
+
+15. Write a function to reverse a string in-place.
+
+c
+#include <stdio.h>
+#include <string.h>
+
+void reverseStr(char str[]) {
+    int i = 0, j = strlen(str) - 1;
+    while (i < j) {
+        char temp = str[i];
+        str[i] = str[j];
+        str[j] = temp;
+        i++;
+        j--;
+    }
+}
+
+int main() {
+    char word[] = "abcdef";
+    reverseStr(word);
+    printf("Reversed: %s\n", word);
+    return 0;
+}
+Use code with caution.
+
+16. Write a function to check if a string contains only digits.
+
+c
+#include <stdio.h>
+
+int isOnlyDigits(char str[]) {
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] < '0' || str[i] > '9') return 0;
+    }
+    return 1;
+}
+
+int main() {
+    char code[] = "987654";
+    printf(isOnlyDigits(code) ? "Only digits\n" : "Contains non-digits\n");
+    return 0;
+}
+Use code with caution.
+
+17. Write a function to check if two strings are anagrams of each other.
+
+c
+#include <stdio.h>
+#include <string.h>
+
+int areAnagrams(char s1[], char s2[]) {
+    if (strlen(s1) != strlen(s2)) return 0;
+    int freq = {0};
+    for (int i = 0; s1[i] != '\0'; i++) {
+        freq[(unsigned char)s1[i]]++;
+        freq[(unsigned char)s2[i]]--;
+    }
+    for (int i = 0; i < 256; i++) {
+        if (freq[i] != 0) return 0;
+    }
+    return 1;
+}
+
+int main() {
+    printf(areAnagrams("listen", "silent") ? "Anagrams\n" : "Not Anagrams\n");
+    return 0;
+}
+Use code with caution.
+
+18. Write a function to capitalize the first letter of every word in a sentence.
+
+c
+#include <stdio.h>
+#include <ctype.h>
+
+void capitalizeWords(char str[]) {
+    int newWord = 1;
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] == ' ') {
+            newWord = 1;
+        } else if (newWord) {
+            str[i] = toupper((unsigned char)str[i]);
+            newWord = 0;
+        }
+    }
+}
+
+int main() {
+    char line[] = "welcome to c programming";
+    capitalizeWords(line);
+    printf("%s\n", line);
+    return 0;
+}
+Use code with caution.
+
+19. Write a function to find the longest string in an array of strings.
+
+c
+#include <stdio.h>
+#include <string.h>
+
+void printLongest(char arr[][30], int n) {
+    int maxIdx = 0;
+    for (int i = 1; i < n; i++) {
+        if (strlen(arr[i]) > strlen(arr[maxIdx])) {
+            maxIdx = i;
+        }
+    }
+    printf("Longest string: %s\n", arr[maxIdx]);
+}
+
+int main() {
+    char words = {"C", "Algorithm", "Pointer", "DataStructure"};
+    printLongest(words, 4);
+    return 0;
+}
+Use code with caution.
+
+20. Write a function to remove duplicate characters from a string.
+
+c
+#include <stdio.h>
+
+void removeDuplicates(char str[]) {
+    int idx = 0;
+    for (int i = 0; str[i] != '\0'; i++) {
+        int seen = 0;
+        for (int j = 0; j < idx; j++) {
+            if (str[i] == str[j]) {
+                seen = 1;
+                break;
+            }
+        }
+        if (!seen) {
+            str[idx++] = str[i];
+        }
+    }
+    str[idx] = '\0';
+}
+
+int main() {
+    char str[] = "programming";
+    removeDuplicates(str);
+    printf("Without duplicates: %s\n", str);
+    return 0;
+}
+Use code with caution.
+Ab Strings ke baad aapke roadmap ke hisaab se agla step kya ho:
+• User-Defined Data Types (union, enum) explain karoon (English definition/example + Hinglish explanation)
+• File Handling start karoon
+Try without personalization
