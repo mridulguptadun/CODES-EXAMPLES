@@ -1,0 +1,636 @@
+
+1. Pass a Circle structure to a function and return its area.
+
+c
+#include <stdio.h>
+
+struct Circle {
+    float radius;
+};
+
+float calculateArea(struct Circle c) {
+    return 3.14159 * c.radius * c.radius;
+}
+
+int main() {
+    struct Circle c1 = {5.0};
+    printf("Area = %.2f\n", calculateArea(c1));
+    return 0;
+}
+Use code with caution.
+
+2. Write a function that takes a Student structure and prints their grade based on marks.
+
+c
+#include <stdio.h>
+
+struct Student {
+    char name[30];
+    float marks;
+};
+
+void printGrade(struct Student s) {
+    char grade = (s.marks >= 90) ? 'A' : (s.marks >= 75) ? 'B' : (s.marks >= 50) ? 'C' : 'F';
+    printf("%s scored %.1f -> Grade: %c\n", s.name, s.marks, grade);
+}
+
+int main() {
+    struct Student s1 = {"Aarav", 84.5};
+    printGrade(s1);
+    return 0;
+}
+Use code with caution.
+
+3. Write a function that returns a Rectangle scaled by a given factor.
+
+c
+#include <stdio.h>
+
+struct Rectangle {
+    float length;
+    float width;
+};
+
+struct Rectangle scaleRectangle(struct Rectangle r, float factor) {
+    r.length *= factor;
+    r.width *= factor;
+    return r;
+}
+
+int main() {
+    struct Rectangle rect = {4.0, 3.0};
+    rect = scaleRectangle(rect, 2.5);
+    printf("New dimensions: %.1f x %.1f\n", rect.length, rect.width);
+    return 0;
+}
+Use code with caution.
+
+4. Write a function to check if two Date structures represent the exact same date.
+
+c
+#include <stdio.h>
+
+struct Date {
+    int day, month, year;
+};
+
+int areDatesEqual(struct Date d1, struct Date d2) {
+    return (d1.day == d2.day && d1.month == d2.month && d1.year == d2.year);
+}
+
+int main() {
+    struct Date d1 = {15, 8, 2026}, d2 = {15, 8, 2026};
+    printf(areDatesEqual(d1, d2) ? "Same Date\n" : "Different Dates\n");
+    return 0;
+}
+Use code with caution.
+
+5. Write a function to compare two Date structures and return which one is earlier.
+
+c
+#include <stdio.h>
+
+struct Date {
+    int day, month, year;
+};
+
+struct Date getEarlierDate(struct Date d1, struct Date d2) {
+    if (d1.year != d2.year) return (d1.year < d2.year) ? d1 : d2;
+    if (d1.month != d2.month) return (d1.month < d2.month) ? d1 : d2;
+    return (d1.day <= d2.day) ? d1 : d2;
+}
+
+int main() {
+    struct Date d1 = {20, 5, 2026}, d2 = {10, 5, 2026};
+    struct Date early = getEarlierDate(d1, d2);
+    printf("Earlier Date: %02d/%02d/%d\n", early.day, early.month, early.year);
+    return 0;
+}
+Use code with caution.
+
+6. Write a function to multiply two Complex numbers and return the resulting structure.
+
+c
+#include <stdio.h>
+
+struct Complex {
+    int real, imag;
+};
+
+struct Complex multiplyComplex(struct Complex a, struct Complex b) {
+    struct Complex res;
+    res.real = (a.real * b.real) - (a.imag * b.imag);
+    res.imag = (a.real * b.imag) + (a.imag * b.real);
+    return res;
+}
+
+int main() {
+    struct Complex c1 = {3, 2}, c2 = {1, 4};
+    struct Complex prod = multiplyComplex(c1, c2);
+    printf("Product = %d + %di\n", prod.real, prod.imag);
+    return 0;
+}
+Use code with caution.
+
+7. Write a function that takes a BankAccount structure, deposits an amount, and returns the updated account.
+
+c
+#include <stdio.h>
+
+struct BankAccount {
+    int accNo;
+    float balance;
+};
+
+struct BankAccount deposit(struct BankAccount acc, float amount) {
+    if (amount > 0) acc.balance += amount;
+    return acc;
+}
+
+int main() {
+    struct BankAccount myAcc = {1001, 2500.0};
+    myAcc = deposit(myAcc, 1500.0);
+    printf("Account %d Balance: %.2f\n", myAcc.accNo, myAcc.balance);
+    return 0;
+}
+Use code with caution.
+
+8. Write a function to withdraw money from a BankAccount only if sufficient balance exists.
+
+c
+#include <stdio.h>
+
+struct BankAccount {
+    int accNo;
+    float balance;
+};
+
+struct BankAccount withdraw(struct BankAccount acc, float amount) {
+    if (amount <= acc.balance) {
+        acc.balance -= amount;
+        printf("Withdrawal successful.\n");
+    } else {
+        printf("Insufficient balance!\n");
+    }
+    return acc;
+}
+
+int main() {
+    struct BankAccount myAcc = {1001, 3000.0};
+    myAcc = withdraw(myAcc, 1200.0);
+    printf("Remaining Balance: %.2f\n", myAcc.balance);
+    return 0;
+}
+Use code with caution.
+
+9. Write a function that takes a Time structure (in seconds) and returns a normalized Time (hours, minutes, seconds).
+
+c
+#include <stdio.h>
+
+struct Time {
+    int hrs, mins, secs;
+};
+
+struct Time convertSeconds(int totalSeconds) {
+    struct Time t;
+    t.hrs = totalSeconds / 3600;
+    t.mins = (totalSeconds % 3600) / 60;
+    t.secs = totalSeconds % 60;
+    return t;
+}
+
+int main() {
+    struct Time t = convertSeconds(3665);
+    printf("Time = %02d:%02d:%02d\n", t.hrs, t.mins, t.secs);
+    return 0;
+}
+Use code with caution.
+
+10. Write a function to find the midpoint between two 2D Point structures.
+
+c
+#include <stdio.h>
+
+struct Point {
+    float x, y;
+};
+
+struct Point findMidpoint(struct Point p1, struct Point p2) {
+    struct Point mid;
+    mid.x = (p1.x + p2.x) / 2.0;
+    mid.y = (p1.y + p2.y) / 2.0;
+    return mid;
+}
+
+int main() {
+    struct Point a = {2.0, 4.0}, b = {6.0, 10.0};
+    struct Point m = findMidpoint(a, b);
+    printf("Midpoint = (%.1f, %.1f)\n", m.x, m.y);
+    return 0;
+}
+Use code with caution.
+
+Part 2: Functions with Arrays of Structures (Questions 11–20)
+
+
+11. Write a function to calculate and return the average salary of all employees.
+
+c
+#include <stdio.h>
+
+struct Employee {
+    int id;
+    float salary;
+};
+
+float averageSalary(struct Employee emp[], int n) {
+    float sum = 0;
+    for (int i = 0; i < n; i++) sum += emp[i].salary;
+    return sum / n;
+}
+
+int main() {
+    struct Employee list[3] = {{1, 40000}, {2, 50000}, {3, 60000}};
+    printf("Average Salary = %.2f\n", averageSalary(list, 3));
+    return 0;
+}
+Use code with caution.
+
+12. Write a function to count how many students passed (marks >= 40).
+
+c
+#include <stdio.h>
+
+struct Student {
+    char name[20];
+    float marks;
+};
+
+int countPassed(struct Student s[], int n) {
+    int count = 0;
+    for (int i = 0; i < n; i++) {
+        if (s[i].marks >= 40.0) count++;
+    }
+    return count;
+}
+
+int main() {
+    struct Student cls[4] = {{"A", 35}, {"B", 78}, {"C", 40}, {"D", 29}};
+    printf("Passed students: %d\n", countPassed(cls, 4));
+    return 0;
+}
+Use code with caution.
+
+13. Write a function that returns the Employee structure with the highest salary.
+
+c
+#include <stdio.h>
+
+struct Employee {
+    char name[20];
+    float salary;
+};
+
+struct Employee getHighestPaid(struct Employee emp[], int n) {
+    struct Employee highest = emp[0];
+    for (int i = 1; i < n; i++) {
+        if (emp[i].salary > highest.salary) highest = emp[i];
+    }
+    return highest;
+}
+
+int main() {
+    struct Employee staff[3] = {{"Neha", 55000}, {"Rohan", 72000}, {"Amit", 61000}};
+    struct Employee top = getHighestPaid(staff, 3);
+    printf("Highest Paid: %s (%.2f)\n", top.name, top.salary);
+    return 0;
+}
+Use code with caution.
+
+14. Write a function to apply a 10% salary raise to all employees earning less than 50,000.
+
+c
+#include <stdio.h>
+
+struct Employee {
+    char name[20];
+    float salary;
+};
+
+void applyRaise(struct Employee emp[], int n) {
+    for (int i = 0; i < n; i++) {
+        if (emp[i].salary < 50000) emp[i].salary *= 1.10;
+    }
+}
+
+int main() {
+    struct Employee staff[2] = {{"Karan", 40000}, {"Priya", 60000}};
+    applyRaise(staff, 2);
+    for (int i = 0; i < 2; i++) printf("%s: %.2f\n", staff[i].name, staff[i].salary);
+    return 0;
+}
+Use code with caution.
+
+15. Write a function to search for a book by title and return its index (-1 if not found).
+
+c
+#include <stdio.h>
+#include <string.h>
+
+struct Book {
+    char title[40];
+    float price;
+};
+
+int findBook(struct Book lib[], int n, char target[]) {
+    for (int i = 0; i < n; i++) {
+        if (strcmp(lib[i].title, target) == 0) return i;
+    }
+    return -1;
+}
+
+int main() {
+    struct Book lib[3] = {{"C Basics", 250}, {"Data Structures", 450}, {"OS", 350}};
+    int idx = findBook(lib, 3, "Data Structures");
+    printf(idx != -1 ? "Found at index %d\n" : "Not found\n", idx);
+    return 0;
+}
+Use code with caution.
+
+16. Write a function to sort an array of Product structures by price in ascending order.
+
+c
+#include <stdio.h>
+
+struct Product {
+    char name[20];
+    float price;
+};
+
+void sortByPrice(struct Product p[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - 1 - i; j++) {
+            if (p[j].price > p[j + 1].price) {
+                struct Product temp = p[j];
+                p[j] = p[j + 1];
+                p[j + 1] = temp;
+            }
+        }
+    }
+}
+
+int main() {
+    struct Product items[3] = {{"Mouse", 500}, {"Keyboard", 1200}, {"USB", 300}};
+    sortByPrice(items, 3);
+    for (int i = 0; i < 3; i++) printf("%s: %.2f\n", items[i].name, items[i].price);
+    return 0;
+}
+Use code with caution.
+
+17. Write a function to print all products that are out of stock (quantity == 0).
+
+c
+#include <stdio.h>
+
+struct Item {
+    int id;
+    char name[20];
+    int quantity;
+};
+
+void printOutOfStock(struct Item items[], int n) {
+    printf("Out of stock items:\n");
+    for (int i = 0; i < n; i++) {
+        if (items[i].quantity == 0) printf("- %s (ID: %d)\n", items[i].name, items[i].id);
+    }
+}
+
+int main() {
+    struct Item store[3] = {{1, "Pen", 10}, {2, "Notebook", 0}, {3, "Eraser", 0}};
+    printOutOfStock(store, 3);
+    return 0;
+}
+Use code with caution.
+
+18. Write a function to update a student's marks given their roll number.
+
+c
+#include <stdio.h>
+
+struct Student {
+    int roll;
+    float marks;
+};
+
+void updateMarks(struct Student s[], int n, int roll, float newMarks) {
+    for (int i = 0; i < n; i++) {
+        if (s[i].roll == roll) {
+            s[i].marks = newMarks;
+            return;
+        }
+    }
+}
+
+int main() {
+    struct Student cls[2] = {{101, 75.0}, {102, 82.0}};
+    updateMarks(cls, 2, 101, 91.5);
+    printf("Roll 101 new marks: %.1f\n", cls[0].marks);
+    return 0;
+}
+Use code with caution.
+
+19. Write a function to filter and print cars manufactured after a given year.
+
+c
+#include <stdio.h>
+
+struct Car {
+    char model[20];
+    int year;
+};
+
+void printNewCars(struct Car cars[], int n, int minYear) {
+    for (int i = 0; i < n; i++) {
+        if (cars[i].year > minYear) printf("%s (%d)\n", cars[i].model, cars[i].year);
+    }
+}
+
+int main() {
+    struct Car garage[3] = {{"Swift", 2018}, {"Creta", 2023}, {"Nexon", 2025}};
+    printNewCars(garage, 3, 2020);
+    return 0;
+}
+Use code with caution.
+
+20. Write a function to generate a shopping bill with tax from an array of CartItem structures.
+
+c
+#include <stdio.h>
+
+struct CartItem {
+    char name[20];
+    int qty;
+    float unitPrice;
+};
+
+float calculateFinalBill(struct CartItem cart[], int n, float taxPercent) {
+    float subtotal = 0;
+    for (int i = 0; i < n; i++) subtotal += cart[i].qty * cart[i].unitPrice;
+    return subtotal + (subtotal * taxPercent / 100.0);
+}
+
+int main() {
+    struct CartItem cart[2] = {{"Shirt", 2, 800.0}, {"Jeans", 1, 1500.0}};
+    printf("Final Bill (with 18%% tax): %.2f\n", calculateFinalBill(cart, 2, 18.0));
+    return 0;
+}
+Use code with caution.
+
+Part 3: Nested Structures & Complex Logic with Functions (Questions 21–25)
+
+
+21. Write a function to check if a Point lies inside a Rectangle (nested structure).
+
+c
+#include <stdio.h>
+
+struct Point {
+    int x, y;
+};
+
+struct Rectangle {
+    struct Point bottomLeft;
+    struct Point topRight;
+};
+
+int isPointInside(struct Rectangle r, struct Point p) {
+    return (p.x >= r.bottomLeft.x && p.x <= r.topRight.x &&
+            p.y >= r.bottomLeft.y && p.y <= r.topRight.y);
+}
+
+int main() {
+    struct Rectangle box = {{0, 0}, {10, 10}};
+    struct Point pt = {5, 7};
+    printf(isPointInside(box, pt) ? "Inside\n" : "Outside\n");
+    return 0;
+}
+Use code with caution.
+
+22. Write a function to find the total runs scored by a cricket team using a Player array.
+
+c
+#include <stdio.h>
+
+struct Player {
+    char name[20];
+    int runs;
+    int balls;
+};
+
+int totalTeamRuns(struct Player team[], int n) {
+    int total = 0;
+    for (int i = 0; i < n; i++) total += team[i].runs;
+    return total;
+}
+
+int main() {
+    struct Player squad[3] = {{"Virat", 82, 53}, {"Rohit", 47, 31}, {"Hardik", 35, 19}};
+    printf("Total Team Runs: %d\n", totalTeamRuns(squad, 3));
+    return 0;
+}
+Use code with caution.
+
+23. Write a function to find the player with the highest strike rate (runs / balls) * 100.
+
+c
+#include <stdio.h>
+
+struct Player {
+    char name[20];
+    int runs;
+    int balls;
+};
+
+void bestStrikeRate(struct Player team[], int n) {
+    int bestIdx = 0;
+    float maxSR = (float)team[0].runs / team[0].balls * 100;
+    for (int i = 1; i < n; i++) {
+        float sr = (float)team[i].runs / team[i].balls * 100;
+        if (sr > maxSR) {
+            maxSR = sr;
+            bestIdx = i;
+        }
+    }
+    printf("Best Strike Rate: %s (%.2f)\n", team[bestIdx].name, maxSR);
+}
+
+int main() {
+    struct Player squad[3] = {{"Player1", 50, 40}, {"Player2", 45, 20}, {"Player3", 60, 50}};
+    bestStrikeRate(squad, 3);
+    return 0;
+}
+Use code with caution.
+
+24. Write a function to print all employees living in a specific city using a nested Address structure.
+
+c
+#include <stdio.h>
+#include <string.h>
+
+struct Address {
+    char city[20];
+    int pincode;
+};
+
+struct Employee {
+    char name[20];
+    struct Address addr;
+};
+
+void filterByCity(struct Employee emp[], int n, char targetCity[]) {
+    for (int i = 0; i < n; i++) {
+        if (strcmp(emp[i].addr.city, targetCity) == 0) {
+            printf("%s - %d\n", emp[i].name, emp[i].addr.pincode);
+        }
+    }
+}
+
+int main() {
+    struct Employee list[3] = {
+        {"Aman", {"Dehradun", 248001}},
+        {"Riya", {"Delhi", 110001}},
+        {"Vikas", {"Dehradun", 248002}}
+    };
+    filterByCity(list, 3, "Dehradun");
+    return 0;
+}
+Use code with caution.
+
+25. Write a function to reduce a Fraction (numerator and denominator) to its simplest form.
+
+c
+#include <stdio.h>
+
+struct Fraction {
+    int num;
+    int den;
+};
+
+int gcd(int a, int b) {
+    return (b == 0) ? a : gcd(b, a % b);
+}
+
+struct Fraction simplify(struct Fraction f) {
+    int common = gcd(f.num, f.den);
+    f.num /= common;
+    f.den /= common;
+    return f;
+}
+
+int main() {
+    struct Fraction f1 = {18, 24};
+    f1 = simplify(f1);
+    printf("Simplified Fraction: %d/%d\n", f1.num, f1.den);
+    return 0;
+}
