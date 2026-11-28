@@ -1,7 +1,5 @@
-
 1. Find the length of a string without using strlen().
 
-c
 #include <stdio.h>
 
 int main() {
@@ -13,11 +11,10 @@ int main() {
     printf("Length = %d\n", len);
     return 0;
 }
-Use code with caution.
+====================================================================================
 
 2. Copy one string into another without using strcpy().
 
-c
 #include <stdio.h>
 
 int main() {
@@ -31,11 +28,10 @@ int main() {
     printf("Copied String: %s\n", dest);
     return 0;
 }
-Use code with caution.
+====================================================================================
 
 3. Concatenate two strings without using strcat().
 
-c
 #include <stdio.h>
 
 int main() {
@@ -51,11 +47,10 @@ int main() {
     printf("Combined String: %s\n", s1);
     return 0;
 }
-Use code with caution.
+====================================================================================
 
 4. Compare two strings without using strcmp().
 
-c
 #include <stdio.h>
 
 int main() {
@@ -71,11 +66,10 @@ int main() {
     printf(isEqual ? "Strings are equal\n" : "Strings are not equal\n");
     return 0;
 }
-Use code with caution.
+====================================================================================
 
 5. Print a string in reverse order.
 
-c
 #include <stdio.h>
 #include <string.h>
 
@@ -89,11 +83,10 @@ int main() {
     printf("\n");
     return 0;
 }
-Use code with caution.
+====================================================================================
 
 6. Check whether a given string is a palindrome.
 
-c
 #include <stdio.h>
 #include <string.h>
 
@@ -111,11 +104,10 @@ int main() {
     printf(isPal ? "Palindrome\n" : "Not a Palindrome\n");
     return 0;
 }
-Use code with caution.
+====================================================================================
 
 7. Count the number of vowels, consonants, digits, and spaces in a string.
 
-c
 #include <stdio.h>
 #include <ctype.h>
 
@@ -134,11 +126,10 @@ int main() {
            vowels, consonants, digits, spaces);
     return 0;
 }
-Use code with caution.
+====================================================================================
 
 8. Convert all lowercase letters to uppercase and uppercase to lowercase (toggle case).
 
-c
 #include <stdio.h>
 
 int main() {
@@ -150,14 +141,10 @@ int main() {
     printf("Toggled: %s\n", str);
     return 0;
 }
-Use code with caution.
-
-Part 2: Searching, Counting & String Manipulation (Questions 9–14)
-
+====================================================================================
 
 9. Count the frequency of a given character in a string.
 
-c
 #include <stdio.h>
 
 int main() {
@@ -169,11 +156,10 @@ int main() {
     printf("Frequency of '%c' = %d\n", target, count);
     return 0;
 }
-Use code with caution.
+====================================================================================
 
 10. Remove all spaces from a string.
 
-c
 #include <stdio.h>
 
 int main() {
@@ -188,11 +174,10 @@ int main() {
     printf("Without spaces: %s\n", result);
     return 0;
 }
-Use code with caution.
+====================================================================================
 
 11. Count the total number of words in a string.
 
-c
 #include <stdio.h>
 
 int main() {
@@ -212,11 +197,10 @@ int main() {
     printf("Total words = %d\n", words);
     return 0;
 }
-Use code with caution.
+====================================================================================
 
 12. Find the first occurrence of a character in a string.
 
-c
 #include <stdio.h>
 
 int main() {
@@ -231,11 +215,10 @@ int main() {
     printf(index != -1 ? "First '%c' at index %d\n" : "Not found\n", ch, index);
     return 0;
 }
-Use code with caution.
+====================================================================================
 
 13. Replace all occurrences of a character with another character in a string.
 
-c
 #include <stdio.h>
 
 int main() {
@@ -246,11 +229,10 @@ int main() {
     printf("Updated: %s\n", str);
     return 0;
 }
-Use code with caution.
+====================================================================================
 
 14. Sort characters of a string in alphabetical order.
 
-c
 #include <stdio.h>
 #include <string.h>
 
@@ -269,14 +251,10 @@ int main() {
     printf("Sorted string: %s\n", str);
     return 0;
 }
-Use code with caution.
-
-Part 3: Functions with Strings & Arrays of Strings (Questions 15–20)
-
+====================================================================================
 
 15. Write a function to reverse a string in-place.
 
-c
 #include <stdio.h>
 #include <string.h>
 
@@ -297,11 +275,10 @@ int main() {
     printf("Reversed: %s\n", word);
     return 0;
 }
-Use code with caution.
+====================================================================================
 
 16. Write a function to check if a string contains only digits.
 
-c
 #include <stdio.h>
 
 int isOnlyDigits(char str[]) {
@@ -316,11 +293,10 @@ int main() {
     printf(isOnlyDigits(code) ? "Only digits\n" : "Contains non-digits\n");
     return 0;
 }
-Use code with caution.
+====================================================================================
 
 17. Write a function to check if two strings are anagrams of each other.
 
-c
 #include <stdio.h>
 #include <string.h>
 
@@ -341,11 +317,10 @@ int main() {
     printf(areAnagrams("listen", "silent") ? "Anagrams\n" : "Not Anagrams\n");
     return 0;
 }
-Use code with caution.
+====================================================================================
 
 18. Write a function to capitalize the first letter of every word in a sentence.
 
-c
 #include <stdio.h>
 #include <ctype.h>
 
@@ -367,11 +342,10 @@ int main() {
     printf("%s\n", line);
     return 0;
 }
-Use code with caution.
+====================================================================================
 
 19. Write a function to find the longest string in an array of strings.
 
-c
 #include <stdio.h>
 #include <string.h>
 
@@ -390,11 +364,10 @@ int main() {
     printLongest(words, 4);
     return 0;
 }
-Use code with caution.
+====================================================================================
 
 20. Write a function to remove duplicate characters from a string.
 
-c
 #include <stdio.h>
 
 void removeDuplicates(char str[]) {
@@ -420,8 +393,4 @@ int main() {
     printf("Without duplicates: %s\n", str);
     return 0;
 }
-Use code with caution.
-Ab Strings ke baad aapke roadmap ke hisaab se agla step kya ho:
-• User-Defined Data Types (union, enum) explain karoon (English definition/example + Hinglish explanation)
-• File Handling start karoon
-Try without personalization
+
